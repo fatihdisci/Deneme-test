@@ -3,38 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dişçi Hukuk & Danışmanlık | Next-Gen Legal</title>
+    <title>Dişçi Hukuk & Danışmanlık | Dijital Çağın Avukatı</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            500: '#0ea5e9', // Gökyüzü mavisi
-                            900: '#0c4a6e',
-                        }
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { 500: '#0ea5e9' } }
                 }
             }
         }
     </script>
     
     <style>
-        /* Özel Animasyonlar */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .gradient-text {
@@ -42,106 +34,92 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
     </style>
 </head>
-<body class="bg-slate-950 text-white antialiased selection:bg-brand-500 selection:text-white">
+<body class="bg-[#030712] text-white antialiased">
 
-    <nav x-data="{ open: false }" class="fixed w-full z-50 glass-panel border-b-0 border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <span class="text-2xl font-bold tracking-tighter">DISCI<span class="text-brand-500">LAW</span>.</span>
-                </div>
-                
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#" class="hover:text-brand-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Ana Sayfa</a>
-                        <a href="#" class="hover:text-brand-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Uzmanlıklar</a>
-                        <a href="#" class="hover:text-brand-500 transition-colors px-3 py-2 rounded-md text-sm font-medium">Teknoloji</a>
-                        <a href="#" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-sm font-medium transition-all">İletişim</a>
-                    </div>
-                </div>
-
-                <div class="-mr-2 flex md:hidden">
-                    <button @click="open = !open" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div x-show="open" @click.away="open = false" class="md:hidden glass-panel border-t border-white/10">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">Ana Sayfa</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">Uzmanlıklar</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/10">Teknoloji</a>
+    <nav class="fixed w-full z-50 glass-panel border-b-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-black tracking-tighter">DISCI<span class="text-brand-500">LAW</span></div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#" class="hover:text-brand-500 transition-colors">Uzmanlıklar</a>
+                <a href="#" class="hover:text-brand-500 transition-colors">Dijital Dönüşüm</a>
+                <a href="#" class="bg-white text-black px-5 py-2 rounded-full hover:bg-brand-500 hover:text-white transition-all">Bize Ulaşın</a>
             </div>
         </div>
     </nav>
 
-    <div class="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden">
-        <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full z-0 pointer-events-none">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
-            <div class="absolute top-20 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+    <section class="relative pt-48 pb-32 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full">
+            <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] animate-float"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[400px] h-[400px] bg-purple-600/20 rounded-full blur-[100px] animate-float" style="animation-delay: -3s"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-7xl">
-                <span class="block">Hukukun</span>
-                <span class="block gradient-text">Dijital Geleceği</span>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <div data-aos="fade-down">
+                <span class="px-4 py-1.5 rounded-full border border-white/10 text-xs font-semibold tracking-widest uppercase bg-white/5 mb-6 inline-block">Geleceğin Hukuk Teknolojileri</span>
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="200" class="text-5xl md:text-8xl font-black tracking-tight mb-8">
+                Hukuku <span class="gradient-text">Kodluyoruz</span>
             </h1>
-            <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-400">
-                Klasik avukatlık anlayışını yapay zeka ve veri analitiği ile birleştiriyoruz. 
-                <span class="text-white font-semibold">Discilaw</span>, modern dünyanın hukuki ihtiyaçlarına dijital çözümler üretir.
+            <p data-aos="fade-up" data-aos-delay="400" class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+                Yapay zeka destekli analizler ve dijitalleşmiş hukuk süreçleri ile müvekkillerimize hız ve güven sağlıyoruz. 
             </p>
-            <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center gap-4">
-                <a href="#" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-slate-900 bg-white hover:bg-slate-200 md:py-4 md:text-lg transition-all">
-                    Randevu Al
-                </a>
-                <a href="#" class="flex items-center justify-center px-8 py-3 border border-white/20 text-base font-medium rounded-full text-white glass-panel hover:bg-white/10 md:py-4 md:text-lg transition-all">
-                    Projelerimizi İncele
-                </a>
+            <div data-aos="zoom-in" data-aos-delay="600" class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-brand-500 px-10 py-4 rounded-2xl font-bold hover:scale-105 transition-transform">Süreci Başlat</button>
+                <button class="glass-panel px-10 py-4 rounded-2xl font-bold hover:bg-white/10 transition-colors">Daha Fazla Bilgi</button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="py-24 bg-slate-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-24 relative bg-black/40">
+        <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div data-aos="fade-up" data-aos-delay="100" class="glass-panel p-10 rounded-[32px] group">
+                    <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-500 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Veri Odaklı Savunma</h3>
-                    <p class="text-slate-400">Dava süreçlerinde büyük veri analizi yaparak stratejik kararlar alıyoruz.</p>
+                    <h3 class="text-2xl font-bold mb-4">AI Analitiği</h3>
+                    <p class="text-slate-400 leading-relaxed">Milyonlarca yargı kararını saniyeler içinde analiz ederek davanızın kazanma potansiyelini ölçüyoruz.</p>
                 </div>
 
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <div data-aos="fade-up" data-aos-delay="300" class="glass-panel p-10 rounded-[32px] group">
+                    <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-500 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Hızlı & Dijital Süreç</h3>
-                    <p class="text-slate-400">Online dosya takibi ve yapay zeka destekli doküman yönetimi.</p>
+                    <h3 class="text-2xl font-bold mb-4">Siber Hukuk</h3>
+                    <p class="text-slate-400 leading-relaxed">Dijital varlıklar, KVKK ve siber suçlar konusunda yeni nesil savunma stratejileri geliştiriyoruz.</p>
                 </div>
 
-                <div class="glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300">
-                    <div class="w-12 h-12 bg-pink-500/20 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                <div data-aos="fade-up" data-aos-delay="500" class="glass-panel p-10 rounded-[32px] group">
+                    <div class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-brand-500 transition-colors">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Teknoloji Hukuku</h3>
-                    <p class="text-slate-400">Yazılım, telif ve siber suçlar alanında uzmanlaşmış danışmanlık.</p>
+                    <h3 class="text-2xl font-bold mb-4">Smart Contract</h3>
+                    <p class="text-slate-400 leading-relaxed">Akıllı sözleşmelerin hukuki geçerliliği ve blokzincir projeleri için regülasyon desteği.</p>
                 </div>
 
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer class="border-t border-white/10 py-8 text-center text-slate-500 text-sm">
-        <p>&copy; 2026 Discilaw - Fatih Dişçi. Tüm hakları saklıdır.</p>
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-slate-600 text-sm font-medium">© 2026 DISCI LAW - Tüm Hakları Saklıdır.</p>
     </footer>
 
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+    </script>
 </body>
 </html>
