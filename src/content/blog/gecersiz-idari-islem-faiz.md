@@ -9,7 +9,9 @@ image: "/images/blog/idari-islem.jpg"
 
 ## Giriş
 
-Bir hizmet bedelinin tahsiline dayanak oluşturan idari bir düzenleyici işlemin idari yargı tarafından iptal edilmesi halinde, bu iptal kararından önceki dönemde yapılan fazla ödemelerin iadesi ve bu alacağa uygulanacak **temerrüt faizinin başlangıcı** ile niteliği hukukumuzda önemli tartışma konularından birini oluşturmaktadır.
+Bir hizmet bedelinin tahsiline dayanak oluşturan idari bir düzenleyici işlemin idari yargı tarafından iptal edilmesi halinde, bu iptal kararından önceki dönemde yapılan fazla ödemelerin iadesi önem kazanır.
+
+Ayrıca, bu alacağa uygulanacak **temerrüt faizinin başlangıcı** ile niteliği hukukumuzda önemli tartışma konularından birini oluşturmaktadır.
 
 **Yargıtay'ın** bu konuya ilişkin son dönemdeki içtihadı, özellikle tacirler arası ilişkilerde haksız yere tahsil edilen bedellerin iadesinde uygulanacak faiz türü ve başlangıç tarihi açısından önemli kriterler sunmaktadır.
 
@@ -23,12 +25,21 @@ Hukuk Genel Kurulu'nun yerleşik içtihadına göre, hizmeti sunan ile tüketici
 
 ### Faiz Başlangıcı ve Türü
 
-1.  **Faiz Başlangıcı:** Borçlunun usulüne uygun bir **ihtar** ile temerrüde düşürülmesi koşulu aranır. Eğer borçlu temerrüde düşürülmemişse, faiz talebi **dava tarihinden itibaren** işlemeye başlar.
-2.  **Faiz Türü:** Alacaklının hukuki statüsü önem arz eder. Şayet alacaklı, **6183 sayılı Amme Alacaklarının Tahsili Usulü Hakkında Kanun'un** kapsamına giren bir kurum değilse, bu Kanun'da belirtilen gecikme zammı yerine ticari ilişkilerde **ticari avans faizinin** uygulanması gerektiği kabul edilmektedir.
+1.  **Faiz Başlangıcı:** Borçlunun usulüne uygun bir **ihtar** ile temerrüde düşürülmesi koşulu aranır. 
+    
+    Eğer borçlu temerrüde düşürülmemişse, faiz talebi **dava tarihinden itibaren** işlemeye başlar.
+
+2.  **Faiz Türü:** Alacaklının hukuki statüsü önem arz eder. Şayet alacaklı, **6183 sayılı Amme Alacaklarının Tahsili Usulü Hakkında Kanun'un** kapsamına giren bir kurum değilse, bu Kanun'da belirtilen gecikme zammı uygulanmaz. 
+    
+    Bunun yerine ticari ilişkilerde **ticari avans faizinin** uygulanması gerektiği kabul edilmektedir.
 
 ## Uygulama ve İspat
 
-İlgili hakkın talep edilmesi veya davanın kazanılması için, öncelikle hizmet bedelini düzenleyen idari kararın ve bu kararın iptaline ilişkin **Danıştay kararının** dosyaya sunulması gerekmektedir. Fazla tahsil edilen bedelin kesin miktarının, iptal edilen tarife ile hukuka uygun tarifeler arasındaki farka göre hesaplanması ve ödeme belgeleriyle ispatlanması zorunludur.
+İlgili hakkın talep edilmesi veya davanın kazanılması için, öncelikle hizmet bedelini düzenleyen idari kararın dosyaya sunulması gerekmektedir. 
+
+Ayrıca ve bu kararın iptaline ilişkin **Danıştay kararının** da ibrazı şarttır.
+
+Fazla tahsil edilen bedelin kesin miktarının, iptal edilen tarife ile hukuka uygun tarifeler arasındaki farka göre hesaplanması ve ödeme belgeleriyle ispatlanması zorunludur.
 
 > **Önemli Not:** Faiz başlangıç tarihini öne çekmek isteyen alacaklının, dava açılmadan önce borçluyu temerrüde düşürdüğünü gösteren geçerli bir **ihtarname** sunması gerekir.
 
@@ -37,5 +48,7 @@ Hukuk Genel Kurulu'nun yerleşik içtihadına göre, hizmeti sunan ile tüketici
 Yargıtay'ın bu spesifik dosyadaki bakış açısına göre:
 
 *   İdari yargı kararıyla hukuki dayanağını yitiren bir hizmet bedeli için yapılan fazla ödemelerin iadesi talebinde, alacaklının **tacir sıfatıyla doğrudan dava açma hakkı** bulunmaktadır.
+
 *   **Temerrüt faizinin başlangıcı** için borçlunun usulüne uygun ihtarla temerrüde düşürülmesi şartı aranmakta olup, bu yapılmadığı takdirde faiz dava tarihinden itibaren işlemeye başlar.
+
 *   Alacaklının 6183 sayılı Kanun kapsamında bir kamu kuruluşu olmaması durumunda, alacağa uygulanacak faiz türü **ticari avans faizidir**.
