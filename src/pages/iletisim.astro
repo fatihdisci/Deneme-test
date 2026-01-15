@@ -8,94 +8,100 @@ import Layout from '../layouts/Layout.astro';
     <div class="container mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" data-aos="fade-up">İletişim</h1>
       <p class="text-slate-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-        Sorularınız veya danışmanlık talepleriniz için bize ulaşın. En kısa sürede dönüş yapacağız.
+        Sorularınız veya danışmanlık talepleriniz için bize ulaşın.
       </p>
     </div>
   </section>
 
   <section class="py-24 bg-slate-950">
     <div class="container mx-auto px-4">
-      <div class="max-w-6xl mx-auto bg-slate-900/50 rounded-3xl overflow-hidden shadow-2xl border border-white/5">
-        <div class="flex flex-col md:flex-row">
+      <div class="max-w-7xl mx-auto bg-slate-900/50 rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+        <div class="flex flex-col lg:flex-row">
           
           <!-- Contact Info (Left) -->
-          <div class="w-full md:w-2/5 p-12 bg-slate-900 relative overflow-hidden" data-aos="fade-right">
+          <div class="w-full lg:w-1/3 p-12 bg-slate-900 relative overflow-hidden flex flex-col justify-between" data-aos="fade-right">
             <!-- Decorative circle -->
             <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-gold-500/10 blur-3xl"></div>
 
-            <h3 class="text-2xl font-bold text-white mb-8 relative z-10">İletişim Bilgileri</h3>
-            
-            <div class="space-y-8 relative z-10">
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
-                  <span class="text-2xl">📍</span>
+            <div class="relative z-10">
+                <h3 class="text-2xl font-bold text-white mb-8">İletişim Bilgileri</h3>
+                
+                <div class="space-y-8">
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="text-2xl">📍</span>
+                    </div>
+                    <div>
+                    <h4 class="text-white font-semibold mb-1">Adres</h4>
+                    <p class="text-slate-400 text-sm">1690 Sk. Doktorlar İş Hanı No: 1 Daire: 601<br/>Karşıyaka / İzmir</p>
+                    </div>
                 </div>
-                <div>
-                  <h4 class="text-white font-semibold mb-1">Adres</h4>
-                  <p class="text-slate-400 text-sm">Maslak, Büyükdere Cd. No:123<br/>Sarıyer, İstanbul, TR</p>
-                </div>
-              </div>
 
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
-                  <span class="text-2xl">📞</span>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="text-2xl">📞</span>
+                    </div>
+                    <div>
+                    <h4 class="text-white font-semibold mb-1">Telefon</h4>
+                    <a href="tel:+905077247735" class="text-slate-400 hover:text-gold-500 transition-colors text-sm">+90 (507) 724 77 35</a>
+                    </div>
                 </div>
-                <div>
-                  <h4 class="text-white font-semibold mb-1">Telefon</h4>
-                  <a href="tel:+902120000000" class="text-slate-400 hover:text-gold-500 transition-colors text-sm">+90 (212) 000 00 00</a>
-                </div>
-              </div>
 
-              <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
-                  <span class="text-2xl">✉️</span>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center shrink-0">
+                    <span class="text-2xl">✉️</span>
+                    </div>
+                    <div>
+                    <h4 class="text-white font-semibold mb-1">Email</h4>
+                    <a href="mailto:info@discilaw.com" class="text-slate-400 hover:text-gold-500 transition-colors text-sm">info@discilaw.com</a>
+                    </div>
                 </div>
-                <div>
-                  <h4 class="text-white font-semibold mb-1">Email</h4>
-                  <a href="mailto:info@discilaw.com" class="text-slate-400 hover:text-gold-500 transition-colors text-sm">info@discilaw.com</a>
                 </div>
-              </div>
             </div>
-
-            <!-- Social Links (Optional) -->
-            <div class="mt-12">
+            
+            <!-- Socials -->
+             <div class="mt-12 relative z-10">
                 <p class="text-white font-semibold mb-4">Bizi Takip Edin</p>
                 <div class="flex gap-4">
                     <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:bg-gold-500 hover:text-white transition-all">L</a>
-                    <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:bg-gold-500 hover:text-white transition-all">X</a>
                     <a href="#" class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:bg-gold-500 hover:text-white transition-all">I</a>
                 </div>
             </div>
+
           </div>
 
-          <!-- Contact Form (Right) -->
-          <div class="w-full md:w-3/5 p-12" data-aos="fade-left">
-            <form action="https://formspree.io/f/mqkvrqrp" method="POST" class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label for="name" class="block text-sm font-medium text-slate-400 mb-2">Adınız Soyadınız</label>
-                  <input type="text" name="name" id="name" required class="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all" placeholder="John Doe">
-                </div>
-                <div>
-                  <label for="email" class="block text-sm font-medium text-slate-400 mb-2">Email Adresiniz</label>
-                  <input type="email" name="email" id="email" required class="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all" placeholder="ornek@sirket.com">
-                </div>
-              </div>
+          <!-- Map & Form (Right) -->
+          <div class="w-full lg:w-2/3" data-aos="fade-left">
+            <!-- Map -->
+            <div class="w-full h-64 lg:h-80 bg-slate-800 grayscale invert-[.9]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3124.646545167576!2d27.111425076595536!3d38.4552559718456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd8e256720f4b%3A0x6b8030206122d10c!2sDoktorlar%20%C4%B0%C5%9F%20Han%C4%B1!5e0!3m2!1str!2str!4v1705300000000!5m2!1str!2str" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
 
-              <div>
-                <label for="subject" class="block text-sm font-medium text-slate-400 mb-2">Konu</label>
-                <input type="text" name="subject" id="subject" class="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all" placeholder="Danışmanlık Talebi">
-              </div>
+            <!-- Form -->
+            <div class="p-8 lg:p-12">
+                 <h3 class="text-2xl font-bold text-white mb-6">Bize Ulaşın</h3>
+                 <form action="https://formspree.io/f/mqkvrqrp" method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                        <label for="name" class="block text-sm font-medium text-slate-400 mb-2">Adınız Soyadınız</label>
+                        <input type="text" name="name" id="name" required class="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all" placeholder="Adınız">
+                        </div>
+                        <div>
+                        <label for="email" class="block text-sm font-medium text-slate-400 mb-2">Email Adresiniz</label>
+                        <input type="email" name="email" id="email" required class="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all" placeholder="Email adresiniz">
+                        </div>
+                    </div>
 
-              <div>
-                <label for="message" class="block text-sm font-medium text-slate-400 mb-2">Mesajınız</label>
-                <textarea name="message" id="message" rows="4" required class="w-full p-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all resize-none" placeholder="Size nasıl yardımcı olabiliriz?"></textarea>
-              </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-400 mb-2">Mesajınız</label>
+                        <textarea name="message" id="message" rows="4" required class="w-full p-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all resize-none" placeholder="Mesajınız..."></textarea>
+                    </div>
 
-              <button type="submit" class="w-full py-4 bg-gold-500 hover:bg-yellow-600 text-white font-bold rounded-lg transition-all shadow-lg shadow-gold-500/20 active:scale-[0.98]">
-                Mesaj Gönder
-              </button>
-            </form>
+                    <button type="submit" class="w-full py-4 bg-gold-500 hover:bg-yellow-600 text-white font-bold rounded-lg transition-all shadow-lg shadow-gold-500/20 active:scale-[0.98]">
+                        Mesaj Gönder
+                    </button>
+                    </form>
+            </div>
           </div>
 
         </div>
