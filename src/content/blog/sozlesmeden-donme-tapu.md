@@ -15,7 +15,9 @@ Bu karar, yükleniciden bağımsız bölüm satın alan üçüncü kişinin, yü
 
 ## Yargıtay'ın Aradığı Şartlar
 
-**Yargıtay** uygulamasına göre, bir taşınmazın harici satışına ilişkin uyuşmazlıklarda, alıcının taleplerinin niteliği büyük önem taşır. Özellikle alıcı, sözleşmenin ifa edilmemesi üzerine yükleniciye gönderdiği **ihtarname ile ifadan vazgeçtiğini ve müspet zararının tazminini talep ettiğinde**, bu beyan hukuki sonuçlar doğurur.
+**Yargıtay** uygulamasına göre, bir taşınmazın harici satışına ilişkin uyuşmazlıklarda, alıcının taleplerinin niteliği büyük önem taşır.
+
+> "Alıcı, sözleşmenin ifa edilmemesi üzerine yükleniciye gönderdiği ihtarname ile ifadan vazgeçtiğini ve müspet zararının tazminini talep ettiğinde, bu beyan hukuki sonuçlar doğurur."
 
 Mahkeme, bu tür durumlarda, alıcının ifadan vazgeçtiğini bildiren beyanını esas almakta ve onun bu tercihini **bağlayıcı** kabul etmektedir. Bu tercih, alıcının sözleşmenin aynen ifasını talep hakkından feragat ettiği anlamına gelmektedir.
 
@@ -23,9 +25,10 @@ Mahkeme, bu tür durumlarda, alıcının ifadan vazgeçtiğini bildiren beyanın
 
 İlgili hakkın talep edilmesi veya davanın kazanılması için, öncelikle taraflar arasındaki sözleşmesel ilişkinin niteliği ve kapsamı netleştirilmelidir. Birleşen dava kapsamında arsa sahibine karşı **tapu iptali ve tescil** talebi yöneltilirken, yüklenici ile yapılan satış sözleşmesinin arsa sahibini doğrudan bağlayıp bağlamadığı ve arsa sahibinin bu sözleşmeye taraf olup olmadığı incelenmelidir.
 
-Eğer alıcı, yüklenici ile olan sözleşmesinden **dönme hakkını kullanmış** ve tazminat talebinde bulunmuşsa, aynı anda temlik sözleşmesinin tarafı dahi olmayan arsa malikine karşı **tapu iptali ve tescil** gibi ifaya yönelik taleplerde bulunması, önceki beyanıyla çeliştiği için hukuken mümkün görülmemektedir.
+Eğer alıcı, yüklenici ile olan sözleşmesinden **dönme hakkını kullanmış** ve tazminat talebinde bulunmuşsa:
 
-**İspat açısından**, sözleşmeden dönme iradesinin yazılı bir **ihtarname** ile bildirilmiş olması, bu beyanın varlığını ve kapsamını ortaya koyan temel ispat aracıdır.
+*   Aynı anda temlik sözleşmesinin tarafı dahi olmayan arsa malikine karşı **tapu iptali ve tescil** gibi ifaya yönelik taleplerde bulunması,
+*   Önceki beyanıyla çeliştiği için hukuken mümkün görülmemektedir.
 
 ## Sonuç
 
@@ -34,4 +37,4 @@ Yargıtay'ın bu karardaki bakış açısına göre:
 1.  Yükleniciden bağımsız bölüm satın alan ve yükleniciye karşı sözleşmeden dönme hakkını kullanarak müspet zararının tazminini talep eden bir alıcı, bu talebiyle **ifadan vazgeçtiğini** açıkça beyan etmiş sayılır.
 2.  Bu durumda, alıcının, temlik sözleşmesinin tarafı olmayan arsa malikine karşı, önceki talebiyle çelişecek şekilde **tapu iptali ve tescil** isteminde bulunması mümkün değildir.
 
-Hukuki sorunun nihai çözüm yolu, alıcının yaptığı tercihe sadık kalınarak, sözleşmeden dönmenin sonuçları çerçevesinde talep ettiği zararın karşılanması, ifaya yönelik taleplerin ise sözleşmeden dönme beyanı ile birlikte ortadan kalktığının kabul edilmesidir.
+> **Özetle:** Hukuki sorunun nihai çözüm yolu, alıcının yaptığı tercihe sadık kalınarak, sözleşmeden dönmenin sonuçları çerçevesinde talep ettiği zararın karşılanmasıdır.

@@ -17,9 +17,7 @@ image: "/images/blog/yonetici-primi.jpg"
 
 Yargıtay uygulamasına göre, toplu iş sözleşmelerinde “idareci primi” adı altında bir alacağa hak kazanılabilmesi için, sözleşmede öngörülen spesifik görev ve sorumlulukların **fiilen yerine getirilmesi** zorunludur.
 
-Özellikle **“kalite kontrol ve teknik kontrol görevlileri”ne** yönelik düzenlenen primler açısından;
-*   İlgili personelin onarım ve imal edilen malzeme ve teçhizatın teknik şartlara uygunluğunu kontrol etmesi,
-*   Performansını imzalayarak sorumluluk üstlenmesi gerekmektedir.
+> **Kalite Kontrol Görevlileri İçin Kriter:** İlgili personelin onarım ve imal edilen malzeme ve teçhizatın teknik şartlara uygunluğunu kontrol etmesi ve performansını imzalayarak sorumluluk üstlenmesi gerekmektedir.
 
 Yargıtay, bu tür primlere hak kazanılmasında, fiili olarak **kalite kontrol işinin yapılması şartını** aramaktadır.
 
@@ -39,4 +37,4 @@ Yargıtay'ın yerleşik içtihadına göre:
 1.  Toplu iş sözleşmeleriyle öngörülen idareci primlerine hak kazanılabilmesi için, işçinin sözleşmede açıkça belirtilen nitelikli kontrol görevlerini fiilen ifa ettiğini **somut delillerle ispatlaması** gerekmektedir.
 2.  Bu ispat, ya ilgili göreve özgü **“kalite kontrol mührü”nün** kullanılmasıyla ya da elektronik ortamda yürütülen süreçlerde **“kalite kontrol operasyon yetkilisi”** sıfatıyla işlem yapılmasıyla mümkün olabilir.
 
-İşçinin görevinin sadece genel üretim veya bakım operatörlüğü kapsamında kalması ve kalite kontrol/teknik kontrol sorumluluğunu gösteren özel bir mühür veya yetkiye sahip olmaması durumunda, idareci primine hak kazanılamayacaktır.
+> İşçinin görevinin sadece genel üretim veya bakım operatörlüğü kapsamında kalması ve kalite kontrol/teknik kontrol sorumluluğunu gösteren özel bir mühür veya yetkiye sahip olmaması durumunda, idareci primine hak kazanılamayacaktır.
