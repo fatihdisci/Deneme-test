@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+"""
+Discilaw Blog Writer v4.0 - MDX Edition
+Supports raw HTML, automatic .md to .mdx migration, and smart content detection.
+"""
+
 import tkinter as tk
 from tkinter import ttk, scrolledtext, filedialog, messagebox
 import os
@@ -6,197 +12,249 @@ import subprocess
 from datetime import datetime
 import re
 import unicodedata
+import glob
+
 
 class DiscilawWriter:
     def __init__(self, root):
         self.root = root
-        self.root.title("Discilaw Writer v3.0 - Wix Tarzı Editör")
-        self.root.geometry("1000x800")
-        self.root.configure(bg="#f0f2f5")
+        self.root.title("Discilaw Writer v4.0 - MDX Edition")
+        self.root.geometry("1050x850")
+        self.root.configure(bg="#1a1a2e")
 
         # Proje Yolları
-        self.project_root = os.getcwd()
+        self.project_root = os.path.dirname(os.path.abspath(__file__))
         self.images_path = os.path.join(self.project_root, "public", "images", "blog")
         self.content_path = os.path.join(self.project_root, "src", "content", "blog")
         self.selected_image_path = None
 
+        # Başlangıçta .md dosyalarını .mdx'e dönüştür
+        self.migrate_md_to_mdx()
+
         # --- ARAYÜZ TASARIMI ---
-        main_frame = ttk.Frame(root, padding="20")
+        self.build_ui()
+
+    def migrate_md_to_mdx(self):
+        """Mevcut .md dosyalarını otomatik olarak .mdx'e dönüştürür."""
+        if not os.path.exists(self.content_path):
+            return
+            
+        md_files = glob.glob(os.path.join(self.content_path, "*.md"))
+        if md_files:
+            count = 0
+            for md_file in md_files:
+                mdx_file = md_file[:-3] + ".mdx"
+                os.rename(md_file, mdx_file)
+                count += 1
+            if count > 0:
+                messagebox.showinfo(
+                    "Otomatik Dönüşüm",
+                    f"{count} adet .md dosyası .mdx formatına dönüştürüldü.\n\n"
+                    "MDX formatı HTML içeriklerini destekler."
+                )
+
+    def build_ui(self):
+        """Ana arayüzü oluştur."""
+        # Ana stil ayarları
+        style = ttk.Style()
+        style.theme_use('clam')
+        style.configure(".", background="#1a1a2e", foreground="#eee")
+        style.configure("TFrame", background="#1a1a2e")
+        style.configure("TLabel", background="#1a1a2e", foreground="#eee", font=("Segoe UI", 10))
+        style.configure("TEntry", fieldbackground="#16213e", foreground="#eee")
+        style.configure("TCombobox", fieldbackground="#16213e", foreground="#eee")
+        style.configure("TButton", background="#0f3460", foreground="#eee", font=("Segoe UI", 10))
+        style.configure("TLabelframe", background="#1a1a2e", foreground="#e94560")
+        style.configure("TLabelframe.Label", background="#1a1a2e", foreground="#e94560", font=("Segoe UI", 11, "bold"))
+        
+        style.configure("Save.TButton", font=("Segoe UI", 12, "bold"))
+        style.configure("Publish.TButton", font=("Segoe UI", 12, "bold"))
+        
+        style.map("TButton", background=[("active", "#e94560")])
+
+        main_frame = ttk.Frame(self.root, padding="20")
         main_frame.pack(fill=tk.BOTH, expand=True)
 
-        # ÜST BİLGİLER
-        info_frame = ttk.LabelFrame(main_frame, text="Makale Künyesi", padding="15")
+        # ===== ÜST BİLGİLER =====
+        info_frame = ttk.LabelFrame(main_frame, text="📝 Makale Bilgileri", padding="15")
         info_frame.pack(fill=tk.X, pady=(0, 15))
 
-        # Başlık ve Kategori
         grid_frame = ttk.Frame(info_frame)
         grid_frame.pack(fill=tk.X)
-        
-        ttk.Label(grid_frame, text="BAŞLIK:").grid(row=0, column=0, sticky="w")
-        self.title_entry = ttk.Entry(grid_frame, font=("Arial", 11, "bold"))
-        self.title_entry.grid(row=0, column=1, sticky="ew", padx=10, ipady=3)
-        
-        ttk.Label(grid_frame, text="KATEGORİ:").grid(row=0, column=2, sticky="w")
+
+        ttk.Label(grid_frame, text="BAŞLIK:").grid(row=0, column=0, sticky="w", padx=(0, 10))
+        self.title_entry = ttk.Entry(grid_frame, font=("Segoe UI", 12))
+        self.title_entry.grid(row=0, column=1, sticky="ew", padx=5, ipady=5)
+
+        ttk.Label(grid_frame, text="KATEGORİ:").grid(row=0, column=2, sticky="w", padx=(20, 10))
         self.category_cb = ttk.Combobox(grid_frame, values=[
-            "Bilişim Hukuku", "Ceza Hukuku", "Ticaret Hukuku", "İdare Hukuku", 
+            "Bilişim Hukuku", "Ceza Hukuku", "Ticaret Hukuku", "İdare Hukuku",
             "Gayrimenkul Hukuku", "Miras Hukuku", "İş Hukuku", "Yapay Zeka Hukuku"
-        ], state="readonly", font=("Arial", 10))
+        ], state="readonly", font=("Segoe UI", 10), width=18)
         self.category_cb.current(0)
-        self.category_cb.grid(row=0, column=3, sticky="e", padx=10)
-        
+        self.category_cb.grid(row=0, column=3, sticky="e", padx=5)
+
         grid_frame.columnconfigure(1, weight=1)
 
-        # Resim Alanı
+        # Resim Seçimi
         img_frame = ttk.Frame(info_frame)
-        img_frame.pack(fill=tk.X, pady=(10, 0))
-        self.img_btn = ttk.Button(img_frame, text="📁 Kapak Resmi Seç", command=self.select_image)
-        self.img_btn.pack(side=tk.LEFT)
-        self.img_label = ttk.Label(img_frame, text="Henüz resim seçilmedi...", foreground="gray")
-        self.img_label.pack(side=tk.LEFT, padx=10)
-
-        # ARAÇ ÇUBUĞU
-        toolbar = ttk.Frame(main_frame)
-        toolbar.pack(fill=tk.X, pady=(5, 0))
+        img_frame.pack(fill=tk.X, pady=(15, 0))
         
-        def make_bold(): self.wrap_text("**", "**")
-        def make_italic(): self.wrap_text("*", "*")
-        def make_h2(): self.wrap_text("\n## ", "\n")
-        def make_h3(): self.wrap_text("\n### ", "\n")
-        def make_list(): self.wrap_text("\n- ", "")
+        self.img_btn = ttk.Button(img_frame, text="🖼️ Kapak Resmi Seç", command=self.select_image)
+        self.img_btn.pack(side=tk.LEFT)
+        
+        self.img_label = ttk.Label(img_frame, text="Henüz resim seçilmedi...", foreground="#888")
+        self.img_label.pack(side=tk.LEFT, padx=15)
 
-        ttk.Button(toolbar, text="B (Kalın)", width=10, command=make_bold).pack(side=tk.LEFT, padx=2)
-        ttk.Button(toolbar, text="I (İtalik)", width=10, command=make_italic).pack(side=tk.LEFT, padx=2)
-        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=5, fill=tk.Y)
-        ttk.Button(toolbar, text="Başlık 1", width=10, command=make_h2).pack(side=tk.LEFT, padx=2)
-        ttk.Button(toolbar, text="Başlık 2", width=10, command=make_h3).pack(side=tk.LEFT, padx=2)
-        ttk.Button(toolbar, text="Liste Yap", width=10, command=make_list).pack(side=tk.LEFT, padx=2)
+        # ===== ARAÇ ÇUBUĞU =====
+        toolbar_frame = ttk.LabelFrame(main_frame, text="🔧 Biçimlendirme Araçları", padding="10")
+        toolbar_frame.pack(fill=tk.X, pady=(0, 10))
 
-        # EDİTÖR
-        self.content_text = scrolledtext.ScrolledText(main_frame, height=20, font=("Calibri", 12), wrap=tk.WORD, undo=True)
-        self.content_text.pack(fill=tk.BOTH, expand=True, pady=5)
-        # Varsayılan metin
-        self.content_text.insert("1.0", "Buraya yazınızı yazın. 'Enter' tuşu ile yaptığınız paragraflar sitede aynen görünecektir.")
+        toolbar = ttk.Frame(toolbar_frame)
+        toolbar.pack(fill=tk.X)
 
-        # ALT BUTONLAR
+        ttk.Button(toolbar, text="B (Kalın)", width=12, command=lambda: self.wrap_text("<strong>", "</strong>")).pack(side=tk.LEFT, padx=3)
+        ttk.Button(toolbar, text="I (İtalik)", width=12, command=lambda: self.wrap_text("<em>", "</em>")).pack(side=tk.LEFT, padx=3)
+        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=8, fill=tk.Y)
+        ttk.Button(toolbar, text="Başlık (H2)", width=12, command=lambda: self.wrap_text("<h2>", "</h2>")).pack(side=tk.LEFT, padx=3)
+        ttk.Button(toolbar, text="Başlık (H3)", width=12, command=lambda: self.wrap_text("<h3>", "</h3>")).pack(side=tk.LEFT, padx=3)
+        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, padx=8, fill=tk.Y)
+        ttk.Button(toolbar, text="• Madde", width=10, command=lambda: self.insert_at_cursor("<li>", "</li>")).pack(side=tk.LEFT, padx=3)
+        ttk.Button(toolbar, text="Alıntı", width=10, command=lambda: self.wrap_text("<blockquote>", "</blockquote>")).pack(side=tk.LEFT, padx=3)
+        ttk.Button(toolbar, text="Satır Sonu", width=10, command=lambda: self.insert_at_cursor("<br/>", "")).pack(side=tk.LEFT, padx=3)
+
+        # ===== EDİTÖR =====
+        editor_frame = ttk.LabelFrame(main_frame, text="✏️ İçerik (MDX - HTML Destekli)", padding="10")
+        editor_frame.pack(fill=tk.BOTH, expand=True, pady=(0, 15))
+
+        self.content_text = scrolledtext.ScrolledText(
+            editor_frame,
+            height=18,
+            font=("Consolas", 12),
+            wrap=tk.WORD,
+            undo=True,
+            bg="#0f0f23",
+            fg="#f0f0f0",
+            insertbackground="#e94560",
+            selectbackground="#e94560",
+            selectforeground="#fff",
+            padx=10,
+            pady=10
+        )
+        self.content_text.pack(fill=tk.BOTH, expand=True)
+        
+        # İpucu etiketi
+        hint_label = ttk.Label(
+            editor_frame,
+            text="💡 İPUCU: HTML etiketleri kullanabilirsiniz: <strong>, <em>, <br/>, <h2>, <ul>, <li>, <table> vb.",
+            foreground="#888",
+            font=("Segoe UI", 9)
+        )
+        hint_label.pack(anchor="w", pady=(5, 0))
+
+        # ===== ALT BUTONLAR =====
         btn_frame = ttk.Frame(main_frame)
-        btn_frame.pack(fill=tk.X, pady=10)
+        btn_frame.pack(fill=tk.X)
 
-        style = ttk.Style()
-        style.configure("Green.TButton", font=("Arial", 11, "bold"), foreground="green")
-        style.configure("Blue.TButton", font=("Arial", 11, "bold"), foreground="blue")
+        self.save_btn = ttk.Button(
+            btn_frame,
+            text="💾 TASLAĞI KAYDET (.mdx)",
+            style="Save.TButton",
+            command=self.save_draft
+        )
+        self.save_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 10), ipady=10)
 
-        self.save_btn = ttk.Button(btn_frame, text="💾 TASLAĞI OLUŞTUR", style="Blue.TButton", command=self.save_draft)
-        self.save_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
+        self.push_btn = ttk.Button(
+            btn_frame,
+            text="🚀 SİTEYİ YAYINLA (Git Push)",
+            style="Publish.TButton",
+            command=self.publish_site
+        )
+        self.push_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, ipady=10)
 
-        self.push_btn = ttk.Button(btn_frame, text="🚀 YAYINLA (GİT PUSH)", style="Green.TButton", command=self.publish_site)
-        self.push_btn.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5)
+        # Durum çubuğu
+        self.status_var = tk.StringVar(value="Hazır. Yeni bir makale yazabilirsiniz.")
+        status_bar = ttk.Label(self.root, textvariable=self.status_var, foreground="#888", font=("Segoe UI", 9))
+        status_bar.pack(fill=tk.X, side=tk.BOTTOM, pady=5, padx=20)
 
     def slugify(self, text):
+        """Başlığı URL-uyumlu slug'a dönüştür."""
         text = text.replace('ı', 'i').replace('İ', 'i').lower()
         text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8')
         text = re.sub(r'[^a-z0-9]+', '-', text).strip('-')
         return text
 
     def wrap_text(self, prefix, suffix):
+        """Seçili metni etiketlerle sar veya imlece ekle."""
         try:
             start = self.content_text.index("sel.first")
             end = self.content_text.index("sel.last")
-            selected = self.content_text.get(start, end)
-            
-            # Seçim boşluk içeriyorsa Markdown bozulur (** metin ** çalışmaz)
-            # Seçimi temizle ve boşlukları dışarıya taşı
-            trimmed = selected.strip()
-            if not trimmed: # Sadece boşluk seçilmişse
-                self.content_text.delete(start, end)
-                self.content_text.insert(start, f"{prefix}{selected}{suffix}")
-                return
-
-            leading_ws = selected[:len(selected) - len(selected.lstrip())]
-            trailing_ws = selected[len(selected.rstrip()):]
-            
+            selected = self.content_text.get(start, end).strip()
             self.content_text.delete(start, end)
-            # Boşluklar dışarıda, Markdown işaretleri içerideki metne yapışık: " **metin** "
-            formatted = f"{leading_ws}{prefix}{trimmed}{suffix}{trailing_ws}"
-            self.content_text.insert(start, formatted)
+            self.content_text.insert(start, f"{prefix}{selected}{suffix}")
         except tk.TclError:
-            self.content_text.insert(tk.INSERT, f"{prefix}YAZI{suffix}")
+            self.content_text.insert(tk.INSERT, f"{prefix}metin{suffix}")
+
+    def insert_at_cursor(self, prefix, suffix):
+        """İmleç konumuna ekle."""
+        self.content_text.insert(tk.INSERT, f"{prefix}metin{suffix}")
 
     def select_image(self):
-        path = filedialog.askopenfilename(filetypes=[("Resimler", "*.jpg *.jpeg *.png")])
+        """Resim seçme dialogu."""
+        path = filedialog.askopenfilename(filetypes=[("Resimler", "*.jpg *.jpeg *.png *.webp")])
         if path:
             self.selected_image_path = path
-            self.img_label.config(text=os.path.basename(path), foreground="green")
+            self.img_label.config(text=os.path.basename(path), foreground="#4ade80")
+            self.status_var.set(f"Resim seçildi: {os.path.basename(path)}")
+
+    def contains_html(self, text):
+        """Metin HTML etiketi içeriyor mu kontrol et."""
+        html_pattern = r'<[a-zA-Z][^>]*>'
+        return bool(re.search(html_pattern, text))
+
+    def format_content(self, raw_content):
+        """
+        İçeriği MDX için formatla:
+        - HTML varsa: Olduğu gibi bırak
+        - HTML yoksa: Paragrafları <p> ile sar, satır sonlarını <br/> yap
+        """
+        if self.contains_html(raw_content):
+            # HTML içerik - olduğu gibi döndür
+            return raw_content
+        
+        # Düz metin - HTML formatına dönüştür
+        paragraphs = re.split(r'\n{2,}', raw_content)
+        formatted_paras = []
+        
+        for para in paragraphs:
+            para = para.strip()
+            if not para:
+                continue
+            
+            # Tek satırlık newline'ları <br/> ile değiştir
+            para = para.replace('\n', '<br/>\n')
+            formatted_paras.append(f"<p>{para}</p>")
+        
+        return '\n\n'.join(formatted_paras)
 
     def save_draft(self):
+        """Makaleyi .mdx olarak kaydet."""
         title = self.title_entry.get().strip()
         if not title:
             messagebox.showerror("Eksik", "Lütfen bir başlık girin!")
             return
 
+        raw_content = self.content_text.get("1.0", tk.END).strip()
+        if not raw_content:
+            messagebox.showerror("Eksik", "Lütfen içerik yazın!")
+            return
+
         slug = self.slugify(title)
         
-        # ================================================
-        # MARKDOWN FORMAT DÜZELTİCİ - TAMAMEN YENİDEN YAZILDI
-        # ================================================
-        raw_content = self.content_text.get("1.0", tk.END).strip()
+        # İçeriği formatla
+        formatted_content = self.format_content(raw_content)
         
-        # Mantık:
-        # 1. Kullanıcı boş satır bırakmışsa (çift Enter) -> Paragraf ayrımı (\n\n)
-        # 2. Kullanıcı tek Enter basmışsa -> Bu da paragraf olsun (\n\n)
-        # 3. Liste satırları (-, *, 1., 2., >) arka arkaya geliyorsa -> tek \n ile ayır
-        
-        lines = raw_content.split('\n')
-        result_lines = []
-        
-        def is_list_or_special(line):
-            """Satır liste, alıntı veya başlık mı?"""
-            s = line.strip()
-            if not s:
-                return False
-            # Madde işareti listeleri
-            if s.startswith(('-', '*', '+', '>')):
-                return True
-            # Başlıklar
-            if s.startswith('#'):
-                return True
-            # Numaralı listeler: 1., 2., 10. vb.
-            if re.match(r'^\d+\.', s):
-                return True
-            return False
-        
-        i = 0
-        while i < len(lines):
-            line = lines[i]
-            stripped = line.strip()
-            
-            # Boş satır = paragraf sonu, bir tane \n ekle (join ile \n\n olacak)
-            if not stripped:
-                result_lines.append('')
-                i += 1
-                continue
-            
-            # Liste/özel satır mı?
-            if is_list_or_special(line):
-                # Liste bloklarını topla
-                list_block = [line]
-                i += 1
-                while i < len(lines) and is_list_or_special(lines[i]):
-                    list_block.append(lines[i])
-                    i += 1
-                # Liste bloğunu tek \n ile birleştir
-                result_lines.append('\n'.join(list_block))
-            else:
-                # Normal paragraf satırı
-                result_lines.append(line)
-                i += 1
-        
-        # Sonuç: Her eleman arasına \n\n koy (paragraf ayrımı)
-        final_content = '\n\n'.join(result_lines)
-        
-        # Çoklu boş satırları temizle (3+ newline -> 2 newline)
-        final_content = re.sub(r'\n{3,}', '\n\n', final_content)
-        
-        # Resim İşlemleri
+        # Resim işlemleri
         img_dest = "/images/blog/default.jpg"
         if self.selected_image_path:
             if not os.path.exists(self.images_path):
@@ -206,33 +264,67 @@ class DiscilawWriter:
             shutil.copy2(self.selected_image_path, os.path.join(self.images_path, new_name))
             img_dest = f"/images/blog/{new_name}"
 
-        frontmatter = f"""---
+        # Açıklama için HTML taglarını temizle
+        clean_desc = re.sub(r'<[^>]+>', '', raw_content[:200]).replace('\n', ' ').strip()
+
+        # MDX dosya içeriği
+        mdx_content = f'''---
 title: "{title}"
-description: "{raw_content[:150].replace(chr(10), ' ')}..."
+description: "{clean_desc}..."
 pubDate: {datetime.now().strftime("%Y-%m-%d")}
 category: "{self.category_cb.get()}"
 image: "{img_dest}"
 ---
 
-{final_content}
-"""
-        
-        with open(os.path.join(self.content_path, f"{slug}.md"), "w", encoding="utf-8") as f:
-            f.write(frontmatter)
+{formatted_content}
+'''
+
+        # Dosyayı kaydet
+        if not os.path.exists(self.content_path):
+            os.makedirs(self.content_path)
             
-        messagebox.showinfo("Başarılı", f"Taslak kaydedildi!\n\nDosya: {slug}.md\n\nŞimdi 'YAYINLA' butonuna basabilirsin.")
+        filepath = os.path.join(self.content_path, f"{slug}.mdx")
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(mdx_content)
+
+        self.status_var.set(f"✅ Kaydedildi: {slug}.mdx")
+        messagebox.showinfo(
+            "Başarılı",
+            f"Makale kaydedildi!\n\n"
+            f"📄 Dosya: {slug}.mdx\n"
+            f"📁 Konum: {self.content_path}\n\n"
+            f"Şimdi 'SİTEYİ YAYINLA' butonuna basabilirsiniz."
+        )
 
     def publish_site(self):
-        if not messagebox.askyesno("Yayınla", "Değişiklikler GitHub'a gönderilecek. Emin misin?"):
+        """Değişiklikleri GitHub'a gönder."""
+        if not messagebox.askyesno("Yayınla", "Değişiklikler GitHub'a gönderilecek.\n\nEmin misiniz?"):
             return
-            
+
+        self.status_var.set("Git işlemi başlatılıyor...")
+        self.root.update()
+
         try:
-            subprocess.run(["git", "add", "."], cwd=self.project_root, check=True)
-            subprocess.run(["git", "commit", "-m", f"Post: {self.title_entry.get()}"], cwd=self.project_root, check=True)
-            subprocess.run(["git", "push"], cwd=self.project_root, check=True)
-            messagebox.showinfo("Harika!", "Site başarıyla güncellendi! 1-2 dakika içinde yayında.")
+            subprocess.run(["git", "add", "."], cwd=self.project_root, check=True, capture_output=True)
+            
+            commit_msg = f"content: {self.title_entry.get() or 'Yeni içerik'} - {datetime.now().strftime('%Y-%m-%d %H:%M')}"
+            subprocess.run(["git", "commit", "-m", commit_msg], cwd=self.project_root, check=True, capture_output=True)
+            
+            subprocess.run(["git", "push"], cwd=self.project_root, check=True, capture_output=True)
+            
+            self.status_var.set("🚀 Site başarıyla güncellendi!")
+            messagebox.showinfo(
+                "Başarılı!",
+                "Değişiklikler GitHub'a gönderildi.\n\n"
+                "Site 1-2 dakika içinde güncellenecek."
+            )
+        except subprocess.CalledProcessError as e:
+            self.status_var.set("❌ Git hatası oluştu")
+            messagebox.showerror("Hata", f"Yayınlama başarısız:\n\n{e.stderr.decode() if e.stderr else str(e)}")
         except Exception as e:
-            messagebox.showerror("Hata", f"Yayınlanırken hata oluştu:\n{e}")
+            self.status_var.set("❌ Beklenmeyen hata")
+            messagebox.showerror("Hata", f"Beklenmeyen hata:\n\n{str(e)}")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
