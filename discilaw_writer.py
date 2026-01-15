@@ -135,31 +135,66 @@ class DiscilawWriter:
 
         slug = self.slugify(title)
         
-        # --- WIX FORMAT DÜZELTİCİ (EN ÖNEMLİ KISIM) ---
+        # ================================================
+        # MARKDOWN FORMAT DÜZELTİCİ - TAMAMEN YENİDEN YAZILDI
+        # ================================================
         raw_content = self.content_text.get("1.0", tk.END).strip()
         
-        lines = raw_content.split('\n')
-        formatted_lines = []
+        # Mantık:
+        # 1. Kullanıcı boş satır bırakmışsa (çift Enter) -> Paragraf ayrımı (\n\n)
+        # 2. Kullanıcı tek Enter basmışsa -> Bu da paragraf olsun (\n\n)
+        # 3. Liste satırları (-, *, 1., 2., >) arka arkaya geliyorsa -> tek \n ile ayır
         
-        for i, line in enumerate(lines):
+        lines = raw_content.split('\n')
+        result_lines = []
+        
+        def is_list_or_special(line):
+            """Satır liste, alıntı veya başlık mı?"""
+            s = line.strip()
+            if not s:
+                return False
+            # Madde işareti listeleri
+            if s.startswith(('-', '*', '+', '>')):
+                return True
+            # Başlıklar
+            if s.startswith('#'):
+                return True
+            # Numaralı listeler: 1., 2., 10. vb.
+            if re.match(r'^\d+\.', s):
+                return True
+            return False
+        
+        i = 0
+        while i < len(lines):
+            line = lines[i]
             stripped = line.strip()
             
-            # Eğer satır boşsa, Markdown paragrafı için boşluk bırak
+            # Boş satır = paragraf sonu, bir tane \n ekle (join ile \n\n olacak)
             if not stripped:
-                formatted_lines.append("") 
+                result_lines.append('')
+                i += 1
                 continue
-                
-            # Eğer Başlık (#) veya Liste (-) veya Alıntı (>) ise olduğu gibi bırak
-            if stripped.startswith(('#', '-', '*', '>', '1.')):
-                formatted_lines.append(line)
+            
+            # Liste/özel satır mı?
+            if is_list_or_special(line):
+                # Liste bloklarını topla
+                list_block = [line]
+                i += 1
+                while i < len(lines) and is_list_or_special(lines[i]):
+                    list_block.append(lines[i])
+                    i += 1
+                # Liste bloğunu tek \n ile birleştir
+                result_lines.append('\n'.join(list_block))
             else:
-                # Normal bir metinse ve bir sonraki satır da doluysa
-                # Markdown'da alt satıra geçmek için satır sonuna 2 boşluk koymak gerekir
-                # VEYA direkt paragraf yapmak için 2 kere enter (\n\n) gerekir.
-                # Biz kullanıcıyı yormamak için her "Enter"ı "Çift Enter" yapıyoruz.
-                formatted_lines.append(line + "\n") 
-
-        final_content = "\n".join(formatted_lines)
+                # Normal paragraf satırı
+                result_lines.append(line)
+                i += 1
+        
+        # Sonuç: Her eleman arasına \n\n koy (paragraf ayrımı)
+        final_content = '\n\n'.join(result_lines)
+        
+        # Çoklu boş satırları temizle (3+ newline -> 2 newline)
+        final_content = re.sub(r'\n{3,}', '\n\n', final_content)
         
         # Resim İşlemleri
         img_dest = "/images/blog/default.jpg"
