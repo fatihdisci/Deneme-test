@@ -1,0 +1,40 @@
+---
+const services = [
+    {
+        title: "Yapay Zeka Hukuku",
+        description: "AI sistemlerinin yasal uyumluluğu, etik kurallar ve sorumluluk rejimleri konusunda uzman danışmanlık.",
+        icon: "🤖"
+    },
+    {
+        title: "Bilişim Suçları",
+        description: "Siber güvenlik ihlalleri, dijital dolandırıcılık ve yetkisiz erişim davalarında etkili savunma.",
+        icon: "🛡️"
+    },
+    {
+        title: "Kişisel Verilerin Korunması",
+        description: "KVKK ve GDPR süreçlerine tam uyum, veri ihlali yönetimi ve uyum projeleri danışmanlığı.",
+        icon: "🔒"
+    }
+];
+---
+
+<section class="py-24 bg-slate-950 relative">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Uzmanlık Alanlarımız</h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">Teknolojinin gelişimiyle ortaya çıkan yeni nesil hukuki ihtiyaçlara profesyonel çözümler.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+                <div class="group p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-900/10 hover:-translate-y-2" data-aos="fade-up" data-aos-delay={index * 100}>
+                    <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        {service.icon}
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-amber-500 transition-colors">{service.title}</h3>
+                    <p class="text-slate-400 group-hover:text-slate-300 transition-colors">{service.description}</p>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

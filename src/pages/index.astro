@@ -1,28 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import KeyServices from '../components/KeyServices.astro';
+import LatestPosts from '../components/LatestPosts.astro';
 ---
 
 <Layout title="Discilaw - Teknoloji ve Yapay Zeka Hukuku">
-    <!-- Hero Section (Temporary) -->
-	<section class="min-h-screen flex items-center justify-center pt-16">
-        <div class="text-center space-y-6 px-4" data-aos="fade-up">
-            <h1 class="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-amber-300 to-amber-600">
-                Geleceğin Hukuku <br /> Bugün Burada.
-            </h1>
-            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
-                Yapay Zeka, Bilişim ve Teknoloji Hukuku alanında uzmanlaşmış yenilikçi çözümler.
-            </p>
-            <div class="flex gap-4 justify-center mt-8">
-                <a href="/iletisim" class="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold transition-all shadow-lg shadow-amber-900/20">
-                    İletişime Geç
-                </a>
-                <a href="/hizmetlerimiz" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-semibold transition-all border border-slate-700">
-                    Hizmetlerimiz
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content for scroll testing -->
-    <div class="h-screen"></div> 
+	<Hero />
+    <KeyServices />
+    <LatestPosts />
 </Layout>
