@@ -2,8 +2,7 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
     storage: {
-        kind: 'github',
-        repo: 'fatihdisci/Deneme-test', // The specific repo we are working on
+        kind: 'local',
     },
     collections: {
         blog: collection({
@@ -28,10 +27,7 @@ export default config({
                     ],
                     defaultValue: 'Bilişim Hukuku'
                 }),
-                image: fields.text({
-                    label: 'Kapak Görseli (örn: /images/blog/resim.jpg)',
-                    description: 'Public klasörüne attığınız resmin yolunu yazın.'
-                }),
+                image: fields.text({ label: 'Resim Yolu (/images/blog/...)' }),
                 content: fields.document({
                     label: 'İçerik',
                     formatting: true,
