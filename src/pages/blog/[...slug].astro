@@ -46,21 +46,28 @@ const { Content } = await entry.render();
     <!-- Content -->
     <div class="container mx-auto px-6 max-w-5xl">
         <div class="prose prose-invert prose-xl mx-auto max-w-5xl py-12 blog-content
-      prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6 prose-p:mt-0
+      text-justify hyphens-auto prose-p:text-justify
+      prose-p:text-slate-300 prose-p:leading-loose prose-p:mb-8 prose-p:mt-0
       prose-headings:text-gold-500 prose-headings:font-serif prose-headings:mb-6 prose-headings:mt-12
       prose-li:text-slate-300 prose-li:my-2 prose-li:ml-6
       prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6 prose-ul:space-y-2
       prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6 prose-ol:space-y-2
       prose-blockquote:border-l-4 prose-blockquote:border-gold-500 prose-blockquote:bg-slate-900/50 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:my-8
-      prose-strong:text-white prose-strong:font-bold" data-aos="fade-up" data-aos-delay="200">
+      prose-strong:text-white prose-strong:font-bold" data-aos="fade-up" data-aos-delay="200" lang="tr">
             <Content />
         </div>
     </div>
 
     <style>
+        .blog-content,
         .blog-content p,
         .blog-content li {
             text-align: justify !important;
+            -webkit-hyphens: auto !important;
+            -moz-hyphens: auto !important;
+            -ms-hyphens: auto !important;
+            hyphens: auto !important;
+            word-spacing: -0.05em;
         }
     </style>
 
