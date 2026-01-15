@@ -294,23 +294,43 @@ class DiscilawWriter:
         return '\n\n'.join(fixed_paragraphs)
     
     def _insert_formatting(self, prefix: str, suffix: str):
-        """Insert formatting around selected text or at cursor."""
+        """Insert formatting around selected text or at cursor, handling whitespace."""
         try:
             # Try to get selected text
-            sel_start = self.content_text.index(tk.SEL_FIRST)
-            sel_end = self.content_text.index(tk.SEL_LAST)
-            selected = self.content_text.get(sel_start, sel_end)
-            
-            # Replace with formatted text
-            self.content_text.delete(sel_start, sel_end)
-            self.content_text.insert(sel_start, f"{prefix}{selected}{suffix}")
-        except tk.TclError:
-            # No selection - insert at cursor with placeholder
-            cursor = self.content_text.index(tk.INSERT)
-            if suffix:
-                self.content_text.insert(cursor, f"{prefix}metin{suffix}")
-            else:
-                self.content_text.insert(cursor, prefix)
+            try:
+                sel_start = self.content_text.index(tk.SEL_FIRST)
+                sel_end = self.content_text.index(tk.SEL_LAST)
+                selected = self.content_text.get(sel_start, sel_end)
+                
+                # Handle whitespace: preserve leading/trailing spaces OUTSIDE formatting
+                leading_ws = len(selected) - len(selected.lstrip())
+                trailing_ws = len(selected) - len(selected.rstrip())
+                
+                # If pure whitespace, just insert around it
+                if leading_ws == len(selected):
+                    stripped = selected
+                    formatted = f"{prefix}{stripped}{suffix}"
+                else:
+                    stripped = selected.strip()
+                    # Reconstruct: leading_ws + PREFIX + stripped + SUFFIX + trailing_ws
+                    formatted = (selected[:leading_ws] + 
+                               prefix + stripped + suffix + 
+                               selected[len(selected)-trailing_ws:] if trailing_ws > 0 else selected[:leading_ws] + prefix + stripped + suffix)
+                
+                self.content_text.delete(sel_start, sel_end)
+                self.content_text.insert(sel_start, formatted)
+                
+            except tk.TclError:
+                # No selection - insert at cursor
+                cursor = self.content_text.index(tk.INSERT)
+                if suffix:
+                    self.content_text.insert(cursor, f"{prefix}metin{suffix}")
+                else:
+                    self.content_text.insert(cursor, prefix)
+                    
+        except Exception as e:
+            # Fallback for safety
+            pass
     
     def _select_image(self):
         """Open file dialog to select an image."""
