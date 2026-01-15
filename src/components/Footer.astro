@@ -1,0 +1,55 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 border-t border-slate-800 mt-auto">
+    <div class="w-full max-w-7xl mx-auto p-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Brand Column -->
+            <div class="space-y-4">
+                <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <span class="self-center text-2xl font-bold whitespace-nowrap text-white">DISCI<span class="text-amber-500">LAW</span></span>
+                </a>
+                <p class="text-slate-400 text-sm">
+                    Teknoloji, yapay zeka ve bilişim hukuku alanında uzmanlaşmış, modern ve yenilikçi hukuk çözümleri sunan partneriniz.
+                </p>
+            </div>
+
+            <!-- Links Column -->
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">Hızlı Erişim</h3>
+                <ul class="space-y-2 text-slate-400 text-sm">
+                    <li><a href="/hizmetlerimiz" class="hover:text-amber-500 transition-colors">Hizmetlerimiz</a></li>
+                    <li><a href="/blog" class="hover:text-amber-500 transition-colors">Blog</a></li>
+                    <li><a href="/hakkimizda" class="hover:text-amber-500 transition-colors">Hakkımızda</a></li>
+                    <li><a href="/iletisim" class="hover:text-amber-500 transition-colors">İletişim</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-4">İletişim</h3>
+                <ul class="space-y-2 text-slate-400 text-sm">
+                    <li class="flex items-start gap-2">
+                        <span>📍</span>
+                        <span>Maslak, Büyükdere Cd. No:123<br/>Sarıyer/İstanbul</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span>📞</span>
+                        <a href="tel:+902120000000" class="hover:text-amber-500">+90 (212) 000 00 00</a>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span>✉️</span>
+                        <a href="mailto:info@discilaw.com" class="hover:text-amber-500">info@discilaw.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <hr class="my-6 border-slate-800" />
+        
+        <div class="text-center text-sm text-slate-500">
+            © {year} Discilaw. Tüm Hakları Saklıdır.
+        </div>
+    </div>
+</footer>

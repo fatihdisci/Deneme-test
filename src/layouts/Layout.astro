@@ -1,0 +1,38 @@
+---
+interface Props {
+	title: string;
+    description?: string;
+}
+
+const { title, description = "Discilaw - Teknoloji ve Yapay Zeka Hukuku" } = Astro.props;
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import 'aos/dist/aos.css'; 
+---
+
+<!doctype html>
+<html lang="tr" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen">
+        <Navbar />
+		<main class="flex-grow">
+            <slot />
+        </main>
+        <Footer />
+        
+        <script>
+            import AOS from 'aos';
+            AOS.init({
+                duration: 800,
+                once: true,
+            });
+        </script>
+	</body>
+</html>
