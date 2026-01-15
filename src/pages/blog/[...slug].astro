@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={`${entry.data.title} | Discilaw Blog`}>
+  <!-- Progress Bar (Optional nice touch) -->
+  <div class="fixed top-0 left-0 w-full h-1 z-50 bg-slate-800">
+    <div class="h-full bg-gold-500 w-0" id="reading-progress"></div>
+  </div>
+
+  <article class="py-24 bg-slate-950 min-h-screen">
+    <!-- Header -->
+    <div class="container mx-auto px-4 max-w-4xl mb-12 text-center" data-aos="fade-up">
+        <div class="mb-6 flex items-center justify-center gap-4 text-sm">
+            <span class="text-gold-500 font-bold px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20">
+                {entry.data.category}
+            </span>
+            <span class="text-slate-500">•</span>
+            <time class="text-slate-400">
+                {entry.data.pubDate.toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
+            {entry.data.title}
+        </h1>
+
+        {entry.data.image && (
+            <div class="rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-12">
+                <img src={entry.data.image} alt={entry.data.title} class="w-full h-auto object-cover max-h-[500px]" />
+            </div>
+        )}
+    </div>
+
+    <!-- Content -->
+    <div class="container mx-auto px-4 max-w-prose">
+        <div class="prose prose-invert prose-lg prose-headings:text-white prose-p:text-slate-300 prose-a:text-gold-500 hover:prose-a:text-gold-400 prose-strong:text-white prose-code:text-gold-400 mx-auto" data-aos="fade-up" data-aos-delay="200">
+            <Content />
+        </div>
+    </div>
+
+    <!-- Footer / Navigation -->
+    <div class="container mx-auto px-4 max-w-4xl mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
+        <a href="/blog" class="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Blog'a Dön
+        </a>
+        
+        <!-- Share Buttons (Mock UI) -->
+        <div class="flex gap-4">
+            <button class="text-slate-400 hover:text-gold-500 transition-colors" title="Paylaş">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+            </button>
+        </div>
+    </div>
+  </article>
+
+  <script>
+    // Simple Reading Progress Bar
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const bar = document.getElementById('reading-progress');
+        if (bar) bar.style.width = scrolled + "%";
+    });
+  </script>
+</Layout>
