@@ -212,15 +212,34 @@ class DiscilawWriter:
         html_pattern = r'<[a-zA-Z][^>]*>'
         return bool(re.search(html_pattern, text))
 
+    def sanitize_for_mdx(self, content):
+        """
+        HTML etiketlerini MDX/JSX uyumlu hale getir.
+        MDX, self-closing tagları slash ile gerektirir: <br> -> <br/>
+        """
+        # Self-closing olması gereken HTML tagları
+        void_tags = ['br', 'hr', 'img', 'input', 'meta', 'link', 'area', 'base', 'col', 'embed', 'source', 'track', 'wbr']
+        
+        for tag in void_tags:
+            # <br> -> <br/> (slash olmayan self-closing tagları düzelt)
+            pattern = rf'<{tag}(\s[^>]*)?>(?!/)'
+            replacement = rf'<{tag}\1/>'
+            content = re.sub(pattern, replacement, content, flags=re.IGNORECASE)
+            
+            # <br /> -> <br/> (fazla boşlukları temizle)
+            content = re.sub(rf'<{tag}\s*/>', rf'<{tag}/>', content, flags=re.IGNORECASE)
+        
+        return content
+
     def format_content(self, raw_content):
         """
         İçeriği MDX için formatla:
-        - HTML varsa: Olduğu gibi bırak
+        - HTML varsa: JSX uyumlu hale getir
         - HTML yoksa: Paragrafları <p> ile sar, satır sonlarını <br/> yap
         """
         if self.contains_html(raw_content):
-            # HTML içerik - olduğu gibi döndür
-            return raw_content
+            # HTML içerik - JSX uyumlu hale getir
+            return self.sanitize_for_mdx(raw_content)
         
         # Düz metin - HTML formatına dönüştür
         paragraphs = re.split(r'\n{2,}', raw_content)
