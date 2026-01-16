@@ -1,8 +1,8 @@
 "use client";
 
 import { memo, useCallback, useEffect, useRef } from "react";
-import { animate } from "motion";
 import { cn } from "../../lib/utils";
+import { animate } from "motion/react";
 
 interface GlowingEffectProps {
     blur?: number;
@@ -17,208 +17,173 @@ interface GlowingEffectProps {
     borderWidth?: number;
 }
 
-const GlowingEffect = memo(function GlowingEffect({
-    blur = 0,
-    inactiveZone = 0.7,
-    proximity = 0,
-    spread = 20,
-    variant = "default",
-    glow = false,
-    className,
-    movementDuration = 2,
-    borderWidth = 1,
-    disabled = true,
-}: GlowingEffectProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const lastPosition = useRef({ x: 0, y: 0 });
-    const animationFrameRef = useRef<number>(0);
+const GlowingEffect = memo(
+    ({
+        blur = 0,
+        inactiveZone = 0.7,
+        proximity = 0,
+        spread = 10,
+        variant = "default",
+        glow = false,
+        className,
+        movementDuration = 2,
+        borderWidth = 1,
+        disabled = true,
+    }: GlowingEffectProps) => {
+        const containerRef = useRef<HTMLDivElement>(null);
+        const lastPosition = useRef({ x: 0, y: 0 });
+        const animationFrameRef = useRef<number>(0);
 
-    const handleMove = useCallback(
-        (e?: MouseEvent | { x: number; y: number }) => {
-            if (!containerRef.current) return;
+        const handleMove = useCallback(
+            (e?: MouseEvent | { x: number; y: number }) => {
+                if (!containerRef.current) return;
 
-            if (animationFrameRef.current) {
-                cancelAnimationFrame(animationFrameRef.current);
-            }
-
-            animationFrameRef.current = requestAnimationFrame(() => {
-                const element = containerRef.current;
-                if (!element) return;
-
-                const { left, top, width, height } = element.getBoundingClientRect();
-                const mouseX = e?.x ?? lastPosition.current.x;
-                const mouseY = e?.y ?? lastPosition.current.y;
-
-                if (e) {
-                    lastPosition.current = { x: mouseX, y: mouseY };
+                if (animationFrameRef.current) {
+                    cancelAnimationFrame(animationFrameRef.current);
                 }
 
-                const center = [left + width * 0.5, top + height * 0.5];
-                const distanceFromCenter = Math.hypot(
-                    mouseX - center[0],
-                    mouseY - center[1]
-                );
-                const inactiveRadius = 0.5 * Math.min(width, height) * inactiveZone;
-                const isInInactiveZone = distanceFromCenter < inactiveRadius;
-                const isInProximity =
-                    mouseX > left - proximity &&
-                    mouseX < left + width + proximity &&
-                    mouseY > top - proximity &&
-                    mouseY < top + height + proximity;
+                animationFrameRef.current = requestAnimationFrame(() => {
+                    const element = containerRef.current;
+                    if (!element) return;
 
-                if (!isInProximity || isInInactiveZone) {
-                    element.style.setProperty("--active", "0");
-                    return;
-                }
+                    const { left, top, width, height } = element.getBoundingClientRect();
+                    const mouseX = e?.x ?? lastPosition.current.x;
+                    const mouseY = e?.y ?? lastPosition.current.y;
 
-                const relativeX = mouseX - left;
-                const relativeY = mouseY - top;
+                    if (e) {
+                        lastPosition.current = { x: mouseX, y: mouseY };
+                    }
 
-                element.style.setProperty("--active", "1");
-                element.style.setProperty("--x", `${relativeX}px`);
-                element.style.setProperty("--y", `${relativeY}px`);
+                    const center = [left + width * 0.5, top + height * 0.5];
+                    const distanceFromCenter = Math.hypot(
+                        mouseX - center[0],
+                        mouseY - center[1]
+                    );
+                    const inactiveRadius = 0.5 * Math.min(width, height) * inactiveZone;
+
+                    if (distanceFromCenter < inactiveRadius) {
+                        element.style.setProperty("--active", "0");
+                        return;
+                    }
+
+                    const isActive =
+                        mouseX > left - proximity &&
+                        mouseX < left + width + proximity &&
+                        mouseY > top - proximity &&
+                        mouseY < top + height + proximity;
+
+                    element.style.setProperty("--active", isActive ? "1" : "0");
+
+                    if (!isActive) return;
+
+                    const currentAngle =
+                        parseFloat(element.style.getPropertyValue("--start")) || 0;
+                    let targetAngle =
+                        (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) /
+                        Math.PI +
+                        90;
+
+                    const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
+                    const newAngle = currentAngle + angleDiff;
+
+                    animate(currentAngle, newAngle, {
+                        duration: movementDuration,
+                        ease: [0.16, 1, 0.3, 1],
+                        onUpdate: (value) => {
+                            element.style.setProperty("--start", String(value));
+                        },
+                    });
+                });
+            },
+            [inactiveZone, proximity, movementDuration]
+        );
+
+        useEffect(() => {
+            if (disabled) return;
+
+            const handleScroll = () => handleMove();
+            const handlePointerMove = (e: PointerEvent) => handleMove(e);
+
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            document.body.addEventListener("pointermove", handlePointerMove, {
+                passive: true,
             });
-        },
-        [inactiveZone, proximity]
-    );
 
-    useEffect(() => {
-        if (disabled) return;
-
-        const handleScroll = () => handleMove();
-        const handlePointerMove = (e: PointerEvent) => handleMove(e);
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        document.body.addEventListener("pointermove", handlePointerMove, {
-            passive: true,
-        });
-
-        return () => {
-            if (animationFrameRef.current) {
-                cancelAnimationFrame(animationFrameRef.current);
-            }
-            window.removeEventListener("scroll", handleScroll);
-            document.body.removeEventListener("pointermove", handlePointerMove);
-        };
-    }, [handleMove, disabled]);
-
-    useEffect(() => {
-        if (!glow || disabled) return;
-
-        const prefersReducedMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        if (prefersReducedMotion) {
-            containerRef.current?.style.setProperty("--glow", "0");
-            return;
-        }
-
-        const updateGlow = () => {
-            const element = containerRef.current;
-            if (!element) return;
-
-            const active = getComputedStyle(element).getPropertyValue("--active");
-
-            if (active === "1") {
-                animate(
-                    element,
-                    { "--glow": [0, 1] },
-                    { duration: movementDuration, ease: "linear" }
-                );
-            } else {
-                animate(
-                    element,
-                    { "--glow": 0 },
-                    { duration: movementDuration / 2, ease: "linear" }
-                );
-            }
-        };
-
-        const interval = setInterval(updateGlow, 100);
-        return () => clearInterval(interval);
-    }, [glow, disabled, movementDuration]);
-
-    return (
-        <div
-            className={cn(
-                "pointer-events-none absolute inset-0 rounded-[inherit]",
-                className
-            )}
-        >
-            <div
-                ref={containerRef}
-                style={
-                    {
-                        "--blur": `${blur}px`,
-                        "--spread": spread,
-                        "--start": "0",
-                        "--active": "0",
-                        "--glow": "0",
-                        "--repeating-conic-gradient-times": 5,
-                        "--gradient":
-                            variant === "white"
-                                ? `repeating-conic-gradient(
-                    from 236.84deg at 50% 50%,
-                    #ffffff 0%,
-                    #f0f0f0 calc(25% / 5),
-                    #e0e0e0 calc(50% / 5),
-                    #ffffff calc(100% / 5)
-                  )`
-                                : `radial-gradient(circle, #d79f1e 10%, #d79f1e00 20%),
-                   radial-gradient(circle at 40% 40%, #fbbf24 5%, #fbbf2400 15%),
-                   radial-gradient(circle at 60% 60%, #b45309 10%, #b4530900 20%), 
-                   repeating-conic-gradient(
-                     from 236.84deg at 50% 50%,
-                     #d79f1e 0%,
-                     #fbbf24 calc(25% / var(--repeating-conic-gradient-times)),
-                     #b45309 calc(50% / var(--repeating-conic-gradient-times)), 
-                     #d79f1e calc(100% / var(--repeating-conic-gradient-times))
-                   )`,
-                        "--border-width": `${borderWidth}px`,
-                    } as React.CSSProperties
+            return () => {
+                if (animationFrameRef.current) {
+                    cancelAnimationFrame(animationFrameRef.current);
                 }
-                className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[var(--active)] transition-opacity duration-300"
-            >
+                window.removeEventListener("scroll", handleScroll);
+                document.body.removeEventListener("pointermove", handlePointerMove);
+            };
+        }, [handleMove, disabled]);
+
+        return (
+            <>
                 <div
-                    className="absolute inset-0 rounded-[inherit]"
-                    style={{
-                        background: `var(--gradient)`,
-                        backgroundAttachment: "fixed",
-                        backgroundPosition: "var(--x) var(--y)",
-                        backgroundSize: `calc(100% + (var(--spread) * 2px)) calc(100% + (var(--spread) * 2px))`,
-                        filter: "blur(var(--blur))",
-                        maskImage: `
-              linear-gradient(black, black) content-box,
-              linear-gradient(black, black)
-            `,
-                        maskComposite: "exclude",
-                        WebkitMaskComposite: "xor",
-                        padding: "var(--border-width)",
-                        transform: `scale(calc(1 + (var(--glow) * 0.05)))`,
-                    }}
+                    className={cn(
+                        "pointer-events-none absolute -inset-px hidden rounded-[inherit] border opacity-0 transition-opacity",
+                        glow && "opacity-100",
+                        variant === "white" && "border-white",
+                        disabled && "!block"
+                    )}
                 />
                 <div
-                    className="absolute inset-0 rounded-[inherit]"
-                    style={{
-                        background: `var(--gradient)`,
-                        backgroundAttachment: "fixed",
-                        backgroundPosition: "var(--x) var(--y)",
-                        backgroundSize: `calc(100% + (var(--spread) * 2px)) calc(100% + (var(--spread) * 2px))`,
-                        filter: `blur(calc(var(--blur) + 10px + (var(--glow) * 20px)))`,
-                        opacity: `calc(0.4 + (var(--glow) * 0.6))`,
-                        maskImage: `
-              linear-gradient(black, black) content-box,
-              linear-gradient(black, black)
-            `,
-                        maskComposite: "exclude",
-                        WebkitMaskComposite: "xor",
-                        padding: "var(--border-width)",
-                    }}
-                />
-            </div>
-        </div>
-    );
-});
+                    ref={containerRef}
+                    style={
+                        {
+                            "--blur": `${blur}px`,
+                            "--spread": spread,
+                            "--start": "0",
+                            "--active": "0",
+                            "--glowingeffect-border-width": `${borderWidth}px`,
+                            "--repeating-conic-gradient-times": "5",
+                            "--gradient":
+                                variant === "white"
+                                    ? `repeating-conic-gradient(
+                  from 236.84deg at 50% 50%,
+                  var(--black),
+                  var(--black) calc(25% / var(--repeating-conic-gradient-times))
+                )`
+                                    : `radial-gradient(circle, #d79f1e 10%, #d79f1e00 20%),
+                radial-gradient(circle at 40% 40%, #fbbf24 5%, #fbbf2400 15%),
+                radial-gradient(circle at 60% 60%, #b45309 10%, #b4530900 20%), 
+                repeating-conic-gradient(
+                  from 236.84deg at 50% 50%,
+                  #d79f1e 0%,
+                  #fbbf24 calc(25% / var(--repeating-conic-gradient-times)),
+                  #b45309 calc(50% / var(--repeating-conic-gradient-times)), 
+                  #d79f1e calc(100% / var(--repeating-conic-gradient-times))
+                )`,
+                        } as React.CSSProperties
+                    }
+                    className={cn(
+                        "pointer-events-none absolute inset-0 rounded-[2rem] opacity-100 transition-opacity",
+                        glow && "opacity-100",
+                        blur > 0 && "blur-[var(--blur)] ",
+                        className,
+                        disabled && "!hidden"
+                    )}
+                >
+                    <div
+                        className={cn(
+                            "glow",
+                            "rounded-[2rem]",
+                            'after:content-[""] after:rounded-[2rem] after:absolute after:inset-[calc(-1*var(--glowingeffect-border-width))]',
+                            "after:[border:var(--glowingeffect-border-width)_solid_transparent]",
+                            "after:[background:var(--gradient)] after:[background-attachment:fixed]",
+                            "after:opacity-[var(--active)] after:transition-opacity after:duration-300",
+                            "after:[mask-clip:padding-box,border-box]",
+                            "after:[mask-composite:intersect]",
+                            "after:[mask-image:linear-gradient(#0000,#0000),conic-gradient(from_calc((var(--start)-var(--spread))*1deg),#00000000_0deg,#fff,#00000000_calc(var(--spread)*2deg))]"
+                        )}
+                    />
+                </div>
+            </>
+        );
+    }
+);
+
+GlowingEffect.displayName = "GlowingEffect";
 
 export { GlowingEffect };
