@@ -8,27 +8,27 @@ const year = new Date().getFullYear();
             <!-- Brand Column -->
             <div class="space-y-4">
                 <a href="/" class="inline-block">
-                    <img src="/logo.png" alt="Dişçi Hukuk Bürosu" class="h-14 w-auto mb-4 opacity-90" />
+                    <img src="/logo.png" alt="Hukuki Danışmanlık" class="h-14 w-auto mb-4 opacity-90" />
                 </a>
                 <p class="text-slate-400 text-sm leading-relaxed">
-                    Dişçi Hukuk Bürosu - İzmir Barosu'na kayıtlı olarak avukatlık ve hukuki danışmanlık hizmeti vermektedir.
+                    Evrensel hukuk ilkeleri ışığında, şeffaf ve etik değerlere bağlı profesyonel hukuki danışmanlık hizmetleri.
                 </p>
             </div>
 
             <!-- Links Column -->
             <div>
-                <h3 class="text-lg font-semibold text-white mb-4">Hızlı Erişim</h3>
+                <h3 class="text-lg font-semibold text-white mb-4 font-serif">Hızlı Erişim</h3>
                 <ul class="space-y-2 text-slate-400 text-sm">
-                    <li><a href="/hizmetlerimiz" class="hover:text-amber-500 transition-colors">Hizmetlerimiz</a></li>
-                    <li><a href="/blog" class="hover:text-amber-500 transition-colors">Blog</a></li>
-                    <li><a href="/hakkimizda" class="hover:text-amber-500 transition-colors">Hakkımızda</a></li>
-                    <li><a href="/iletisim" class="hover:text-amber-500 transition-colors">İletişim</a></li>
+                    <li><a href="/calisma-alanlarimiz" class="hover:text-gold-500 transition-colors">Çalışma Alanlarımız</a></li>
+                    <li><a href="/blog" class="hover:text-gold-500 transition-colors">Blog</a></li>
+                    <li><a href="/hakkimizda" class="hover:text-gold-500 transition-colors">Hakkımızda</a></li>
+                    <li><a href="/iletisim" class="hover:text-gold-500 transition-colors">İletişim</a></li>
                 </ul>
             </div>
 
             <!-- Contact Column -->
             <div>
-                <h3 class="text-lg font-semibold text-white mb-4">İletişim</h3>
+                <h3 class="text-lg font-semibold text-white mb-4 font-serif">Merkez Ofis</h3>
                 <ul class="space-y-3 text-slate-400 text-sm">
                     <li class="flex items-start gap-2">
                         <span>📍</span>
@@ -36,11 +36,11 @@ const year = new Date().getFullYear();
                     </li>
                     <li class="flex items-center gap-2">
                         <span>📞</span>
-                        <a href="tel:+905077247735" class="hover:text-amber-500">0 (507) 724 77 35</a>
+                        <a href="tel:+905077247735" class="hover:text-gold-500">0 (507) 724 77 35</a>
                     </li>
                     <li class="flex items-center gap-2">
                         <span>✉️</span>
-                        <a href="mailto:info@discilaw.com" class="hover:text-amber-500">info@discilaw.com</a>
+                        <a href="mailto:info@discilaw.com" class="hover:text-gold-500">info@discilaw.com</a>
                     </li>
                 </ul>
             </div>
@@ -48,8 +48,16 @@ const year = new Date().getFullYear();
         
         <hr class="my-6 border-slate-800" />
         
-        <div class="text-center text-sm text-slate-500">
-            © {year} Dişçi Hukuk Bürosu. Tüm Hakları Saklıdır.
+        <!-- Legal Links & Copyright -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex gap-4 text-sm text-slate-500">
+                <a href="/gizlilik-politikasi" class="hover:text-gold-500 transition-colors">Gizlilik Politikası</a>
+                <span>|</span>
+                <a href="/aydinlatma-metni" class="hover:text-gold-500 transition-colors">Aydınlatma Metni</a>
+            </div>
+            <div class="text-sm text-slate-500">
+                © {year} Discilaw. Tüm Hakları Saklıdır.
+            </div>
         </div>
     </div>
 </footer>

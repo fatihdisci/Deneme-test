@@ -6,15 +6,19 @@ export default {
     theme: {
         extend: {
             colors: {
+                navy: '#0f172a',
+                anthracite: '#334155',
                 slate: {
                     950: '#020617', // Deep background
                 },
                 gold: {
-                    500: '#D4AF37', // Branding gold
+                    DEFAULT: '#c5a059',
+                    500: '#c5a059', // Legal gold
                 }
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
+                serif: ['Playfair Display', 'Georgia', 'serif'],
             }
         },
     },

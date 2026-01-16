@@ -1,40 +1,73 @@
 ---
 const services = [
     {
-        title: "Bilişim Hukuku",
-        description: "KVKK uyum süreçleri, e-ticaret ve internet hukukundan kaynaklanan uyuşmazlıklar.",
-        icon: "💻"
+        title: "Ceza Hukuku",
+        description: "Ağır ceza davaları, soruşturma ve kovuşturma süreçlerinde uzman hukuki destek.",
+        icon: "⚖️",
+        slug: "ceza-hukuku"
+    },
+    {
+        title: "Aile ve Boşanma",
+        description: "Anlaşmalı ve çekişmeli boşanma, velayet, nafaka ve mal paylaşımı davaları.",
+        icon: "👨‍👩‍👧",
+        slug: "aile-ve-bosanma"
     },
     {
         title: "Ticaret Hukuku",
-        description: "Şirketler hukuku, ticari sözleşmeler ve haksız rekabet davaları.",
-        icon: "📊"
+        description: "Şirketler hukuku, ticari sözleşmeler ve birleşme & devralma işlemleri.",
+        icon: "📊",
+        slug: "ticaret-hukuku"
     },
     {
         title: "İdare Hukuku",
-        description: "İdari işlemlerin iptali ve tam yargı davaları.",
-        icon: "⚖️"
+        description: "İptal davaları, tam yargı davaları ve idari yaptırımlara itiraz.",
+        icon: "🏛️",
+        slug: "idare-hukuku"
+    },
+    {
+        title: "Gayrimenkul Hukuku",
+        description: "Tapu iptali, kira hukuku, tahliye davaları ve emlak uyuşmazlıkları.",
+        icon: "🏠",
+        slug: "gayrimenkul-hukuku"
+    },
+    {
+        title: "Bilişim Hukuku",
+        description: "KVKK uyum süreçleri, internet suçları ve erişim engelleme davaları.",
+        icon: "💻",
+        slug: "bilisim-hukuku"
     }
 ];
 ---
 
-<section class="py-24 bg-slate-950 relative">
+<section class="py-24 bg-slate-950/50 relative">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Hizmetlerimiz</h2>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto">Büromuz aşağıdaki hukuk alanlarında avukatlık ve danışmanlık hizmeti vermektedir.</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4 font-serif">Hizmet Alanlarımız</h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">Geniş uzmanlık alanlarımızda profesyonel hukuki danışmanlık ve avukatlık hizmeti sunuyoruz.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-                <div class="group p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-900/10 hover:-translate-y-2" data-aos="fade-up" data-aos-delay={index * 100}>
+                <a 
+                    href={`/calisma-alanlarimiz/${service.slug}`}
+                    class="group p-8 rounded-2xl bg-slate-900 border border-slate-800 hover:border-gold-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/10 hover:-translate-y-2" 
+                    data-aos="fade-up" 
+                    data-aos-delay={index * 100}
+                >
                     <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
                         {service.icon}
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-amber-500 transition-colors">{service.title}</h3>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-gold-500 transition-colors font-serif">{service.title}</h3>
                     <p class="text-slate-400 group-hover:text-slate-300 transition-colors">{service.description}</p>
-                </div>
+                </a>
             ))}
+        </div>
+
+        <div class="text-center mt-12" data-aos="fade-up">
+            <a href="/calisma-alanlarimiz" class="inline-flex items-center gap-2 px-6 py-3 border border-slate-700 hover:border-gold-500/50 text-white rounded-lg font-semibold transition-all hover:bg-slate-900">
+                Tüm Çalışma Alanlarını Görüntüle
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
         </div>
     </div>
 </section>

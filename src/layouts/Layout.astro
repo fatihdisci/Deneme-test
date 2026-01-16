@@ -1,25 +1,31 @@
 ---
 interface Props {
-	title: string;
+	title?: string;
 	description?: string;
 }
 
-const { title, description = "Discilaw - Modern Hukuk Çözümleri" } = Astro.props;
+const { title, description } = Astro.props;
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+
+// SEO Title Logic
+const baseBrand = "Dişçi Hukuk Bürosu";
+const homeTitle = "Dişçi Hukuk Bürosu - Av. Fatih Dişçi";
+const pageTitle = title ? `${title} - ${baseBrand}` : homeTitle;
+const metaDescription = description || "İzmir merkezli avukatlık ve hukuki danışmanlık hizmetleri.";
 ---
 
 <!doctype html>
-<html lang="tr" class="scroll-smooth bg-slate-950 text-slate-200">
+<html lang="tr" class="scroll-smooth bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-200">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
+		<meta name="description" content={metaDescription} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+		<title>{pageTitle}</title>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	</head>
 	<body class="antialiased selection:bg-gold-500 selection:text-white pt-28 flex flex-col min-h-screen">

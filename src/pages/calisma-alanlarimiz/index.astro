@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services');
+---
+
+<Layout title="Hizmet Alanlarımız">
+  <!-- Header -->
+  <section class="py-20 bg-slate-900 border-b border-white/5">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 font-serif" data-aos="fade-up">Çalışma Alanlarımız</h1>
+      <p class="text-slate-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+        Geniş uzmanlık alanlarımızda profesyonel hukuki danışmanlık ve avukatlık hizmeti sunuyoruz.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-24 bg-slate-950">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service, index) => (
+          <a 
+            href={`/calisma-alanlarimiz/${service.slug}`}
+            class="group p-8 rounded-2xl bg-slate-900/50 backdrop-blur-sm border border-white/5 hover:border-gold-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-gold-500/5 hover:-translate-y-2"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              {service.data.icon || '⚖️'}
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-4 group-hover:text-gold-500 transition-colors font-serif">
+              {service.data.title}
+            </h2>
+            <p class="text-slate-400 group-hover:text-slate-300 transition-colors mb-4">
+              {service.data.description}
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm font-semibold text-gold-500 opacity-0 group-hover:opacity-100 transition-opacity">
+              Detaylı Bilgi
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
