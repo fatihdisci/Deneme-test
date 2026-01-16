@@ -20,7 +20,7 @@ export const WhatsAppButton = () => {
             className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2 transition-all duration-500 transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
         >
             {/* Tooltip / Greeting Message */}
-            <div className="bg-white text-slate-900 text-xs font-semibold py-2 px-3 rounded-lg shadow-xl mb-1 mr-1 animate-bounce relative">
+            <div className="bg-white text-slate-900 text-xs font-semibold py-2 px-3 rounded-lg shadow-xl mb-1 mr-1 animate-bounce relative hidden md:block">
                 Ulaşmak için tıklayın.
                 {/* Triangle arrow */}
                 <div className="absolute -bottom-1 right-4 w-2 h-2 bg-white transform rotate-45"></div>
@@ -35,7 +35,7 @@ export const WhatsAppButton = () => {
                 aria-label="WhatsApp ile iletişime geç"
             >
                 {/* Pulse Effect Rings */}
-                <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75 animate-ping duration-1000 group-hover:duration-700"></span>
+                <span className="hidden md:inline-flex absolute h-full w-full rounded-full bg-[#25D366] opacity-75 animate-ping duration-1000 group-hover:duration-700"></span>
 
                 {/* WhatsApp Icon SVG */}
                 <svg
