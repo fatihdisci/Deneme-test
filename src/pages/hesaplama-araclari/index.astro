@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Hesaplama Araçları" description="Hukuki hesaplama araçları: Kıdem tazminatı, ihbar tazminatı ve daha fazlası için ücretsiz online hesaplayıcılar.">
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-serif">Hesaplama Araçları</h1>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+                    Hukuki süreçlerinizde size yardımcı olacak ücretsiz hesaplama araçlarımız
+                </p>
+            </div>
+
+            <!-- Tools Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Kıdem Tazminatı Calculator Card -->
+                <a href="/hesaplama-araclari/kidem-tazminati" class="group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 h-full hover:border-amber-500/50 hover:bg-slate-800/50 transition-all duration-300">
+                        <div class="w-16 h-16 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-colors">
+                            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-4 font-serif group-hover:text-amber-500 transition-colors">
+                            Kıdem Tazminatı Hesaplama
+                        </h2>
+                        <p class="text-slate-400 mb-6">
+                            Geçmiş dönem tavan ücretleri dahil, en güncel verilerle tazminatınızı hesaplayın.
+                        </p>
+                        <span class="inline-flex items-center text-amber-500 font-semibold group-hover:translate-x-2 transition-transform">
+                            Hesapla
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- İhbar Tazminatı Calculator Card -->
+                <a href="/hesaplama-araclari/ihbar-tazminati" class="group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 h-full hover:border-amber-500/50 hover:bg-slate-800/50 transition-all duration-300">
+                        <div class="w-16 h-16 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-colors">
+                            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-4 font-serif group-hover:text-amber-500 transition-colors">
+                            İhbar Tazminatı Hesaplama
+                        </h2>
+                        <p class="text-slate-400 mb-6">
+                            İhbar sürelerinizi ve vergi diliminize göre net tazminat tutarını hesaplayın.
+                        </p>
+                        <span class="inline-flex items-center text-amber-500 font-semibold group-hover:translate-x-2 transition-transform">
+                            Hesapla
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+
+                <div class="bg-slate-900/30 border border-slate-800/50 border-dashed rounded-2xl p-8 h-full flex flex-col items-center justify-center text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-slate-800/50 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-xl font-semibold text-slate-500 mb-2">Yakında</h2>
+                    <p class="text-slate-600 text-sm">Yıllık İzin Ücreti Hesaplama</p>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <p class="text-slate-500 text-sm max-w-2xl mx-auto">
+                    <strong class="text-slate-400">Uyarı:</strong> Bu hesaplama araçları yalnızca bilgilendirme amaçlıdır. 
+                    Kesin sonuçlar için mutlaka bir hukuk profesyoneline danışmanızı öneririz.
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>

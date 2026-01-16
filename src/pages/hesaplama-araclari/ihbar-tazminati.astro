@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NoticePayCalculator from '../../components/calculators/NoticePayCalculator.jsx';
+---
+
+<Layout title="İhbar Tazminatı Hesaplama" description="İhbar tazminatı hesaplama aracı. Hizmet sürenize ve vergi diliminize göre ihbar tazminatınızı hesaplayın.">
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center mb-12" data-aos="fade-up">
+                <a href="/hesaplama-araclari" class="inline-flex items-center text-slate-400 hover:text-amber-500 transition-colors mb-6">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Tüm Hesaplama Araçları
+                </a>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-serif">İhbar Tazminatı Hesaplama</h1>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+                    Hizmet sürenize ve vergi diliminize göre ihbar tazminatınızı hesaplayın
+                </p>
+            </div>
+
+            <!-- Calculator -->
+            <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <NoticePayCalculator client:load />
+            </div>
+
+            <!-- Info Section -->
+            <div class="max-w-3xl mx-auto mt-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-6 font-serif">İhbar Tazminatı Hakkında</h2>
+                    
+                    <div class="space-y-4 text-slate-400">
+                        <p>
+                            <strong class="text-white">İhbar tazminatı</strong>, iş sözleşmesinin feshi sırasında 
+                            bildirim sürelerine uyulmaması halinde, karşı tarafa ödenmesi gereken bir tazminattır. 
+                            Hem işçi hem de işveren bu yükümlülük altındadır.
+                        </p>
+                        
+                        <h3 class="text-lg font-semibold text-white pt-4">Yasal İhbar Süreleri:</h3>
+                        <ul class="list-disc list-inside space-y-2 pl-4">
+                            <li>6 aydan az çalışma: <strong class="text-amber-500">2 hafta</strong></li>
+                            <li>6 ay - 1.5 yıl arası çalışma: <strong class="text-amber-500">4 hafta</strong></li>
+                            <li>1.5 yıl - 3 yıl arası çalışma: <strong class="text-amber-500">6 hafta</strong></li>
+                            <li>3 yıldan fazla çalışma: <strong class="text-amber-500">8 hafta</strong></li>
+                        </ul>
+
+                        <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mt-6">
+                            <p class="text-amber-400 text-sm">
+                                <strong>Önemli:</strong> Bu hesaplama aracı yalnızca bilgilendirme amaçlıdır. 
+                                Kesin sonuçlar ve hukuki değerlendirme için mutlaka bir avukata danışmanızı öneririz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

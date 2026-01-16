@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SeveranceCalculator from '../../components/calculators/SeveranceCalculator.jsx';
+---
+
+<Layout title="Kıdem Tazminatı Hesaplama" description="Doğru ve güncel kıdem tazminatı hesaplama aracı. Geçmiş dönem tavan ücretleri dahil, en güncel verilerle net tazminatınızı hesaplayın.">
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center mb-12" data-aos="fade-up">
+                <a href="/hesaplama-araclari" class="inline-flex items-center text-slate-400 hover:text-amber-500 transition-colors mb-6">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Tüm Hesaplama Araçları
+                </a>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-serif">Kıdem Tazminatı Hesaplama</h1>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+                    İşten çıkış tarihinize göre doğru kıdem tavanı ile hesaplama yapın
+                </p>
+            </div>
+
+            <!-- Calculator -->
+            <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <SeveranceCalculator client:load />
+            </div>
+
+            <!-- Info Section -->
+            <div class="max-w-3xl mx-auto mt-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-6 font-serif">Kıdem Tazminatı Hakkında</h2>
+                    
+                    <div class="space-y-4 text-slate-400">
+                        <p>
+                            <strong class="text-white">Kıdem tazminatı</strong>, işverenin çalışanına belirli şartların gerçekleşmesi 
+                            durumunda, işyerinde geçirdiği hizmet süresine karşılık olarak ödemekle yükümlü olduğu bir tazminat türüdür. 
+                            İşçi, yıllar boyunca emeğini ortaya koyarak işverenin ticari faaliyetlerinin sürdürülmesine önemli katkılar sağlamaktadır.
+                        </p>
+                        
+                        <p>
+                            Bu sürekli ve düzenli çalışmanın bir karşılığı olarak, işçinin işyerinde geçirdiği toplam süre 
+                            dikkate alınarak kıdem tazminatı hesaplanmaktadır.
+                        </p>
+
+                        <h3 class="text-lg font-semibold text-white pt-4">Hesaplamada Esas Alınan Ücret:</h3>
+                        <p>
+                            Kıdem tazminatı, işçinin son brüt ücreti üzerinden hesaplanır. Bu hesaplamaya yol, yemek, 
+                            barınma, eğitim yardımı gibi düzenli olarak sağlanan sosyal haklar ve yan ödemeler de dahil edilmektedir. 
+                            Ancak hesaplamada kullanılacak tutar, yasal olarak belirlenen kıdem tazminatı tavanını aşamaz.
+                        </p>
+
+                        <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mt-6">
+                            <p class="text-amber-400 text-sm">
+                                <strong>Önemli:</strong> Bu hesaplama aracı yalnızca bilgilendirme amaçlıdır. 
+                                Kesin sonuçlar ve hukuki değerlendirme için mutlaka bir avukata danışmanızı öneririz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
