@@ -2,28 +2,37 @@ import { useState } from 'react';
 
 const FIXED_FEES = {
     "Danışmanlık": [
-        { label: "Sözlü Danışma (Büroda - 1 Saat)", value: 4000 },
-        { label: "Yazılı Danışma (1 Saat)", value: 7000 },
-        { label: "İhtarname / Protesto Yazımı", value: 6000 },
-        { label: "Kira Sözleşmesi Hazırlama", value: 8000 }
+        { label: "Sözlü Danışma (Büroda - 1 Saat) - 4.000 TL", value: 4000 },
+        { label: "Yazılı Danışma (1 Saat) - 7.000 TL", value: 7000 },
+        { label: "İhtarname / Protesto Yazımı - 6.000 TL", value: 6000 },
+        { label: "Kira Sözleşmesi Hazırlama - 8.000 TL", value: 8000 }
     ],
     "Ceza Mahkemeleri": [
-        { label: "Sulh Ceza Hakimliği", value: 18000 },
-        { label: "Asliye Ceza Mahkemesi", value: 45000 },
-        { label: "Ağır Ceza Mahkemesi", value: 65000 },
-        { label: "Çocuk Mahkemesi", value: 45000 }
+        { label: "Sulh Ceza Hakimliği - 18.000 TL", value: 18000 },
+        { label: "Asliye Ceza Mahkemesi - 45.000 TL", value: 45000 },
+        { label: "Ağır Ceza Mahkemesi - 65.000 TL", value: 65000 },
+        { label: "Çocuk Mahkemesi - 45.000 TL", value: 45000 }
     ],
     "Hukuk Mahkemeleri": [
-        { label: "Sulh Hukuk Mahkemesi", value: 30000 },
-        { label: "Asliye Hukuk Mahkemesi", value: 45000 },
-        { label: "Aile (Boşanma vb.) Mahkemesi", value: 45000 },
-        { label: "Tüketici Mahkemesi", value: 22500 },
-        { label: "Fikri ve Sınai Haklar", value: 55000 },
-        { label: "İcra Mahkemesi (Duruşmalı)", value: 18000 }
+        { label: "Sulh Hukuk Mahkemesi - 30.000 TL", value: 30000 },
+        { label: "Asliye Hukuk Mahkemesi - 45.000 TL", value: 45000 },
+        { label: "Aile (Boşanma vb.) Mahkemesi - 45.000 TL", value: 45000 },
+        { label: "Tüketici Mahkemesi - 22.500 TL", value: 22500 },
+        { label: "Fikri ve Sınai Haklar - 55.000 TL", value: 55000 }
+    ],
+    "İcra ve İflas": [
+        { label: "İcra Mahkemesi (Duruşmalı) - 18.000 TL", value: 18000 },
+        { label: "İcra Mahkemesi (Duruşmasız) - 11.000 TL", value: 11000 }
     ],
     "İdare ve Vergi Mahkemeleri": [
-        { label: "İdare Mahkemesi (Duruşmalı)", value: 40000 },
-        { label: "Vergi Mahkemesi (Duruşmalı)", value: 40000 }
+        { label: "İdare Mahkemesi (Duruşmalı) - 40.000 TL", value: 40000 },
+        { label: "İdare Mahkemesi (Duruşmasız) - 30.000 TL", value: 30000 },
+        { label: "Vergi Mahkemesi (Duruşmalı) - 40.000 TL", value: 40000 },
+        { label: "Vergi Mahkemesi (Duruşmasız) - 30.000 TL", value: 30000 }
+    ],
+    "Yüksek Yargı": [
+        { label: "Danıştay (İlk Derece - Duruşmasız) - 40.000 TL", value: 40000 },
+        { label: "Anayasa Mahkemesi (Bireysel Başvuru - Duruşmasız) - 40.000 TL", value: 40000 }
     ]
 };
 
