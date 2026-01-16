@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { GlowingEffect } from '../../components/ui/glowing-effect';
 ---
 
 <Layout title="Hesaplama Araçları" description="Hukuki hesaplama araçları: Kıdem tazminatı, ihbar tazminatı ve daha fazlası için ücretsiz online hesaplayıcılar.">
@@ -14,76 +15,116 @@ import Layout from '../../layouts/Layout.astro';
             </div>
 
             <!-- Tools Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto list-none p-0 m-0">
+                
                 <!-- Kıdem Tazminatı Calculator Card -->
-                <a href="/hesaplama-araclari/kidem-tazminati" class="group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 h-full hover:border-amber-500/50 hover:bg-slate-800/50 transition-all duration-300">
-                        <div class="w-16 h-16 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-colors">
-                            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                            </svg>
+                <li class="relative h-full rounded-[1.25rem] border-[0.75px] border-slate-700/50 p-2 md:rounded-[1.5rem] md:p-3" data-aos="fade-up" data-aos-delay="100">
+                    <GlowingEffect
+                        client:load
+                        spread={40}
+                        glow={true}
+                        disabled={false}
+                        proximity={64}
+                        inactiveZone={0.01}
+                        borderWidth={2}
+                    />
+                    <a href="/hesaplama-araclari/kidem-tazminati" class="group block h-full">
+                        <div class="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-slate-700 bg-slate-900 p-6 md:p-8 shadow-sm">
+                            <div>
+                                <div class="w-14 h-14 bg-amber-500/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-amber-500/20 transition-colors">
+                                    <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <h2 class="text-xl md:text-2xl font-bold text-white mb-3 font-serif group-hover:text-amber-500 transition-colors">
+                                    Kıdem Tazminatı Hesaplama
+                                </h2>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    Geçmiş dönem tavan ücretleri dahil, en güncel verilerle tazminatınızı hesaplayın.
+                                </p>
+                            </div>
+                            <span class="inline-flex items-center text-amber-500 font-semibold text-sm group-hover:translate-x-2 transition-transform mt-2">
+                                Hesapla
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </span>
                         </div>
-                        <h2 class="text-2xl font-bold text-white mb-4 font-serif group-hover:text-amber-500 transition-colors">
-                            Kıdem Tazminatı Hesaplama
-                        </h2>
-                        <p class="text-slate-400 mb-6">
-                            Geçmiş dönem tavan ücretleri dahil, en güncel verilerle tazminatınızı hesaplayın.
-                        </p>
-                        <span class="inline-flex items-center text-amber-500 font-semibold group-hover:translate-x-2 transition-transform">
-                            Hesapla
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </span>
-                    </div>
-                </a>
+                    </a>
+                </li>
 
                 <!-- İhbar Tazminatı Calculator Card -->
-                <a href="/hesaplama-araclari/ihbar-tazminati" class="group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 h-full hover:border-amber-500/50 hover:bg-slate-800/50 transition-all duration-300">
-                        <div class="w-16 h-16 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-colors">
-                            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
+                <li class="relative h-full rounded-[1.25rem] border-[0.75px] border-slate-700/50 p-2 md:rounded-[1.5rem] md:p-3" data-aos="fade-up" data-aos-delay="200">
+                    <GlowingEffect
+                        client:load
+                        spread={40}
+                        glow={true}
+                        disabled={false}
+                        proximity={64}
+                        inactiveZone={0.01}
+                        borderWidth={2}
+                    />
+                    <a href="/hesaplama-araclari/ihbar-tazminati" class="group block h-full">
+                        <div class="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-slate-700 bg-slate-900 p-6 md:p-8 shadow-sm">
+                            <div>
+                                <div class="w-14 h-14 bg-amber-500/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-amber-500/20 transition-colors">
+                                    <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <h2 class="text-xl md:text-2xl font-bold text-white mb-3 font-serif group-hover:text-amber-500 transition-colors">
+                                    İhbar Tazminatı Hesaplama
+                                </h2>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    İhbar sürelerinizi ve vergi diliminize göre net tazminat tutarını hesaplayın.
+                                </p>
+                            </div>
+                            <span class="inline-flex items-center text-amber-500 font-semibold text-sm group-hover:translate-x-2 transition-transform mt-2">
+                                Hesapla
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </span>
                         </div>
-                        <h2 class="text-2xl font-bold text-white mb-4 font-serif group-hover:text-amber-500 transition-colors">
-                            İhbar Tazminatı Hesaplama
-                        </h2>
-                        <p class="text-slate-400 mb-6">
-                            İhbar sürelerinizi ve vergi diliminize göre net tazminat tutarını hesaplayın.
-                        </p>
-                        <span class="inline-flex items-center text-amber-500 font-semibold group-hover:translate-x-2 transition-transform">
-                            Hesapla
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </span>
-                    </div>
-                </a>
+                    </a>
+                </li>
 
                 <!-- Avukatlık Ücreti Calculator Card -->
-                <a href="/hesaplama-araclari/avukatlik-ucreti" class="group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 h-full hover:border-amber-500/50 hover:bg-slate-800/50 transition-all duration-300">
-                        <div class="w-16 h-16 bg-amber-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500/20 transition-colors">
-                            <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
+                <li class="relative h-full rounded-[1.25rem] border-[0.75px] border-slate-700/50 p-2 md:rounded-[1.5rem] md:p-3" data-aos="fade-up" data-aos-delay="300">
+                    <GlowingEffect
+                        client:load
+                        spread={40}
+                        glow={true}
+                        disabled={false}
+                        proximity={64}
+                        inactiveZone={0.01}
+                        borderWidth={2}
+                    />
+                    <a href="/hesaplama-araclari/avukatlik-ucreti" class="group block h-full">
+                        <div class="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-slate-700 bg-slate-900 p-6 md:p-8 shadow-sm">
+                            <div>
+                                <div class="w-14 h-14 bg-amber-500/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-amber-500/20 transition-colors">
+                                    <svg class="w-7 h-7 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <h2 class="text-xl md:text-2xl font-bold text-white mb-3 font-serif group-hover:text-amber-500 transition-colors">
+                                    Avukatlık Ücreti Hesaplama
+                                </h2>
+                                <p class="text-slate-400 text-sm leading-relaxed">
+                                    Dava türüne veya değerine göre asgari avukatlık ücretinizi güncel tarifeye göre öğrenin.
+                                </p>
+                            </div>
+                            <span class="inline-flex items-center text-amber-500 font-semibold text-sm group-hover:translate-x-2 transition-transform mt-2">
+                                Hesapla
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </span>
                         </div>
-                        <h2 class="text-2xl font-bold text-white mb-4 font-serif group-hover:text-amber-500 transition-colors">
-                            Avukatlık Ücreti Hesaplama
-                        </h2>
-                        <p class="text-slate-400 mb-6">
-                            Dava türüne veya dava değerine göre asgari avukatlık ücretinizi güncel tarifeye göre öğrenin.
-                        </p>
-                        <span class="inline-flex items-center text-amber-500 font-semibold group-hover:translate-x-2 transition-transform">
-                            Hesapla
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                            </svg>
-                        </span>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </li>
+            </ul>
 
             <!-- Disclaimer -->
             <div class="mt-16 text-center" data-aos="fade-up">
