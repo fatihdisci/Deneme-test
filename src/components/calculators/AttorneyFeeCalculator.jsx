@@ -37,15 +37,16 @@ const FIXED_FEES = {
 };
 
 const TRANCHES = [
-    { limit: 600000, rate: 0.16 },
-    { limit: 600000, rate: 0.15 },
-    { limit: 1200000, rate: 0.14 },
-    { limit: 1200000, rate: 0.13 },
-    { limit: 1800000, rate: 0.11 },
-    { limit: 2600000, rate: 0.09 },
-    { limit: 5000000, rate: 0.07 },
-    { limit: 7000000, rate: 0.05 },
-    { limit: Infinity, rate: 0.01 }
+    { limit: 600000, rate: 0.16 }, // İlk 600k
+    { limit: 600000, rate: 0.15 }, // Sonra gelen 600k (1.2M)
+    { limit: 1200000, rate: 0.14 }, // Sonra gelen 1.2M (2.4M)
+    { limit: 1200000, rate: 0.13 }, // Sonra gelen 1.2M (3.6M)
+    { limit: 1800000, rate: 0.11 }, // Sonra gelen 1.8M (5.4M)
+    { limit: 2400000, rate: 0.08 }, // Sonra gelen 2.4M (7.8M)
+    { limit: 3000000, rate: 0.05 }, // Sonra gelen 3M (10.8M)
+    { limit: 3600000, rate: 0.03 }, // Sonra gelen 3.6M (14.4M)
+    { limit: 4200000, rate: 0.02 }, // Sonra gelen 4.2M (18.6M)
+    { limit: Infinity, rate: 0.01 } // 18.6M üzeri
 ];
 
 const MIN_FEE_GENERAL = 45000; // Asliye Hukuk minimum
@@ -142,7 +143,7 @@ export default function AttorneyFeeCalculator() {
                                         {formatCurrency(parseFloat(selectedFixed))}
                                     </p>
                                 </div>
-                                <div className="flex items-start gap-4 bg-slate-800/30 rounded-xl p-5 border border-slate-700/50">
+                                <div className="flex items-start gap-4 bg-slate-800/30 rounded-xl p-6 md:p-8 border border-slate-700/50">
                                     <svg className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -160,7 +161,7 @@ export default function AttorneyFeeCalculator() {
                                 Dava / İcra Değeri (TL)
                             </label>
                             <div className="relative">
-                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">₺</span>
+                                <span className="absolute left-5 top-1/2 -translate-y-1/2 text-amber-500 font-bold text-lg">₺</span>
                                 <input
                                     type="number"
                                     value={amount}
@@ -168,8 +169,8 @@ export default function AttorneyFeeCalculator() {
                                         setAmount(e.target.value);
                                         calculateNispi(e.target.value);
                                     }}
-                                    placeholder="Örn: 2.000.000"
-                                    className="w-full h-14 pl-10 pr-4 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-700 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all font-semibold"
+                                    placeholder="Hesaplanacak tutarı giriniz..."
+                                    className="w-full h-16 pl-12 pr-4 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-700 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all font-semibold text-lg"
                                 />
                             </div>
                         </div>
