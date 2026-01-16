@@ -1,24 +1,24 @@
 ---
-interface Props {
-	title?: string;
-	description?: string;
-}
-
-const { title, description } = Astro.props;
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import '../styles/global.css';
 
+interface Props {
+	title: string;
+	description?: string;
+}
+
 // SEO Title Logic
 const baseBrand = "Dişçi Hukuk Bürosu";
 const homeTitle = "Dişçi Hukuk Bürosu - Av. Fatih Dişçi";
+const { title, description } = Astro.props;
 const pageTitle = title ? `${title} - ${baseBrand}` : homeTitle;
-const metaDescription = description || "İzmir merkezli avukatlık ve hukuki danışmanlık hizmetleri.";
+const metaDescription = description || "İzmir Barosu Avukatı Fatih Dişçi - Hukuki Danışmanlık ve Avukatlık Hizmetleri";
 ---
 
 <!doctype html>
-<html lang="tr" class="scroll-smooth bg-slate-950 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-200">
+<html lang="tr" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={metaDescription} />
@@ -37,20 +37,53 @@ const metaDescription = description || "İzmir merkezli avukatlık ve hukuki dan
 		</script>
 
 		<title>{pageTitle}</title>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 	</head>
-	<body class="antialiased selection:bg-gold-500 selection:text-white pt-32 md:pt-40 flex flex-col min-h-screen">
-        <Navbar />
-		<main class="flex-grow">
-            <slot />
-        </main>
-        <WhatsAppButton client:load />
-        <Footer />
+	<body class="bg-slate-950 text-slate-300 selection:bg-gold-500/30 selection:text-gold-200 antialiased font-sans pt-32 md:pt-40 flex flex-col min-h-screen">
 		
-		<script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<Navbar />
+
+		<main class="flex-grow">
+			<slot />
+		</main>
+
+		<Footer />
+
+		<WhatsAppButton client:load />
+
+		<script is:inline src="https://unpkg.com/aos@next/dist/aos.js"></script>
 		<script is:inline>
-			AOS.init({ duration: 800, once: true });
+			AOS.init({
+				duration: 800,
+				once: true,
+			});
 		</script>
+
+		<style is:global>
+			/* Custom Scrollbar for Gold Theme */
+			::-webkit-scrollbar {
+				width: 8px;
+			}
+			::-webkit-scrollbar-track {
+				background: #020617;
+			}
+			::-webkit-scrollbar-thumb {
+				background: #ab934d;
+				border-radius: 10px;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background: #96793f;
+			}
+
+			/* Utility for Serif Headings */
+			.font-serif {
+				font-family: 'Playfair Display', serif;
+			}
+		</style>
 	</body>
 </html>
