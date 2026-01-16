@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AttorneyFeeCalculator from '../../components/calculators/AttorneyFeeCalculator.jsx';
+---
+
+<Layout title="Avukatlık Asgari Ücret Hesaplama 2025-2026" description="Avukatlık Asgari Ücret Tarifesi (AAÜT) 2025-2026 uyarınca maktu ve nispi avukatlık ücretlerini hesaplayın. Resmi Gazete verileriyle güncel hesaplama aracı.">
+    <section class="py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <!-- Header -->
+            <div class="text-center mb-12" data-aos="fade-up">
+                <a href="/hesaplama-araclari" class="inline-flex items-center text-slate-400 hover:text-amber-500 transition-colors mb-6">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Tüm Hesaplama Araçları
+                </a>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-serif">Avukatlık Asgari Ücret Hesaplama</h1>
+                <p class="text-xl text-slate-400 max-w-3xl mx-auto">
+                    2025-2026 Avukatlık Asgari Ücret Tarifesi'ne (AAÜT) göre güncel hesaplama yapın
+                </p>
+            </div>
+
+            <!-- Calculator -->
+            <div class="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <AttorneyFeeCalculator client:load />
+            </div>
+
+            <!-- Info Section -->
+            <div class="max-w-3xl mx-auto mt-16" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-slate-900/30 border border-slate-800 rounded-2xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-6 font-serif">AAÜT Hakkında</h2>
+                    
+                    <div class="space-y-4 text-slate-400 leading-relaxed">
+                        <p>
+                            <strong class="text-white">Avukatlık Asgari Ücret Tarifesi (AAÜT)</strong>, Resmi Gazete'de yayımlanarak yürürlüğe giren ve avukatların sundukları hukuki hizmetler karşılığında alabilecekleri <strong class="text-amber-500">en az</strong> ücretleri belirleyen yasal düzenlemedir.
+                        </p>
+                        
+                        <p>
+                            Tarife iki temel kısımdan oluşur:
+                        </p>
+                        
+                        <ul class="list-disc list-inside space-y-2 pl-4">
+                            <li><strong class="text-white">Maktu Ücretler:</strong> Dava konusunun para ile ölçülemediği veya sabit (maktu) olarak belirlendiği hallerde uygulanan tutarlardır.</li>
+                            <li><strong class="text-white">Nispi Oranlar:</strong> Konusu para olan davalarda, dava değeri üzerinden kademeli olarak hesaplanan oranlardır.</li>
+                        </ul>
+
+                        <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-5 mt-6">
+                            <p class="text-amber-400 text-sm">
+                                <strong>Önemli Bilgi:</strong> Belirlenen bu tutarlar yasal asgari sınırlardır. Avukat ile müvekkil arasındaki ücret sözleşmesi, davanın zorluğu ve harcanacak mesaiye göre bu tutarların üzerinde kararlaştırılabilir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

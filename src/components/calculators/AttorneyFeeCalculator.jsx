@@ -1,0 +1,212 @@
+import { useState } from 'react';
+
+const FIXED_FEES = {
+    "Danışmanlık": [
+        { label: "Sözlü Danışma (Büroda - 1 Saat)", value: 4000 },
+        { label: "Yazılı Danışma (1 Saat)", value: 7000 },
+        { label: "İhtarname / Protesto Yazımı", value: 6000 },
+        { label: "Kira Sözleşmesi Hazırlama", value: 8000 }
+    ],
+    "Ceza Mahkemeleri": [
+        { label: "Sulh Ceza Hakimliği", value: 18000 },
+        { label: "Asliye Ceza Mahkemesi", value: 45000 },
+        { label: "Ağır Ceza Mahkemesi", value: 65000 },
+        { label: "Çocuk Mahkemesi", value: 45000 }
+    ],
+    "Hukuk Mahkemeleri": [
+        { label: "Sulh Hukuk Mahkemesi", value: 30000 },
+        { label: "Asliye Hukuk Mahkemesi", value: 45000 },
+        { label: "Aile (Boşanma vb.) Mahkemesi", value: 45000 },
+        { label: "Tüketici Mahkemesi", value: 22500 },
+        { label: "Fikri ve Sınai Haklar", value: 55000 },
+        { label: "İcra Mahkemesi (Duruşmalı)", value: 18000 }
+    ],
+    "İdare ve Vergi Mahkemeleri": [
+        { label: "İdare Mahkemesi (Duruşmalı)", value: 40000 },
+        { label: "Vergi Mahkemesi (Duruşmalı)", value: 40000 }
+    ]
+};
+
+const TRANCHES = [
+    { limit: 600000, rate: 0.16 },
+    { limit: 600000, rate: 0.15 },
+    { limit: 1200000, rate: 0.14 },
+    { limit: 1200000, rate: 0.13 },
+    { limit: 1800000, rate: 0.11 },
+    { limit: 2600000, rate: 0.09 },
+    { limit: 5000000, rate: 0.07 },
+    { limit: 7000000, rate: 0.05 },
+    { limit: Infinity, rate: 0.01 }
+];
+
+const MIN_FEE_GENERAL = 45000; // Asliye Hukuk minimum
+
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('tr-TR', {
+        style: 'currency',
+        currency: 'TRY',
+        minimumFractionDigits: 2
+    }).format(amount);
+}
+
+export default function AttorneyFeeCalculator() {
+    const [activeTab, setActiveTab] = useState('maktu');
+    const [selectedFixed, setSelectedFixed] = useState('');
+    const [amount, setAmount] = useState('');
+    const [nispiResult, setNispiResult] = useState(null);
+
+    const calculateNispi = (val) => {
+        let remaining = parseFloat(val);
+        if (isNaN(remaining) || remaining <= 0) {
+            setNispiResult(null);
+            return;
+        }
+
+        let totalFee = 0;
+        let details = [];
+        let tempRemaining = remaining;
+
+        for (let tranche of TRANCHES) {
+            if (tempRemaining <= 0) break;
+            let currentTrancheAmount = Math.min(tempRemaining, tranche.limit);
+            let currentFee = currentTrancheAmount * tranche.rate;
+            totalFee += currentFee;
+            details.push({ amount: currentTrancheAmount, rate: tranche.rate * 100, fee: currentFee });
+            tempRemaining -= currentTrancheAmount;
+        }
+
+        setNispiResult({
+            value: remaining,
+            totalFee: totalFee,
+            isBelowMin: totalFee < MIN_FEE_GENERAL
+        });
+    };
+
+    return (
+        <div className="bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+            {/* Tabs */}
+            <div className="flex border-b border-slate-800">
+                <button
+                    onClick={() => setActiveTab('maktu')}
+                    className={`flex-1 py-4 px-6 font-semibold transition-all duration-300 ${activeTab === 'maktu' ? 'bg-amber-500/10 text-amber-500 border-b-2 border-amber-500' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+                >
+                    Konusu Para Olmayan (Maktu)
+                </button>
+                <button
+                    onClick={() => setActiveTab('nispi')}
+                    className={`flex-1 py-4 px-6 font-semibold transition-all duration-300 ${activeTab === 'nispi' ? 'bg-amber-500/10 text-amber-500 border-b-2 border-amber-500' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'}`}
+                >
+                    Konusu Para Olan (Nispi)
+                </button>
+            </div>
+
+            <div className="p-6 md:p-10">
+                {activeTab === 'maktu' ? (
+                    <div className="space-y-8" data-aos="fade-in">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-400 mb-3">
+                                Dava Türü / İşlem Seçiniz
+                            </label>
+                            <select
+                                value={selectedFixed}
+                                onChange={(e) => setSelectedFixed(e.target.value)}
+                                className="w-full h-14 px-4 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all cursor-pointer"
+                            >
+                                <option value="">Seçim Yapınız...</option>
+                                {Object.entries(FIXED_FEES).map(([category, items]) => (
+                                    <optgroup key={category} label={category} className="bg-slate-900 text-amber-500 font-bold">
+                                        {items.map((item) => (
+                                            <option key={item.label} value={item.value} className="text-white font-normal">
+                                                {item.label}
+                                            </option>
+                                        ))}
+                                    </optgroup>
+                                ))}
+                            </select>
+                        </div>
+
+                        {selectedFixed && (
+                            <div className="space-y-6" data-aos="zoom-in">
+                                <div className="bg-gradient-to-br from-amber-500/20 to-amber-600/5 border border-amber-500/30 rounded-2xl p-8 text-center">
+                                    <p className="text-slate-400 text-sm mb-2 font-medium uppercase tracking-wider">Asgari Avukatlık Ücreti</p>
+                                    <p className="text-4xl md:text-5xl font-bold text-amber-500">
+                                        {formatCurrency(parseFloat(selectedFixed))}
+                                    </p>
+                                </div>
+                                <div className="flex items-start gap-4 bg-slate-800/30 rounded-xl p-5 border border-slate-700/50">
+                                    <svg className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p className="text-slate-400 text-sm leading-relaxed">
+                                        Bu tutar Resmi Gazete'de yayımlanan Avukatlık Asgari Ücret Tarifesi (AAÜT) uyarınca belirlenen <strong className="text-slate-200">asgari</strong> tutardır. Dosyanın kapsamı, harcanacak emek ve davanın süresine göre bu tutar üzerinde anlaşma yapılabilir.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div className="space-y-8" data-aos="fade-in">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-400 mb-3">
+                                Dava / İcra Değeri (TL)
+                            </label>
+                            <div className="relative">
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">₺</span>
+                                <input
+                                    type="number"
+                                    value={amount}
+                                    onChange={(e) => {
+                                        setAmount(e.target.value);
+                                        calculateNispi(e.target.value);
+                                    }}
+                                    placeholder="Örn: 2.000.000"
+                                    className="w-full h-14 pl-10 pr-4 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-700 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all font-semibold"
+                                />
+                            </div>
+                        </div>
+
+                        {nispiResult && (
+                            <div className="space-y-6" data-aos="zoom-in">
+                                <div className="bg-gradient-to-br from-amber-500/20 to-amber-600/5 border border-amber-500/30 rounded-2xl p-8 text-center">
+                                    <p className="text-slate-400 text-sm mb-2 font-medium uppercase tracking-wider">HESAPLANAN ASGARİ ÜCRET</p>
+                                    <p className="text-4xl md:text-5xl font-bold text-amber-500">
+                                        {formatCurrency(nispiResult.totalFee)}
+                                    </p>
+                                </div>
+
+                                {nispiResult.isBelowMin && (
+                                    <div className="bg-amber-500/10 border border-amber-500/40 rounded-xl p-5 flex items-start gap-4">
+                                        <svg className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <p className="text-amber-200/90 text-sm leading-relaxed">
+                                            <strong className="text-amber-400 block mb-1">Önemli Kural:</strong>
+                                            Hesaplanan nispi ücret, maktu ücretin (Asliye Hukuk için {formatCurrency(MIN_FEE_GENERAL)}) altında kalamaz. Bu durumda maktu ücretin uygulanması gerekebilir.
+                                        </p>
+                                    </div>
+                                )}
+
+                                <div className="bg-slate-800/30 rounded-xl p-6 border border-slate-800">
+                                    <p className="text-white font-serif mb-4 flex items-center gap-2">
+                                        <span className="w-1.5 h-6 bg-amber-500 rounded-full"></span>
+                                        Hesaplama Detayları (Kademeli)
+                                    </p>
+                                    <div className="space-y-3 opacity-80">
+                                        <div className="flex justify-between text-sm text-slate-400 pb-2 border-b border-slate-800">
+                                            <span>Dava Değeri</span>
+                                            <span className="text-white">{formatCurrency(nispiResult.value)}</span>
+                                        </div>
+                                        <div className="flex justify-between text-sm text-slate-400">
+                                            <span>Asgari Ücret Oranı</span>
+                                            <span className="text-white">AAÜT 2025/26 Oranları</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
