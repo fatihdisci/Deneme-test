@@ -94,6 +94,11 @@ class DiscilawWriter:
         self.category_cb.current(0)
         self.category_cb.grid(row=0, column=3, sticky="e", padx=5)
 
+        ttk.Label(grid_frame, text="TARİH:").grid(row=0, column=4, sticky="w", padx=(20, 10))
+        self.date_entry = ttk.Entry(grid_frame, font=("Segoe UI", 10), width=12)
+        self.date_entry.insert(0, datetime.now().strftime("%Y-%m-%d"))
+        self.date_entry.grid(row=0, column=5, sticky="e", padx=5)
+
         grid_frame.columnconfigure(1, weight=1)
 
         # Resim Seçimi
@@ -290,7 +295,7 @@ class DiscilawWriter:
         mdx_content = f'''---
 title: "{title}"
 description: "{clean_desc}..."
-pubDate: {datetime.now().strftime("%Y-%m-%d")}
+pubDate: {self.date_entry.get()}
 category: "{self.category_cb.get()}"
 image: "{img_dest}"
 ---
