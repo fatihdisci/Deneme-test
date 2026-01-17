@@ -1,0 +1,12 @@
+{
+    "servers": {
+        "suparank": {
+            "type": "stdio",
+            "command": "npx",
+            "args": [
+                "-y",
+                "suparank"
+            ]
+        }
+    }
+}

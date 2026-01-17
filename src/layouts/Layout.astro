@@ -5,23 +5,22 @@ import { WhatsAppButton } from '../components/WhatsAppButton';
 import '../styles/global.css';
 
 interface Props {
-	title: string;
+	title?: string;
 	description?: string;
 }
 
-// SEO Title Logic
-const baseBrand = "Dişçi Hukuk Bürosu";
-const homeTitle = "Dişçi Hukuk Bürosu - Av. Fatih Dişçi";
-const { title, description } = Astro.props;
-const pageTitle = title ? `${title} - ${baseBrand}` : homeTitle;
-const metaDescription = description || "İzmir Barosu Avukatı Fatih Dişçi - Hukuki Danışmanlık ve Avukatlık Hizmetleri";
+// SEO Title Logic - User requested "Dişçi Hukuk Bürosu" as the default title
+const { 
+	title = "Dişçi Hukuk Bürosu", 
+	description = "İzmir Barosu'na kayıtlı Av. Fatih Dişçi tarafından kurulan Dişçi Hukuk Bürosu; Ceza, Aile ve İş Hukuku alanlarında hukuki danışmanlık hizmeti sunmaktadır." 
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="tr" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={metaDescription} />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
@@ -36,7 +35,7 @@ const metaDescription = description || "İzmir Barosu Avukatı Fatih Dişçi - H
 			gtag('config', 'G-E9QFS635LP');
 		</script>
 
-		<title>{pageTitle}</title>
+		<title>{title}</title>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
