@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { FAQAccordion } from '../../components/FAQAccordion';
 
 export async function getStaticPaths() {
   const serviceEntries = await getCollection('services');
@@ -42,6 +43,13 @@ const { Content } = await entry.render();
           prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-4
           prose-strong:text-white prose-strong:font-semibold" data-aos="fade-up" data-aos-delay="200" lang="tr">
             <Content />
+
+            {entry.data.faqs && entry.data.faqs.length > 0 && (
+                <div class="mt-12 not-prose">
+                    <h2 class="text-3xl font-serif text-gold-500 mb-6">Sıkça Sorulan Sorular</h2>
+                    <FAQAccordion client:visible faqs={entry.data.faqs} />
+                </div>
+            )}
         </div>
     </div>
 

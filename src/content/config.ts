@@ -20,6 +20,12 @@ const services = defineCollection({
         title: z.string(),
         description: z.string(),
         icon: z.string().optional(),
+        faqs: z.array(
+            z.object({
+                question: z.string(),
+                answer: z.string(),
+            })
+        ).optional(),
     }),
 });
 

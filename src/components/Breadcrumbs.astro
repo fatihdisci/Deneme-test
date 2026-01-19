@@ -1,0 +1,90 @@
+---
+// src/components/Breadcrumbs.astro
+interface Props {
+  lastItemName?: string;
+}
+
+const { lastItemName } = Astro.props;
+const paths = Astro.url.pathname.split('/').filter(Boolean);
+
+// Hide on Home Page (0 segments) AND Main Section Pages (1 segment)
+// User requirement: "ana menülerin ana sayflarında yazmasın"
+if (paths.length < 2) {
+  return null;
+}
+
+const formatLabel = (slug) => {
+  // Custom Overrides
+  const map = {
+    "calisma-alanlarimiz": "Çalışma Alanlarımız",
+    "hesaplama-araclari": "Hesaplama Araçları",
+    "iletisim": "İletişim",
+    "yasal": "Yasal Bilgilendirme",
+    "blog": "Blog"
+  };
+  if (map[slug]) return map[slug];
+  
+  // Default: Capitalize and remove dashes
+  return slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+};
+
+// Generate Schema Data
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Anasayfa",
+      "item": Astro.site ? Astro.site.href : "https://discilaw.com"
+    },
+    ...paths.map((path, index) => {
+      const isLast = index === paths.length - 1;
+      // Use lastItemName for the last item if provided, otherwise format the slug
+      const name = (isLast && lastItemName) ? lastItemName : formatLabel(path);
+      
+      return {
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": name,
+        "item": new URL(`/${paths.slice(0, index + 1).join('/')}`, Astro.site || "https://discilaw.com").href
+      };
+    })
+  ]
+};
+---
+<nav aria-label="Breadcrumb" class="container mx-auto px-4 py-4">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <ol class="flex items-center space-x-2 text-sm">
+    <li>
+      <a href="/" class="text-slate-400 hover:text-gold-500 transition-colors flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+          <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </li>
+    
+    {paths.map((path, index) => {
+      const href = `/${paths.slice(0, index + 1).join('/')}`;
+      const isLast = index === paths.length - 1;
+      
+      // Use lastItemName for current page title, otherwise format slug
+      const label = (isLast && lastItemName) ? lastItemName : formatLabel(path);
+
+      return (
+        <li class="flex items-center space-x-2">
+          <span class="text-slate-600">›</span>
+          {isLast ? (
+            <span class="text-gold-500 font-medium" aria-current="page">{label}</span>
+          ) : (
+            <a href={href} class="text-slate-400 hover:text-gold-500 transition-colors">
+              {label}
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>

@@ -9,7 +9,7 @@ export default config({
             name: 'Dişçi Hukuk Bürosu',
         },
         navigation: {
-            'İçerik Yönetimi': ['blog'],
+            'İçerik Yönetimi': ['blog', 'services'],
         },
     },
     collections: {
@@ -99,6 +99,32 @@ export default config({
                             publicPath: '/images/blog/',
                         },
                     },
+                }),
+            },
+        }),
+        services: collection({
+            label: 'Çalışma Alanları',
+            slugField: 'title',
+            path: 'src/content/services/*',
+            format: { contentField: 'content' },
+            entryLayout: 'content',
+            columns: ['title', 'icon'],
+            schema: {
+                title: fields.slug({ name: { label: 'Başlık' } }),
+                description: fields.text({ label: 'Açıklama', multiline: true }),
+                icon: fields.text({ label: 'İkon (Emoji)' }),
+                faqs: fields.array(
+                    fields.object({
+                        question: fields.text({ label: 'Soru' }),
+                        answer: fields.text({ label: 'Cevap', multiline: true }),
+                    }),
+                    {
+                        label: 'Sıkça Sorulan Sorular (SSS)',
+                        itemLabel: (props) => props.fields.question.value || 'Yeni Soru',
+                    }
+                ),
+                content: fields.mdx({
+                    label: 'İçerik',
                 }),
             },
         }),
