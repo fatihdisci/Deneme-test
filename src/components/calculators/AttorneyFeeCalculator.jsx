@@ -37,24 +37,40 @@ const FIXED_FEES = {
 };
 
 const TRANCHES = [
-    { limit: 600000, rate: 0.16 }, // İlk 600k
-    { limit: 600000, rate: 0.15 }, // Sonra gelen 600k (1.2M)
-    { limit: 1200000, rate: 0.14 }, // Sonra gelen 1.2M (2.4M)
-    { limit: 1200000, rate: 0.13 }, // Sonra gelen 1.2M (3.6M)
-    { limit: 1800000, rate: 0.11 }, // Sonra gelen 1.8M (5.4M)
-    { limit: 2400000, rate: 0.08 }, // Sonra gelen 2.4M (7.8M)
-    { limit: 3000000, rate: 0.05 }, // Sonra gelen 3M (10.8M)
-    { limit: 3600000, rate: 0.03 }, // Sonra gelen 3.6M (14.4M)
-    { limit: 4200000, rate: 0.02 }, // Sonra gelen 4.2M (18.6M)
-    { limit: Infinity, rate: 0.01 } // 18.6M üzeri
+    { limit: 600000, rate: 0.16 },
+    { limit: 600000, rate: 0.15 },
+    { limit: 1200000, rate: 0.14 },
+    { limit: 1200000, rate: 0.13 },
+    { limit: 1800000, rate: 0.11 },
+    { limit: 2400000, rate: 0.08 },
+    { limit: 3000000, rate: 0.05 },
+    { limit: 3600000, rate: 0.03 },
+    { limit: 4200000, rate: 0.02 },
+    { limit: Infinity, rate: 0.01 }
 ];
 
-const MIN_FEE_GENERAL = 45000; // Asliye Hukuk minimum
+// Mahkeme türlerine göre minimum ücretler
+const COURT_MIN_FEES = {
+    davalar: [
+        { name: "İcra Mahkemeleri", minFee: 18000 },
+        { name: "Sulh Hukuk Mahkemeleri", minFee: 30000 },
+        { name: "Sulh Ceza/İnfaz Hakimlikleri", minFee: 18000 },
+        { name: "Asliye Mahkemeleri", minFee: 45000 },
+        { name: "Tüketici Mahkemeleri", minFee: 22500 },
+        { name: "Fikri ve Sınai Haklar Mahkemeleri", minFee: 55000 },
+        { name: "İdare ve Vergi Mahkemeleri-Duruşmalı", minFee: 40000 },
+        { name: "İdare ve Vergi Mahkemeleri-Duruşmasız", minFee: 30000 },
+    ],
+    icra: [
+        { name: "İcra Takipleri", minFee: 11000 },
+    ]
+};
 
 const AttorneyFeeCalculator = () => {
-    const [calcType, setCalcType] = useState('fixed'); // fixed or nispi
+    const [calcType, setCalcType] = useState('fixed');
     const [selectedFixed, setSelectedFixed] = useState('');
     const [amount, setAmount] = useState('');
+    const [courtType, setCourtType] = useState('davalar');
     const [nispiResult, setNispiResult] = useState(null);
 
     const formatCurrency = (val) => {
@@ -65,7 +81,7 @@ const AttorneyFeeCalculator = () => {
         }).format(val);
     };
 
-    const calculateNispi = (val) => {
+    const calculateNispi = (val, cType = courtType) => {
         const numVal = parseFloat(val);
         if (isNaN(numVal) || numVal <= 0) {
             setNispiResult(null);
@@ -92,15 +108,31 @@ const AttorneyFeeCalculator = () => {
             if (tranche.limit === Infinity) break;
         }
 
-        const isBelowMin = totalFee < MIN_FEE_GENERAL;
-        const finalFee = isBelowMin ? MIN_FEE_GENERAL : totalFee;
+        // Her mahkeme türü için ayrı hesaplama
+        const courts = COURT_MIN_FEES[cType];
+        const courtFees = courts.map(court => {
+            const finalFee = Math.max(totalFee, court.minFee);
+            const isBelowMin = totalFee < court.minFee;
+            return {
+                name: court.name,
+                minFee: court.minFee,
+                calculatedFee: finalFee,
+                isBelowMin: isBelowMin
+            };
+        });
 
         setNispiResult({
-            total: finalFee,
             calculated: totalFee,
-            isBelowMin: isBelowMin,
-            breakdown: breakdown
+            breakdown: breakdown,
+            courtFees: courtFees
         });
+    };
+
+    const handleCourtTypeChange = (newType) => {
+        setCourtType(newType);
+        if (amount) {
+            calculateNispi(amount, newType);
+        }
     };
 
     return (
@@ -174,9 +206,39 @@ const AttorneyFeeCalculator = () => {
                     </div>
                 ) : (
                     <div className="space-y-8 animate-fadeIn">
+                        {/* Court Type Radio Buttons */}
+                        <div className="flex flex-wrap gap-6 justify-center">
+                            <label className="flex items-center gap-3 cursor-pointer group">
+                                <input
+                                    type="radio"
+                                    name="courtType"
+                                    value="davalar"
+                                    checked={courtType === 'davalar'}
+                                    onChange={(e) => handleCourtTypeChange(e.target.value)}
+                                    className="w-5 h-5 text-gold-500 bg-slate-950 border-slate-700 focus:ring-gold-500 focus:ring-2"
+                                />
+                                <span className={`font-medium transition-colors ${courtType === 'davalar' ? 'text-gold-500' : 'text-slate-400 group-hover:text-white'}`}>
+                                    Konusu Para Olan Davalar için
+                                </span>
+                            </label>
+                            <label className="flex items-center gap-3 cursor-pointer group">
+                                <input
+                                    type="radio"
+                                    name="courtType"
+                                    value="icra"
+                                    checked={courtType === 'icra'}
+                                    onChange={(e) => handleCourtTypeChange(e.target.value)}
+                                    className="w-5 h-5 text-gold-500 bg-slate-950 border-slate-700 focus:ring-gold-500 focus:ring-2"
+                                />
+                                <span className={`font-medium transition-colors ${courtType === 'icra' ? 'text-gold-500' : 'text-slate-400 group-hover:text-white'}`}>
+                                    İcra Takipleri için
+                                </span>
+                            </label>
+                        </div>
+
                         <div>
                             <label className="block text-sm font-medium text-slate-400 mb-3">
-                                Dava / İcra Değeri (TL)
+                                Harca Esas Değer (TL)
                             </label>
                             <input
                                 type="number"
@@ -192,34 +254,45 @@ const AttorneyFeeCalculator = () => {
 
                         {nispiResult && (
                             <div className="space-y-6 animate-slideUp">
-                                <div className="bg-slate-950/50 rounded-2xl p-8 border border-slate-800 text-center">
-                                    <h3 className="text-slate-400 font-medium mb-3">Hesaplanan Asgari Ücret</h3>
-                                    <p className="text-4xl md:text-5xl font-bold text-gold-500">
-                                        {formatCurrency(nispiResult.total)}
-                                    </p>
+                                {/* Court Type Fees Table */}
+                                <div className="bg-slate-950/50 rounded-2xl border border-slate-800 overflow-hidden">
+                                    <div className="px-6 py-4 border-b border-slate-800 bg-slate-900/50">
+                                        <h4 className="text-sm font-semibold text-slate-300">
+                                            {courtType === 'davalar' ? 'Mahkeme Türüne Göre Asgari Ücretler' : 'İcra Takipleri Asgari Ücreti'}
+                                        </h4>
+                                    </div>
+                                    <div className="p-6">
+                                        <div className="space-y-3">
+                                            {nispiResult.courtFees.map((court, idx) => (
+                                                <div key={idx} className="flex justify-between items-center py-2 border-b border-slate-800/50 last:border-0">
+                                                    <span className="text-slate-300 text-sm">{court.name}</span>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className={`font-semibold ${court.isBelowMin ? 'text-gold-400' : 'text-green-400'}`}>
+                                                            {formatCurrency(court.calculatedFee)}
+                                                        </span>
+                                                        {court.isBelowMin && (
+                                                            <span className="text-xs text-gold-500 bg-gold-500/10 px-2 py-0.5 rounded">
+                                                                Maktu
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
 
-                                {nispiResult.isBelowMin && (
-                                    <div className="bg-gold-500/10 border border-gold-500/40 rounded-xl p-6 md:p-8 flex items-start gap-4">
-                                        <svg className="w-6 h-6 text-gold-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                        </svg>
-                                        <p className="text-gold-200/90 text-sm leading-relaxed">
-                                            <strong>Önemli Kural:</strong> Hesaplanan tutar ({formatCurrency(nispiResult.calculated)}),
-                                            Asliye Hukuk Mahkemeleri için belirlenen maktu asgari ücretin ({formatCurrency(MIN_FEE_GENERAL)}) altında kaldığı için asgari maktu ücret uygulanmıştır.
-                                        </p>
-                                    </div>
-                                )}
-
+                                {/* Calculation Breakdown */}
                                 <div className="bg-slate-950/30 rounded-2xl border border-slate-800 overflow-hidden">
                                     <div className="px-6 py-4 border-b border-slate-800 bg-slate-900/50">
                                         <h4 className="text-sm font-semibold text-slate-300">Hesaplama Detayları (Kademeli)</h4>
+                                        <p className="text-xs text-slate-500 mt-1">Nispi hesaplama sonucu: {formatCurrency(nispiResult.calculated)}</p>
                                     </div>
                                     <div className="p-6">
                                         <div className="space-y-4">
                                             {nispiResult.breakdown.map((item, idx) => (
                                                 <div key={idx} className="flex justify-between items-center text-sm">
-                                                    <span className="text-slate-500">{item.range} aralığı (%{item.rate})</span>
+                                                    <span className="text-slate-500">{item.range} aralığı ({item.rate})</span>
                                                     <span className="text-slate-300 font-medium">{formatCurrency(item.fee)}</span>
                                                 </div>
                                             ))}
