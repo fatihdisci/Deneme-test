@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { FAQAccordion } from '../../components/FAQAccordion';
+import { ServiceIcon } from '../../components/ServiceIcon';
 
 export async function getStaticPaths() {
   const serviceEntries = await getCollection('services');
@@ -18,8 +19,8 @@ const { Content } = await entry.render();
   <article class="py-24 bg-slate-950 min-h-screen">
     <!-- Header -->
     <div class="container mx-auto px-4 max-w-4xl mb-12 text-center" data-aos="fade-up">
-        <div class="mb-6">
-            <span class="text-6xl">{entry.data.icon || '⚖️'}</span>
+        <div class="mb-6 flex justify-center">
+            <ServiceIcon client:load slug={entry.slug} size={64} className="text-gold-500" />
         </div>
         
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight font-serif">

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { ServiceIcon } from '../../components/ServiceIcon';
 
 const services = await getCollection('services');
 ---
@@ -27,8 +28,8 @@ const services = await getCollection('services');
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
-            <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
-              {service.data.icon || '⚖️'}
+            <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <ServiceIcon client:load slug={service.slug} size={40} className="text-gold-500" />
             </div>
             <h2 class="text-2xl font-bold text-white mb-4 group-hover:text-gold-500 transition-colors font-serif">
               {service.data.title}

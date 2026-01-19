@@ -1,22 +1,21 @@
 ---
+import { ServiceIcon } from './ServiceIcon';
+
 // Featured services in specific order: sirket-danismanligi, icra-hukuku, ceza-hukuku
 const featuredServices = [
     {
         title: "Şirket Danışmanlığı",
         description: "Şirket kuruluşu, sözleşme hazırlığı, birleşme ve devralma işlemlerinde stratejik kurumsal danışmanlık.",
-        icon: "🏢",
         slug: "sirket-danismanligi"
     },
     {
         title: "İcra Hukuku",
         description: "İcra takibi, haciz işlemleri, iflas süreçleri ve alacak tahsilinde etkin hukuki çözümler.",
-        icon: "💰",
         slug: "icra-hukuku"
     },
     {
         title: "Ceza Hukuku",
         description: "Ağır ceza davaları, soruşturma ve kovuşturma süreçlerinde hukuki danışmanlık ve temsil.",
-        icon: "⚖️",
         slug: "ceza-hukuku"
     }
 ];
@@ -36,8 +35,8 @@ const featuredServices = [
                     data-aos="fade-up" 
                     data-aos-delay={index * 100}
                 >
-                    <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                        {service.icon}
+                    <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <ServiceIcon client:load slug={service.slug} size={40} className="text-gold-500" />
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-gold-500 transition-colors font-serif">{service.title}</h3>
                     <p class="text-slate-400 group-hover:text-slate-300 transition-colors">{service.description}</p>
