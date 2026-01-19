@@ -41,7 +41,52 @@ const {
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+		<!-- Schema.org JSON-LD -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "LegalService",
+						"@id": "https://discilaw.com/#organization",
+						"name": "Dişçi Hukuk Bürosu",
+						"url": "https://discilaw.com",
+						"telephone": "+905077247735",
+						"address": {
+							"@type": "PostalAddress",
+							"streetAddress": "Karşıyaka",
+							"addressLocality": "İzmir",
+							"addressRegion": "İzmir",
+							"postalCode": "35500",
+							"addressCountry": "TR"
+						},
+						"image": "https://discilaw.com/logo.png",
+						"priceRange": "$$",
+						"founder": {
+							"@type": "Person",
+							"name": "Av. Fatih Dişçi"
+						}
+					},
+					{
+						"@type": "Attorney",
+						"@id": "https://discilaw.com/#attorney",
+						"name": "Av. Fatih Dişçi",
+						"memberOf": {
+							"@id": "https://discilaw.com/#organization"
+						},
+						"description": "İzmir Barosu'na kayıtlı avukat Fatih Dişçi tarafından yönetilen hukuk bürosu.",
+						"url": "https://discilaw.com",
+						"address": {
+							"@type": "PostalAddress",
+							"addressLocality": "İzmir",
+							"addressCountry": "TR"
+						}
+					}
+				]
+			}
+		</script>
 	</head>
 	<body class="bg-slate-950 text-slate-300 selection:bg-gold-500/30 selection:text-gold-200 antialiased font-sans pt-32 md:pt-40 flex flex-col min-h-screen">
 		
