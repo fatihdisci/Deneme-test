@@ -22,35 +22,21 @@ export default {
                     900: '#0f172a',
                     950: '#020617', // Deep background
                 },
+                // CUSTOM GOLD PALETTE (Replaces Amber/Orange)
                 gold: {
                     50: '#fbf7ef',
                     100: '#f5edd8',
                     200: '#ead9b0',
                     300: '#dec084',
-                    400: '#cca762', // Lighter Gold for highlights
-                    500: '#ab934d', // MAIN BRAND COLOR (No Orange)
-                    600: '#96793f', // Hover State
+                    400: '#cca762', // Highlight
+                    500: '#ab934d', // MAIN BRAND COLOR (Base)
+                    600: '#96793f', // Hover
                     700: '#7a6034',
                     800: '#654f2e',
                     900: '#544129',
                     950: '#2e2315',
                     DEFAULT: '#ab934d',
                 },
-                // Alias amber to gold to fix existing components
-                amber: {
-                    50: '#fbf7ef',
-                    100: '#f5edd8',
-                    200: '#ead9b0',
-                    300: '#dec084',
-                    400: '#cca762',
-                    500: '#ab934d',
-                    600: '#96793f',
-                    700: '#7a6034',
-                    800: '#654f2e',
-                    900: '#544129',
-                    950: '#2e2315',
-                    DEFAULT: '#ab934d',
-                }
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
@@ -60,3 +46,4 @@ export default {
     },
     plugins: [typography],
 }
+

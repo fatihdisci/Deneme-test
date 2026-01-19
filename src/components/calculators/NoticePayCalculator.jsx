@@ -132,7 +132,7 @@ export default function NoticePayCalculator() {
                             id="startDate"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
-                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                             style={{ colorScheme: 'dark' }}
                             required
                         />
@@ -148,7 +148,7 @@ export default function NoticePayCalculator() {
                             id="endDate"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
-                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                             style={{ colorScheme: 'dark' }}
                             required
                         />
@@ -168,7 +168,7 @@ export default function NoticePayCalculator() {
                         placeholder="Örn: 50000"
                         min="0"
                         step="0.01"
-                        className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                        className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                         required
                     />
                 </div>
@@ -182,7 +182,7 @@ export default function NoticePayCalculator() {
                         id="taxRate"
                         value={taxRate}
                         onChange={(e) => setTaxRate(parseInt(e.target.value))}
-                        className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                        className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                     >
                         {TAX_RATES.map((rate) => (
                             <option key={rate.value} value={rate.value}>
@@ -205,7 +205,7 @@ export default function NoticePayCalculator() {
                 {/* Calculate Button */}
                 <button
                     type="submit"
-                    className="w-full py-4 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-amber-500/20 active:scale-[0.98]"
+                    className="w-full py-4 bg-gold-500 hover:bg-gold-600 text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-gold-500/20 active:scale-[0.98]"
                 >
                     HESAPLA
                 </button>
@@ -227,7 +227,7 @@ export default function NoticePayCalculator() {
                             </div>
                             <div className="bg-slate-800/50 rounded-lg p-4">
                                 <p className="text-slate-400 text-sm mb-1">İhbar Süresi</p>
-                                <p className="text-amber-500 text-lg font-semibold">
+                                <p className="text-gold-500 text-lg font-semibold">
                                     {result.noticePeriod.label} ({result.noticeDays} Gün)
                                 </p>
                             </div>
@@ -258,16 +258,16 @@ export default function NoticePayCalculator() {
                         </div>
 
                         {/* Net Result */}
-                        <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-xl p-6 text-center">
+                        <div className="bg-gradient-to-r from-gold-500/20 to-gold-600/10 border border-gold-500/30 rounded-xl p-6 text-center">
                             <p className="text-slate-300 text-sm mb-2">NET İHBAR TAZMİNATI</p>
-                            <p className="text-3xl md:text-4xl font-bold text-amber-500">{formatCurrency(result.netNoticePay)}</p>
+                            <p className="text-3xl md:text-4xl font-bold text-gold-500">{formatCurrency(result.netNoticePay)}</p>
                         </div>
 
                         {/* Cross-link to Severance Calculator */}
                         <div className="mt-6 text-center">
                             <a
                                 href="/hesaplama-araclari/kidem-tazminati"
-                                className="inline-flex items-center px-6 py-3 border border-amber-500/50 text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all font-medium"
+                                className="inline-flex items-center px-6 py-3 border border-gold-500/50 text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all font-medium"
                             >
                                 Kıdem Tazminatınızı da Hesaplayın 👉
                             </a>

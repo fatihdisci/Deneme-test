@@ -1,12 +1,18 @@
 {
-    "servers": {
-        "suparank": {
-            "type": "stdio",
-            "command": "npx",
-            "args": [
-                "-y",
-                "suparank"
-            ]
-        }
-    }
+	"servers": {
+		"suparank": {
+			"type": "stdio",
+			"command": "npx",
+			"args": [
+				"-y",
+				"suparank"
+			]
+		},
+		"escapre": {
+			"type": "stdio",
+			"command": "escapre",
+			"args": []
+		}
+	},
+	"inputs": []
 }

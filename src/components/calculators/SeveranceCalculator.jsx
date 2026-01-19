@@ -161,7 +161,7 @@ export default function SeveranceCalculator() {
                             id="startDate"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
-                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                             style={{ colorScheme: 'dark' }}
                             required
                         />
@@ -177,7 +177,7 @@ export default function SeveranceCalculator() {
                             id="endDate"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
-                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                            className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                             style={{ colorScheme: 'dark' }}
                             required
                         />
@@ -197,7 +197,7 @@ export default function SeveranceCalculator() {
                         placeholder="Örn: 50000"
                         min="0"
                         step="0.01"
-                        className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all"
+                        className="w-full h-12 px-4 rounded-lg bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                         required
                     />
                 </div>
@@ -212,7 +212,7 @@ export default function SeveranceCalculator() {
                 {/* Calculate Button */}
                 <button
                     type="submit"
-                    className="w-full py-4 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-amber-500/20 active:scale-[0.98]"
+                    className="w-full py-4 bg-gold-500 hover:bg-gold-600 text-slate-950 font-bold rounded-lg transition-all shadow-lg shadow-gold-500/20 active:scale-[0.98]"
                 >
                     HESAPLA
                 </button>
@@ -235,13 +235,13 @@ export default function SeveranceCalculator() {
                         {/* Ceiling Info */}
                         <div className="bg-slate-800/50 rounded-lg p-4 mb-4">
                             <p className="text-slate-400 text-sm mb-1">Kullanılan Kıdem Tavanı ({result.ceilingPeriod})</p>
-                            <p className="text-amber-500 text-lg font-semibold">{formatCurrency(result.ceiling)}</p>
+                            <p className="text-gold-500 text-lg font-semibold">{formatCurrency(result.ceiling)}</p>
                         </div>
 
                         {/* Ceiling Applied Notice */}
                         {result.isCeilingApplied && (
-                            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-4">
-                                <p className="text-amber-400 text-sm">
+                            <div className="bg-gold-500/10 border border-gold-500/30 rounded-lg p-4 mb-4">
+                                <p className="text-gold-400 text-sm">
                                     <strong>Bilgi:</strong> Brüt ücretiniz kıdem tavanını aştığı için, hesaplama{' '}
                                     <strong>{formatCurrency(result.ceiling)}</strong> üzerinden yapılmıştır.
                                 </p>
@@ -265,16 +265,16 @@ export default function SeveranceCalculator() {
                         </div>
 
                         {/* Net Result */}
-                        <div className="bg-gradient-to-r from-amber-500/20 to-amber-600/10 border border-amber-500/30 rounded-xl p-6 text-center">
+                        <div className="bg-gradient-to-r from-gold-500/20 to-gold-600/10 border border-gold-500/30 rounded-xl p-6 text-center">
                             <p className="text-slate-300 text-sm mb-2">NET KIDEM TAZMİNATI</p>
-                            <p className="text-3xl md:text-4xl font-bold text-amber-500">{formatCurrency(result.netSeverance)}</p>
+                            <p className="text-3xl md:text-4xl font-bold text-gold-500">{formatCurrency(result.netSeverance)}</p>
                         </div>
 
                         {/* Cross-link to Notice Pay Calculator */}
                         <div className="mt-6 text-center">
                             <a
                                 href="/hesaplama-araclari/ihbar-tazminati"
-                                className="inline-flex items-center px-6 py-3 border border-amber-500/50 text-amber-500 hover:bg-amber-500/10 rounded-lg transition-all font-medium"
+                                className="inline-flex items-center px-6 py-3 border border-gold-500/50 text-gold-500 hover:bg-gold-500/10 rounded-lg transition-all font-medium"
                             >
                                 Sırada İhbar Tazminatı Var 👉
                             </a>

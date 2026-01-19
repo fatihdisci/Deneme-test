@@ -110,7 +110,7 @@ const AttorneyFeeCalculator = () => {
                 <button
                     onClick={() => setCalcType('fixed')}
                     className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${calcType === 'fixed'
-                        ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20'
+                        ? 'bg-gold-500 text-white shadow-lg shadow-gold-500/20'
                         : 'text-slate-400 hover:text-white'
                         }`}
                 >
@@ -119,7 +119,7 @@ const AttorneyFeeCalculator = () => {
                 <button
                     onClick={() => setCalcType('nispi')}
                     className={`flex-1 py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${calcType === 'nispi'
-                        ? 'bg-amber-500 text-white shadow-lg shadow-amber-500/20'
+                        ? 'bg-gold-500 text-white shadow-lg shadow-gold-500/20'
                         : 'text-slate-400 hover:text-white'
                         }`}
                 >
@@ -137,11 +137,11 @@ const AttorneyFeeCalculator = () => {
                             <select
                                 value={selectedFixed}
                                 onChange={(e) => setSelectedFixed(e.target.value)}
-                                className="w-full h-14 px-6 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all font-medium"
+                                className="w-full h-14 px-6 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all font-medium"
                             >
                                 <option value="">Seçiniz...</option>
                                 {Object.entries(FIXED_FEES).map(([group, items]) => (
-                                    <optgroup key={group} label={group} className="bg-slate-950 text-amber-500">
+                                    <optgroup key={group} label={group} className="bg-slate-950 text-gold-500">
                                         {items.map((item) => (
                                             <option key={item.label} value={item.value} className="text-white">
                                                 {item.label}
@@ -156,12 +156,12 @@ const AttorneyFeeCalculator = () => {
                             <div className="space-y-6 animate-slideUp">
                                 <div className="bg-slate-950/50 rounded-2xl p-8 border border-slate-800 text-center">
                                     <h3 className="text-slate-400 font-medium mb-3">Asgari Avukatlık Ücreti (KDV Dahil)</h3>
-                                    <p className="text-4xl md:text-5xl font-bold text-amber-500">
+                                    <p className="text-4xl md:text-5xl font-bold text-gold-500">
                                         {formatCurrency(parseFloat(selectedFixed))}
                                     </p>
                                 </div>
                                 <div className="flex items-start gap-4 bg-slate-800/30 rounded-xl p-6 md:p-8 border border-slate-700/50">
-                                    <svg className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 text-gold-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     <p className="text-slate-300 text-sm leading-relaxed">
@@ -186,7 +186,7 @@ const AttorneyFeeCalculator = () => {
                                     calculateNispi(e.target.value);
                                 }}
                                 placeholder="Hesaplanacak tutarı giriniz..."
-                                className="w-full h-16 px-6 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all font-semibold text-lg"
+                                className="w-full h-16 px-6 rounded-xl bg-slate-950 border border-slate-800 text-white placeholder-slate-600 focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20 transition-all font-semibold text-lg"
                             />
                         </div>
 
@@ -194,17 +194,17 @@ const AttorneyFeeCalculator = () => {
                             <div className="space-y-6 animate-slideUp">
                                 <div className="bg-slate-950/50 rounded-2xl p-8 border border-slate-800 text-center">
                                     <h3 className="text-slate-400 font-medium mb-3">Hesaplanan Asgari Ücret</h3>
-                                    <p className="text-4xl md:text-5xl font-bold text-amber-500">
+                                    <p className="text-4xl md:text-5xl font-bold text-gold-500">
                                         {formatCurrency(nispiResult.total)}
                                     </p>
                                 </div>
 
                                 {nispiResult.isBelowMin && (
-                                    <div className="bg-amber-500/10 border border-amber-500/40 rounded-xl p-6 md:p-8 flex items-start gap-4">
-                                        <svg className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div className="bg-gold-500/10 border border-gold-500/40 rounded-xl p-6 md:p-8 flex items-start gap-4">
+                                        <svg className="w-6 h-6 text-gold-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                         </svg>
-                                        <p className="text-amber-200/90 text-sm leading-relaxed">
+                                        <p className="text-gold-200/90 text-sm leading-relaxed">
                                             <strong>Önemli Kural:</strong> Hesaplanan tutar ({formatCurrency(nispiResult.calculated)}),
                                             Asliye Hukuk Mahkemeleri için belirlenen maktu asgari ücretin ({formatCurrency(MIN_FEE_GENERAL)}) altında kaldığı için asgari maktu ücret uygulanmıştır.
                                         </p>
