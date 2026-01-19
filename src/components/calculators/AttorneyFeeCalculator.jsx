@@ -109,10 +109,21 @@ const AttorneyFeeCalculator = () => {
         }
 
         // Her mahkeme türü için ayrı hesaplama
+        // Kural: Harca esas değer maktu sınırın altındaysa, harca esas değer kadar ücrete hükmolunur
         const courts = COURT_MIN_FEES[cType];
         const courtFees = courts.map(court => {
-            const finalFee = Math.max(totalFee, court.minFee);
-            const isBelowMin = totalFee < court.minFee;
+            let finalFee;
+            let isBelowMin = false;
+
+            if (numVal < court.minFee) {
+                // Harca esas değer maktu sınırın altındaysa, o değer kadar ücrete hükmolunur
+                finalFee = numVal;
+                isBelowMin = true;
+            } else {
+                // Harca esas değer maktu sınır veya üstündeyse, nispi hesaplama uygulanır (maktudan az olamaz)
+                finalFee = Math.max(totalFee, court.minFee);
+            }
+
             return {
                 name: court.name,
                 minFee: court.minFee,
@@ -123,6 +134,7 @@ const AttorneyFeeCalculator = () => {
 
         setNispiResult({
             calculated: totalFee,
+            baseValue: numVal,
             breakdown: breakdown,
             courtFees: courtFees
         });
