@@ -22,11 +22,16 @@
 
 /* Typography Overrides for Blog Content */
 @layer components {
+  .prose h2 {
+    @apply text-gold-500 font-bold font-serif mt-10 mb-6 text-2xl;
+  }
 
-  .prose h2,
-  .prose h3,
-  .prose h4 {
-    @apply text-gold-500 font-bold font-serif;
+  .prose h3 {
+    @apply text-gold-500 font-bold font-serif mt-8 mb-4 text-xl;
+  }
+
+  .prose p {
+    @apply mb-6 leading-relaxed;
   }
 
   .prose strong {
@@ -38,7 +43,16 @@
   }
 
   .prose blockquote {
-    @apply border-l-4 border-gold-500 pl-4 italic text-slate-300;
+    @apply border-l-4 border-gold-500 pl-4 italic text-slate-300 my-6;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-6 pl-5;
+  }
+
+  .prose li {
+    @apply mb-2;
   }
 }
 
