@@ -45,17 +45,20 @@ export default function ShareButton({ title, url }: ShareButtonProps) {
                 break;
             case "instagram":
                 // Instagram doesn't have a direct web share API like others.
-                // We copy the link and notify the user.
+                // We copy the link and notify the user to open Instagram.
                 navigator.clipboard.writeText(url).then(() => {
                     setCopied(true);
                     setCopyMessage("Link Kopyalandı!");
+                    // Keep menu open but show Instagram-specifc state
                     setTimeout(() => {
+                        // We could direct them to instagram.com but it's better to let them know
+                        window.open("https://instagram.com", "_blank");
+                        setIsOpen(false);
                         setCopied(false);
                         setCopyMessage("Bağlantıyı Kopyala");
-                        setIsOpen(false);
-                    }, 2000);
+                    }, 1000);
                 });
-                return; // Exit early as we don't open a window
+                return;
             default:
                 break;
         }

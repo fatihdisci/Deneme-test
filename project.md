@@ -1,11 +1,21 @@
 # Dişçi Hukuk Bürosu - Web Sitesi Proje Dokümantasyonu
 
-> **Son Güncelleme:** 19.01.2026
+> **Son Güncelleme:** 19.01.2026 (v1.2.0)
 > **Durum:** Canlı (Production Ready)
-> **Versiyon:** 1.1.0
+> **Versiyon:** 1.2.0
 
 ## 1. Proje Genel Bakış
 Bu proje, **Dişçi Hukuk Bürosu** için geliştirilmiş, yüksek performanslı, SEO uyumlu ve yönetilebilir bir kurumsal web sitesidir. Modern web teknolojileri kullanılarak inşa edilmiş olup, statik site üretimi (SSG) mantığıyla çalışır. Bu sayede maksimum hız ve güvenlik sağlar.
+
+### 1.1. Son Geliştirmeler (v1.2.0)
+*   **Avukatlık Ücreti Hesaplama Aracı (Devrimsel Güncelleme):**
+    *   Tüm mahkeme türleri için (Asliye, Sulh, İdare, Vergi vb.) ayrı minimum ücretler tanımlandı.
+    *   Hatalı olan "harca esas değer < maktu ise maktu alınır" kuralı düzeltildi; artık "değer maktu altındaysa değer kadar ücret" kuralı uygulanıyor.
+    *   Arayüz estetik hale getirildi, radio butonlar özelleştirildi.
+*   **İkon Seti Değişikliği:** Tüm amatör emojiler kaldırılarak profesyonel **Lucide React** ikon setine geçildi (`ServiceIcon` bileşeni).
+*   **Sosyal Paylaşım Entegrasyonu:** Blog yazılarına WhatsApp, Twitter (X), LinkedIn, Facebook ve **Instagram (Link kopyala + Uygulama aç)** desteği olan, estetik popup'lı paylaşım butonu eklendi.
+*   **İçerik Stratejisi:** Yapay zeka destekli blog yazımı için özel promptlar ve içerik takvimi oluşturuldu.
+*   **Tasarım İyileştirmeleri:** Gereksiz dekoratif çizgiler kaldırıldı, UI daha "temiz" hale getirildi.
 
 ## 2. Teknoloji Yığını (Tech Stack)
 *   **Core Framework:** [Astro 5.x](https://astro.build) (Static Site Generator)
