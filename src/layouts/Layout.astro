@@ -5,28 +5,50 @@ import Footer from '../components/Footer.astro';
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import '../styles/global.css';
 
-interface Props {
+	interface Props {
 	title?: string;
 	description?: string;
+	image?: string;
 }
 
 // SEO Title Logic - User requested "Dişçi Hukuk Bürosu" as the default title
 const { 
 	title = "Dişçi Hukuk Bürosu", 
-	description = "İzmir Barosu'na kayıtlı Av. Fatih Dişçi tarafından kurulan Dişçi Hukuk Bürosu; Ceza, Aile ve İş Hukuku alanlarında hukuki danışmanlık hizmeti sunmaktadır." 
+	description = "İzmir Barosu'na kayıtlı Av. Fatih Dişçi tarafından kurulan Dişçi Hukuk Bürosu; Ceza, Aile ve İş Hukuku alanlarında hukuki danışmanlık hizmeti sunmaktadır.",
+	image = "https://discilaw.com/social-share.jpg" // Fallback image if none provided
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://discilaw.com");
 ---
 
 <!doctype html>
 <html lang="tr" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="google-site-verification" content="GJ-zWmoDnXkoQ1G8DNUsCntcfR3ExIZjJaG9kyni2pE" />
 		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
+
 		<!-- Google Analytics (GA4) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-E9QFS635LP"></script>
 		<script is:inline>
@@ -35,8 +57,6 @@ const {
 			gtag('js', new Date());
 			gtag('config', 'G-E9QFS635LP');
 		</script>
-
-		<title>{title}</title>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
