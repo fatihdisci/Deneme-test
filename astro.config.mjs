@@ -6,13 +6,19 @@ import sitemap from '@astrojs/sitemap';
 import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
 
+// Check if we're in development mode
+const isDev = import.meta.env?.MODE === 'development' || process.argv.includes('dev');
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.discilaw.com',
   base: '/',
-  output: 'static', // Astro 5.x: Use static, individual pages opt-out with prerender = false
+  output: 'static',
   vite: {
     plugins: [tailwindcss()]
   },
-  integrations: [react(), mdx(), sitemap(), markdoc(), keystatic()],
+  // Only include Keystatic in development mode (not in production builds)
+  integrations: isDev
+    ? [react(), mdx(), sitemap(), markdoc(), keystatic()]
+    : [react(), mdx(), sitemap(), markdoc()],
 });
