@@ -44,23 +44,23 @@ import { FAQAccordion } from '../../components/FAQAccordion';
 
 <FAQAccordion client:load faqs={[
   {
-    question: "Limited şirket mi, anonim şirket mi kurayım?",
-    answer: "6102 sayılı TTK'ya göre: Limited Şirket (Ltd.) minimum 1 ortak, 10.000 TL sermaye ile kurulur, ortaklar kişisel tanınırlığa sahiptir, orta ölçekli işletmelere uygundur. Anonim Şirket (A.Ş.) minimum 1 ortak, 50.000 TL sermaye, halka açılma potansiyeli, yönetim kurulu zorunlu, büyük şirketler için ideal. Ltd.'de ortaklar yönetimde yer alırken, A.Ş.'de profesyonel yönetim kurulu vardır. Vergi açısından fark yoktur. Girişimciler genelde Ltd. tercih eder."
+    question: "Anonim ve Limited şirketler için asgari sermaye tutarları nedir?",
+    answer: "1 Ocak 2024 tarihinden itibaren geçerli olmak üzere, Anonim Şirketler için asgari sermaye tutarı 250.000 TL'ye, Limited Şirketler için ise 50.000 TL'ye yükseltilmiştir."
   },
   {
-    question: "Hissedarlar sözleşmesi nedir ve neden gereklidir?",
-    answer: "Hissedarlar sözleşmesi (SHA - Shareholders Agreement), ortaklar arasında şirket yönetimi, kar paylaşımı, hisse devri, anlaşmazlık çözümü gibi konuları düzenleyen özel bir sözleşmedir. Esas sözleşmeden farklı olarak gizlidir. Özellikle startup'larda ve yatırımcı girişinde kritiktir. Örnek maddeler: Önalım hakkı (ortak çıkarken diğer ortağa öncelik), drag-along (azınlık ortağı satışta zorlama), veto hakları, rekabet yasağı. Sözleşme yoksa ortaklar arasında anlaşmazlık çıktığında çözüm zordur."
+    question: "Sermayesi asgari tutarın altında kalan şirketler ne zamana kadar sermaye artırmalıdır?",
+    answer: "Sermayeleri yeni asgari tutarların (50.000 TL ve 250.000 TL) altında kalan anonim ve limited şirketlerin, sermayelerini en geç 31.12.2026 tarihine kadar yeni tutarlara yükseltmeleri gerekmektedir. Aksi halde şirketler infisah etmiş (sona ermiş) sayılacaktır."
   },
   {
-    question: "Şirket birleşmesinde hangi adımlar izlenir?",
-    answer: "TTK md. 136-158'e göre birleşme 3 türlüdür: (1) Devralma yoluyla (A şirketi B'yi alır), (2) Yeni kuruluş yoluyla (A+B birleşip C olur), (3) Bölünme. Adımlar: Birleşme sözleşmesi imzalanır, yönetim kurulu birleşme raporunu hazırlar, bağımsız denetim yapılır, genel kurul onayı alınır (%75 çoğunluk), alacaklılara ilan yapılır (itiraz süresi 2 ay), Ticaret Sicil'e tescil edilir. Süreç 4-6 ay sürer. Vergi avantajları vardır (stopaj muafiyeti)."
+    question: "Limited şirket ile Anonim şirket arasındaki temel fark nedir?",
+    answer: "Limited şirketlerde ortaklar kamu borçlarından sermaye payları oranında şahsi malvarlıklarıyla sorumluyken, Anonim şirketlerde ortaklar (yönetim kurulu üyesi değillerse) kamu borçlarından sorumlu değildir, sadece taahhüt ettikleri sermaye borcundan sorumludurlar. Ayrıca Anonim şirketlerde pay devri daha kolaydır ve notere gitme zorunluluğu yoktur (nama yazılı hisse değilse)."
   },
   {
-    question: "Genel kurulda karar alımı için hangi çoğunluk gerekir?",
-    answer: "TTK'ya göre: Olağan kararlar (yönetim kurulu seçimi, kar dağıtımı vb.) için toplantı nisabı %25, karar nisabı salt çoğunluk (mevcut oyların yarısı+1). Olağanüstü kararlar (esas sözleşme değişikliği, sermaye artırımı, şirket birleşmesi) için toplantı nisabı %50, karar nisabı %75'tir. Esas sözleşme daha ağır şartlar öngörebilir. Toplantı nisabı sağlanamazsa ikinci toplantıda nisap aranmaz (sadece hazır bulunanların oyu yeter). Karar usulsüz alınırsa iptal davası açılabilir (TTK md. 445-446)."
+    question: "Anonim şirketlerde avukat bulundurma zorunluluğu var mıdır?",
+    answer: "Esas sermayesi 1.250.000 TL (Yeniden değerleme ile artan limitler kontrol edilmelidir ancak kanuni taban budur) ve üzerinde olan anonim şirketlerin sözleşmeli bir avukat bulundurması zorunludur."
   },
   {
-    question: "Şirket tasfiyesi nasıl yapılır ve ne kadar sürer?",
-    answer: "TTK md. 529-557'ye göre tasfiye sebepleri: Süre bitimi, iflas, genel kurul kararı, mahkeme kararı. Süreç: Tasfiye kararı alınır, tasfiye memurları atanır, Ticaret Sicil'e tescil edilir, alacaklılara ilan yapılır (2 ay itiraz süresi), varlıklar satılır, borçlar ödenir, kalan varlık ortaklara dağıtılır, kesin tasfiye raporu hazırlanır. Toplam süre en az 6 ay, genelde 1-2 yıl. Tasfiye sırasında şirket tüzel kişiliği devam eder ancak ticari faaliyette bulunamaz."
+    question: "Şirketlerin internet sitesi kurma zorunluluğu var mıdır?",
+    answer: "Bağımsız denetime tabi sermaye şirketlerinin internet sitesi açması ve kanunen belirlenen içerikleri (finansal tablolar vb.) bu sitenin \"bilgi toplumu hizmetleri\" bölümünde yayımlaması zorunludur. Bunu yapmayan yöneticiler adli para cezası ile cezalandırılır."
   }
 ]} />
