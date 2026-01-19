@@ -37,3 +37,30 @@ icon: "👨‍👩‍👧"
 <p>
 <strong>Mal paylaşımı</strong> ve aile malları kapsamında edinilmiş mallara katılma alacağı davaları, ev eşyasının paylaşımı, katkı payı alacağı talepleri ve aile konutu şerhi ile korunması konularında profesyonel destek sağlanmaktadır.
 </p>
+
+import { FAQAccordion } from '../../components/FAQAccordion';
+
+## Sıkça Sorulan Sorular
+
+<FAQAccordion client:load faqs={[
+  {
+    question: "Anlaşmalı boşanma ne kadar sürer?",
+    answer: "Türk Medeni Kanunu'na göre anlaşmalı boşanmada en az 1 ay düşünme süresi gereklidir (TMK md. 166). Bu süre sonunda taraflar anlaşmaya devam ediyorsa, mahkeme boşanma kararı verir. Pratikte, dosyanın hazırlanması ve mahkeme randevusu dahil toplam süreç 2-3 ay arasında tamamlanır."
+  },
+  {
+    question: "Mal paylaşımı nasıl yapılır?",
+    answer: "Türkiye'de yasal mal rejimi 'edinilmiş mallara katılma' sistemidir (TMK md. 218-241). Evlilik süresince her eşin çalışarak veya başka şekilde edindiği mallar 'edinilmiş mal' sayılır. Boşanmada bu malların değeri hesaplanır ve artı değer eşler arasında eşit paylaşılır. Miras, bağış gibi yollarla gelen mallar 'kişisel mal' olup paylaşılmaz."
+  },
+  {
+    question: "Velayet nasıl belirlenir?",
+    answer: "Hakim, velayet kararını verirken öncelikle çocuğun 'üstün yararı'nı gözetir (TMK md. 182). Anne-baba anlaşırsa velayeti ortak veya tek bir ebeveyne verebilir. Anlaşma yoksa hakim sosyal inceleme raporu, çocuğun yaşı, eğitim durumu, ebeveynlerin ekonomik ve sosyal durumlarını değerlendirerek karar verir. 12 yaşından büyük çocukların görüşü alınır."
+  },
+  {
+    question: "Nafaka miktarı nasıl hesaplanır?",
+    answer: "Nafaka belirlenirken tarafların ekonomik ve sosyal durumu, evlilik süresince sahip olunan yaşam standardı, yaş, sağlık durumu ve kusur oranı gibi kriterler dikkate alınır (TMK md. 175). Yoksulluk nafakası için boşanmada kusursuz veya daha az kusurlu olmak gerekir. İştirak nafakası ise çocuğun bakım giderleri için ödenir ve her iki ebeveyn de mali gücü oranında katkıda bulunur."
+  },
+  {
+    question: "Çekişmeli boşanmada süreç ne kadar uzun sürer?",
+    answer: "Çekişmeli boşanma davalarında süre, davanın karmaşıklığına göre değişir. Delil toplama, tanık dinleme, bilirkişi raporları (özellikle mal paylaşımında) ve tarafların uzlaşmaması süreci uzatır. Ortalama olarak 6 ay ile 2 yıl arasında sürebilir. İstinaf ve temyiz başvuruları yapılırsa bu süre daha da uzayabilir."
+  }
+]} />

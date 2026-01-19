@@ -37,3 +37,30 @@ icon: "📊"
 <p>
 Ticari faaliyetlerinizin her aşamasında <strong>stratejik hukuki ortağınız</strong> olarak yanınızdayız. Proaktif yaklaşımımızla olası uyuşmazlıkları önlemeye ve işletmenizin hukuki güvenliğini sağlamaya odaklanıyoruz.
 </p>
+
+import { FAQAccordion } from '../../components/FAQAccordion';
+
+## Sıkça Sorulan Sorular
+
+<FAQAccordion client:load faqs={[
+  {
+    question: "Ticari dava ile genel hukuk davası arasındaki fark nedir?",
+    answer: "TTK md. 4'e göre 'ticari iş' tanımı yapılır. Ticari dava, ticari işletmelerin faaliyetlerinden doğan uyuş mazlıklardır (mal alım-satımı, distribütörlük, ortaklık vb.). Ticari davalarda: (1) Görevli mahkeme Asliye Ticaret Mahkemesidir, (2) Arabuluculuk zorunludur (HMK md. 5/A), (3) Delil serbestisi geniştir (ticari defter kayıtları delil sayılır - TTK md. 82), (4) Faiz oranı daha yüksektir (ticari faiz). Genel hukuk davalarında bu özellikler yoktur."
+  },
+  {
+    question: "Çek ve senet arasındaki hukuki fark nedir?",
+    answer: "TTK md. 780-818 (senet) ve md. 780-818 (çek): Senet (bono), belirli bir vade tarihinde ödemeyi taahhüt eder, vadesi gelince ibraz edilir. Çek ise 'görüldüğünde ödeme' aracıdır, bankadan tahsil edilir, vade kaydı geçersizdir. Karşılıksız çek suçtur (TCK md. 250), 3 yıla kadar hapis. Karşılıksız senet ise sadece hukuki takip (icra) gerektirir, ceza yok. Her ikisi de kambiyo senedidir ve hızlı icra takibine (İİK md. 167 vd.) tabidir."
+  },
+  {
+    question: "Haksız rekabet davası ne zaman açılır?",
+    answer: "TTK md. 54-63'e göre haksız rekabet, rakibin müşterilerini aldatıcı veya onur kırıcı davranışlardır. Örnekler: Rakip ürünü karalama, yanıltıcı reklam, marka/patent ihlali, ticari sır çalma, sahte kampanya. Zarar gören tacir, haksız rekabeti öğrendiği tarihten itibaren 3 ay, her halde 1 yıl içinde dava açar. Talepler: (1) Tespit (haksız rekabetin tespiti), (2) Men (durdurulması), (3) Ref' (sonuçların ortadan kaldırılması), (4) Tazminat. Acil durumlarda ihtiyati tedbir alınabilir."
+  },
+  {
+    question: "Bayilik sözleşmesini tek taraflı feshedebilir miyim?",
+    answer: "TTK md. 116-122 (acentelik hükümleri bayilik için de kıyasen uygulanır) ve TBK genel hükümleri: Belirli süreli sözleşmede süre bitiminde feshedilebilir. Belirsiz süreli sözleşmede ise 'ihbar süresi' tanınarak feshedilir (genelde 3-6 ay). Haklı sebep varsa (sözleşme ihlali, ödeme yapmama vb.) derhal fesih mümkündür. Ancak keyfi fesih tazminat doğurur (müşteri kaybı, goodwill vb.). Bayilik sözleşmelerinde genelde 'rekabet yasağı' şartı olur, ihlal edilirse ceza ödenir."
+  },
+  {
+    question: "Ticari defterlerin hukuki değeri nedir?",
+    answer: "TTK md. 64-88'e göre tacirler, yevmiye defteri ve envanter defteri tutmak zorundadır (isteğe bağlı olarak diğer defterler). Defterler noter onaylı veya e-defter olarak tutulabilir. Hukuki değeri: (1) Dava delilidir: Tacir aleyhine defter kayıtları delil olabilir, lehine ise karşı taraf da tacirse delil sayılır (TTK md. 82). (2) Vergi incelemesinde dayanak. (3) Tutulmama veya hatalı tutma cezai sorumluluk doğurur (TCK md. 215). Defter ibrazı mahkeme kararıyla zorunlu tutulabilir."
+  }
+]} />

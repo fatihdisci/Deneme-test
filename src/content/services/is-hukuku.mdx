@@ -37,3 +37,30 @@ icon: "👔"
 <p>
 <strong>Toplu iş hukuku</strong> kapsamında sendika ilişkileri, toplu iş sözleşmesi müzakereleri ve grev-lokavt uyuşmazlıkları konularında danışmanlık verilmektedir. İşveren tarafında ise iş sözleşmelerinin hazırlanması, personel politikalarının oluşturulması ve iş hukuku uyum süreçleri yönetilmektedir.
 </p>
+
+import { FAQAccordion } from '../../components/FAQAccordion';
+
+## Sıkça Sorulan Sorular
+
+<FAQAccordion client:load faqs={[
+  {
+    question: "İşe iade davası açabilmek için hangi şartlar gereklidir?",
+    answer: "İş Kanunu md. 18'e göre en az 30 işçi çalıştıran işyerlerinde ve en az 6 ay kıdemi olan işçiler iş güvencesinden yararlanır. Fesih geçerli sebebe dayanmalıdır. Fesih tebliğinden itibaren 1 ay içinde arabulucuya, arabuluculuk sonuçsuz kalırsa 2 hafta içinde mahkemeye başvurulmalıdır. Bu süreler hak düşürücüdür, kaçırılırsa dava açılamaz."
+  },
+  {
+    question: "Kıdem tazminatı almak için gereken şartlar nelerdir?",
+    answer: "İş Kanunu md. 120'ye göre en az 1 yıl kıdemi olan ve belirli nedenlerle işten ayrılan işçi kıdem tazminatı alır. Emeklilik, askerlik, evlilik (kadınlar için 1 yıl içinde), işveren tarafından haklı sebep olmadan fesih, işçinin haklı nedenle fesih gibi durumlarda hak kazanılır. 2025 yılı için tavan tutarı 50.762,44 TL'dir (brüt)."
+  },
+  {
+    question: "Mobbing nedir ve nasıl kanıtlanır?",
+    answer: "Mobbing, işyerinde sistematik ve kasıtlı olarak psikolojik baskı yapılmasıdır. Kanunda doğrudan tanımı olmasa da Borçlar Kanunu md. 417'deki 'işverenin kişiliği koruma borcu' kapsamında değerlendirilir. Kanıt için; e-postalar, mesajlar, tanık ifadeleri, sağlık raporları kullanılabilir. Mobbing nedeniyle haklı fesih yapılabilir ve manevi tazminat talep edilebilir."
+  },
+  {
+    question: "Fazla mesai ücreti nasıl hesaplanır?",
+    answer: "İş Kanunu md. 41'e göre haftalık 45 saati aşan çalışmalar fazla mesaidir. İlk 1 saat için %25, sonraki her saat için %50 zamlı ödeme yapılır. Örnek: Saat ücreti 100 TL olan işçi günde 2 saat fazla mesai yaparsa, ilk saat 125 TL, ikinci saat 150 TL olarak hesaplanır. Fazla mesai talebi zamanaşımı 5 yıldır (Borçlar Kanunu md. 146)."
+  },
+  {
+    question: "İş kazası sonucu işverenin sorumluluğu nedir?",
+    answer: "İş Kanunu md. 77 ve Borçlar Kanunu md. 417'ye göre işveren, işçinin sağlık ve güvenliğini korumakla yükümlüdür. İş kazasında kusuru varsa (iş güvenliği önlemleri alınmamışsa) maddi ve manevi tazminat öder. Ayrıca SGK tarafından tedavi masrafları karşılanır ancak işveren kusurlu ise SGK, ödediği tutarı işverenden rücu eder. Çalışma Gücü Kaybı (ÇGK) raporu alınan işçi, SGK'dan gelir bağlanması da talep edebilir."
+  }
+]} />

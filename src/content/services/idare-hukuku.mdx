@@ -37,3 +37,30 @@ icon: "🏛️"
 <p>
 <strong>İdari yargılama sürecinde</strong> dava açma süreleri, yürütmenin durdurulması talepleri ve kanun yolları kritik öneme sahiptir. İdari işlemlere karşı haklarınızı korumak için süreleri kaçırmadan başvurmanız büyük önem taşımaktadır.
 </p>
+
+import { FAQAccordion } from '../../components/FAQAccordion';
+
+## Sıkça Sorulan Sorular
+
+<FAQAccordion client:load faqs={[
+  {
+    question: "İdari işleme karşı dava açma süresi ne kadar?",
+    answer: "2577 sayılı İYUK md. 7'ye göre genel süre, işlemin tebliğinden itibaren 60 gündür. Yazılı bildirim yoksa işlemin öğrenilmesinden itibaren 60 gün + 1 yıl (toplam 425 gün). İmar planı iptali gibi düzenleyici işlemlerde ilan tarihinden itibaren 60 gün. Bu süreler hak düşürücüdür, kaçırılırsa dava hakkı düşer. Örnek: Disiplin cezası 15 Ocak'ta tebliğ edilirse, 15 Mart'a kadar dava açılmalıdır."
+  },
+  {
+    question: "Yürütmenin durdurulması ne demektir, ne zaman verilir?",
+    answer: "İYUK md. 27'ye göre yürütmenin durdurulması (YD), idari işlemin uygulanmasını geçici olarak engelleyen mahkeme kararıdır. İki şart aranır: (1) Telafisi güç zarar (maddi zararın yanı sıra sosyal, psikolojik zarar), (2) İşlemin açıkça hukuka aykırı olması. Örneğin meslekten men cezasına YD verilirse, kişi işine devam eder. Mahkeme ret kararı verirse işlem uygulanmaya devam eder. YD kararı nihai karar değildir, sadece geçici korumadır."
+  },
+  {
+    question: "Tam yargı davası ile iptal davası arasındaki fark nedir?",
+    answer: "İptal davası: İdari işlemin hukuka aykırılığını tespit edip iptal eder, tazminat verilmez (İYUK md. 2). Örnek: İhale iptal kararına karşı dava. Tam yargı davası: İdarenin faaliyetinden doğan zararın tazmini için açılır (İYUK md. 12-13). Örnek: Belediye aracının çarpması sonucu zarar. Tam yargı davasında kusur aranmaz (hizmet kusuru teorisi). Her iki dava türünde de İdare Mahkemesi yetkilidir."
+  },
+  {
+    question: "İdari para cezasına itiraz etmek için ne yapmalıyım?",
+    answer: "5326 sayılı Kabahatler Kanunu md. 27'ye göre tebligat tarihinden itibaren 15 gün içinde yetkili Sulh Ceza Hakimliğine itiraz edilir. İtiraz dilekçesi ile cezanın haksız/hukuka aykırı olduğu belirtilir. Hakim dosyayı inceler ve itirazı kabul veya ret eder. İtiraz sırasında cezanın ödenmesi gerekmez, ancak itiraz reddedilirse faiz işler. Trafik, çevre, vergi vb. her türlü idari para cezası için geçerlidir. İtiraz ücretsizdir."
+  },
+  {
+    question: "İmar planı değişikliğine itiraz edebilir miyim?",
+    answer: "Evet. 3194 sayılı İmar Kanunu'na göre vatandaşlar imar planına itiraz edebilir. Plan askı ilanından (belediye ilan panosunda) itibaren 60 gün içinde İdare Mahkemesine iptal davası açılır. İtiraz sebepleri: kamu yararına aykırılık, planlama ilkelerine aykırılık, hukuka aykırılık. Dava, plan değişikliğinin 'erga omnes' (herkese karşı) iptalini sağlar. Örneğin mahallenizde yeşil alan iken imar değişikliği ile AVM yapılıyorsa, iptal davası açabilirsiniz."
+  }
+]} />

@@ -37,3 +37,30 @@ icon: "💰"
 <p>
 <strong>Alacaklı taraf hizmetleri</strong> kapsamında alacağın en kısa sürede tahsili için tüm hukuki imkanlar değerlendirilmektedir. Takip öncesi ihtarname gönderilmesi, en uygun takip yolunun seçimi, haciz ve satış işlemlerinin takibi ile tahsilat süreçlerinin yönetimi hizmetlerimiz arasındadır. Alacak tahsilinde zamanaşımı sürelerine dikkat edilmesi ve erken başvuru büyük önem taşımaktadır.
 </p>
+
+import { FAQAccordion } from '../../components/FAQAccordion';
+
+## Sıkça Sorulan Sorular
+
+<FAQAccordion client:load faqs={[
+  {
+    question: "İcra takibine nasıl itiraz edebilirim?",
+    answer: "İİK md. 62-67'ye göre 2 itiraz yolu var: (1) Borca itiraz: Ödeme yaptım, böyle bir borç yok, zamanaşımına uğradı gibi. Ödeme emrinin tebliğinden itibaren 7 gün içinde yapılır. İtiraz edince takip durur. Alacaklı itirazın iptali davası açarsa mahkeme sonucuna göre devam eder. (2) İmzaya itiraz: Senet bana ait değil. 3 gün içinde yapılır, bilirkişi incelemesi olur. İtiraz hakları hak düşürücü sürelidir, kaçırılırsa kullanılamaz."
+  },
+  {
+    question: "Maaşıma haciz geldi, ne kadarı kesilir?",
+    answer: "İİK md. 83'e göre maaş haczi, asgari ücret tutarının 1/4'ünden az olamaz. 2025'te asgari ücret 22.104 TL ise en az 5.526 TL'ye haciz konulabilir. Ancak nafaka alacağı, vergi borcu gibi kamusal alacaklarda bu sınır yoktur, maaşın tamamına haciz gelebilir. Birden fazla haciz varsa 'sıra cetveli' düzenlenir ve öncelik sırasına göre ödeme yapılır. Hacze itiraz mümkündür (örneğin hesaplama hatası varsa)."
+  },
+  {
+    question: "İhtiyati haciz nedir ve ne zaman uygulanır?",
+    answer: "İİK md. 257'ye göre alacağın tahsili tehlikeye girerse (örn. borçlu mallarını kaçırıyorsa) mahkemeden 'ihtiyati haciz kararı' alınarak hemen haciz konulur. Normal icra takibinde sıra beklenmeden uygulanır. Alacaklı, alacağını belgelerle (fatura, sözleşme, şahit beyanı) ispat etmeli ve tehlike oluşturan durumu (borçlunun yurt dışına çıkma hazırlığı, malları satma girişimi) göstermelidir. Haksız ihtiyati haciz konulursa borçlu tazminat davası açabilir."
+  },
+  {
+    question: "Konkordato nedir ve hangi avantajları vardır?",
+    answer: "Konkordato, ekonomik sıkıntıdaki şirketin alacaklılarıyla anlaşarak borçlarını yeniden yapılandırmasıdır (İİK md. 285 vd.). Başvuruyla birlikte 'mühlet süresi' (3-6 ay) verilir, bu sürede tüm icra takipleri ve davalar durur. Şirket, alacaklılara bir ödeme planı sunar (örn. borcun %60'ını 2 yılda ödeme). Alacaklıların çoğunluğu kabul ederse konkordato onaylanır ve şirket iflasdan kurtulur. Ret edilirse genellikle iflas kararı verilir."
+  },
+  {
+    question: "İcra dosyasında zamanaşımı ne kadar, alacağım düşer mi?",
+    answer: "TBK md. 146-147'ye göre genel alacaklar için zamanaşımı 10 yıldır (senet, fatura vb.). Ancak icra takibi başlatılırsa zamanaşımı kesilir ve dosyanın takipsiz kalması halinde yeniden işlemeye başlar. İcra takibi tarihi ile birlikte zamanaşımı kalkıp 'takip hakkı' doğar. Ancak dosya 10 yıl boyunca herhangi bir işlem yapılmadan durursa zamanaşımı dolabilir. O yüzden alacaklılar düzenli olarak dosyayı takip etmelidir."
+  }
+]} />

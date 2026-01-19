@@ -37,3 +37,30 @@ icon: "🏠"
 <p>
 <strong>Emlak işlemleri</strong> kapsamında alım-satım sözleşmeleri, ön alım hakkı davaları, intifa ve oturma hakları, geçit hakkı davaları ve kamulaştırma işlemleri konularında danışmanlık sağlanmaktadır. Gayrimenkul yatırımlarınızın güvence altında olması için profesyonel hukuki danışmanlık büyük önem taşımaktadır.
 </p>
+
+import { FAQAccordion } from '../../components/FAQAccordion';
+
+## Sıkça Sorulan Sorular
+
+<FAQAccordion client:load faqs={[
+  {
+    question: "Sahtekarlık ile satılan tapuyu iptal ettirebilir miyim?",
+    answer: "Evet, TMK md. 1023'e göre tapu siciline güven ilkesi geçerli olsa da sahtecilik, zimmet veya dolandırıcılık gibi suç unsuru varsa iptal davası açılabilir. Örneğin sahte vekaletname ile yapılan satış, hile ile alınan tapular iptal edilir. Bu davalar 'zamanaşımına uğramaz' kabul edilir. Ancak iyiniyetli 3. kişiler tapuyu devralırsa onlara karşı dava açılamayabilir, bu durumda satan kişiden tazminat talep edilir."
+  },
+  {
+    question: "Kiracımı hangi sebeplerle tahliye edebilirim?",
+    answer: "TBK md. 350'ye göre tahliye sebepleri sınırlıdır: (1) Kira bedelini 2 ihtar yapılmasına rağmen ödememek, (2) Yazılı tahliye taahhüdü, (3) Malik veya birinci derece yakınlarının konut ihtiyacı (belirli süreli sözleşmenin bitiminde), (4) Esaslı onarım veya yıkım gerekliliği, (5) 10 yıl dolmuş kiracılık (kiraya veren fesih hakkı). Haksız tahliye davası açılırsa tazminat riski vardır. Tahliye davası süre koşulları sıkı olduğu için mutlaka avukat danışmanı önerilir."
+  },
+  {
+    question: "Kira artış oranını ben belirleyebilir miyim?",
+    answer: "Hayır. TBK md. 344'e göre kira artış oranı, ÜFE (Üretici Fiyat Endeksi) artış oranını geçemez. 2024-2025 dönemi için bu oran %64,77'dir (TÜFE yerine ÜFE kullanılır). Taraflar daha düşük oran kararlaştırabilir ancak ÜFE'nin üzerinde artış yapılamaz. Sözleşmede artış oranı belirtilmemişse hakim artışı belirler. İhlal durumunda kiracı iade davası açabilir."
+  },
+  {
+    question: "Muvazaalı satış nedir ve nasıl kanıtlanır?",
+    answer: "Muvazaa (danışıklı/görünüşte işlem), tarafların gerçekte satış yapmadıkları halde yapmış gibi görünmeleridir (TBK md. 19). Örneğin alacaklılardan kaçınmak için kardeşe devir, mirasçıyı mağdur etmek için baba-oğul arası satış. Muvazaa davası ile tapunun iptalini isteyebilirsiniz. Kanıt: Bedelin ödenmemesi, tarafların yakınlık ilişkisi, satıştan sonra eskisi gibi kullanmaya devam, tanık ifadeleri. Dava süresi 10 yıldır."
+  },
+  {
+    question: "Kat mülkiyetinde ortak gider borcum varsa ne olur?",
+    answer: "Kat Mülkiyeti Kanunu md. 20'ye göre ortak gider borcu 'rehinli alacak' niteliğindedir. Yönetim, borcunuzu ödemezseniz icra takibi başlatabilir, dairenizi haczettirebilir ve açık artırma ile satabilir. Ayrıca, borcunuz varken dairenizi satamazsınız (tapu bu borcu sorguladığı için devir olmaz). Borç 1 yıldan eski ise zamanaşımına uğrar ancak yönetim dava açmışsa zamanaşımı kesilir. Öncelikle yönetimle anlaşıp taksitlendirme yapılması önerilir."
+  }
+]} />

@@ -37,3 +37,30 @@ icon: "🏢"
 <p>
 <strong>Yeniden yapılandırma</strong> süreçlerinde şirketlerin mali ve hukuki durumlarının iyileştirilmesi için stratejik çözümler üretilmektedir. Borca yapılandırma anlaşmaları, ortaklık yapısı değişiklikleri, şirket bölünme ve devir işlemleri ile tasfiye süreçlerinin yönetimi bu kapsamdadır.
 </p>
+
+import { FAQAccordion } from '../../components/FAQAccordion';
+
+## Sıkça Sorulan Sorular
+
+<FAQAccordion client:load faqs={[
+  {
+    question: "Limited şirket mi, anonim şirket mi kurayım?",
+    answer: "6102 sayılı TTK'ya göre: Limited Şirket (Ltd.) minimum 1 ortak, 10.000 TL sermaye ile kurulur, ortaklar kişisel tanınırlığa sahiptir, orta ölçekli işletmelere uygundur. Anonim Şirket (A.Ş.) minimum 1 ortak, 50.000 TL sermaye, halka açılma potansiyeli, yönetim kurulu zorunlu, büyük şirketler için ideal. Ltd.'de ortaklar yönetimde yer alırken, A.Ş.'de profesyonel yönetim kurulu vardır. Vergi açısından fark yoktur. Girişimciler genelde Ltd. tercih eder."
+  },
+  {
+    question: "Hissedarlar sözleşmesi nedir ve neden gereklidir?",
+    answer: "Hissedarlar sözleşmesi (SHA - Shareholders Agreement), ortaklar arasında şirket yönetimi, kar paylaşımı, hisse devri, anlaşmazlık çözümü gibi konuları düzenleyen özel bir sözleşmedir. Esas sözleşmeden farklı olarak gizlidir. Özellikle startup'larda ve yatırımcı girişinde kritiktir. Örnek maddeler: Önalım hakkı (ortak çıkarken diğer ortağa öncelik), drag-along (azınlık ortağı satışta zorlama), veto hakları, rekabet yasağı. Sözleşme yoksa ortaklar arasında anlaşmazlık çıktığında çözüm zordur."
+  },
+  {
+    question: "Şirket birleşmesinde hangi adımlar izlenir?",
+    answer: "TTK md. 136-158'e göre birleşme 3 türlüdür: (1) Devralma yoluyla (A şirketi B'yi alır), (2) Yeni kuruluş yoluyla (A+B birleşip C olur), (3) Bölünme. Adımlar: Birleşme sözleşmesi imzalanır, yönetim kurulu birleşme raporunu hazırlar, bağımsız denetim yapılır, genel kurul onayı alınır (%75 çoğunluk), alacaklılara ilan yapılır (itiraz süresi 2 ay), Ticaret Sicil'e tescil edilir. Süreç 4-6 ay sürer. Vergi avantajları vardır (stopaj muafiyeti)."
+  },
+  {
+    question: "Genel kurulda karar alımı için hangi çoğunluk gerekir?",
+    answer: "TTK'ya göre: Olağan kararlar (yönetim kurulu seçimi, kar dağıtımı vb.) için toplantı nisabı %25, karar nisabı salt çoğunluk (mevcut oyların yarısı+1). Olağanüstü kararlar (esas sözleşme değişikliği, sermaye artırımı, şirket birleşmesi) için toplantı nisabı %50, karar nisabı %75'tir. Esas sözleşme daha ağır şartlar öngörebilir. Toplantı nisabı sağlanamazsa ikinci toplantıda nisap aranmaz (sadece hazır bulunanların oyu yeter). Karar usulsüz alınırsa iptal davası açılabilir (TTK md. 445-446)."
+  },
+  {
+    question: "Şirket tasfiyesi nasıl yapılır ve ne kadar sürer?",
+    answer: "TTK md. 529-557'ye göre tasfiye sebepleri: Süre bitimi, iflas, genel kurul kararı, mahkeme kararı. Süreç: Tasfiye kararı alınır, tasfiye memurları atanır, Ticaret Sicil'e tescil edilir, alacaklılara ilan yapılır (2 ay itiraz süresi), varlıklar satılır, borçlar ödenir, kalan varlık ortaklara dağıtılır, kesin tasfiye raporu hazırlanır. Toplam süre en az 6 ay, genelde 1-2 yıl. Tasfiye sırasında şirket tüzel kişiliği devam eder ancak ticari faaliyette bulunamaz."
+  }
+]} />
