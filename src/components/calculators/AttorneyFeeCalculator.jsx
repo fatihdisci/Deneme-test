@@ -62,7 +62,7 @@ const COURT_MIN_FEES = {
         { name: "İdare ve Vergi Mahkemeleri-Duruşmasız", minFee: 30000 },
     ],
     icra: [
-        { name: "İcra Takipleri", minFee: 11000 },
+        { name: "İcra Takipleri", minFee: 9000 },
     ]
 };
 
@@ -209,27 +209,35 @@ const AttorneyFeeCalculator = () => {
                         {/* Court Type Radio Buttons */}
                         <div className="flex flex-wrap gap-6 justify-center">
                             <label className="flex items-center gap-3 cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="courtType"
-                                    value="davalar"
-                                    checked={courtType === 'davalar'}
-                                    onChange={(e) => handleCourtTypeChange(e.target.value)}
-                                    className="w-5 h-5 text-gold-500 bg-slate-950 border-slate-700 focus:ring-gold-500 focus:ring-2"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type="radio"
+                                        name="courtType"
+                                        value="davalar"
+                                        checked={courtType === 'davalar'}
+                                        onChange={(e) => handleCourtTypeChange(e.target.value)}
+                                        className="sr-only peer"
+                                    />
+                                    <div className="w-5 h-5 rounded-full border-2 border-slate-600 peer-checked:border-gold-500 transition-colors"></div>
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-gold-500 scale-0 peer-checked:scale-100 transition-transform"></div>
+                                </div>
                                 <span className={`font-medium transition-colors ${courtType === 'davalar' ? 'text-gold-500' : 'text-slate-400 group-hover:text-white'}`}>
                                     Konusu Para Olan Davalar için
                                 </span>
                             </label>
                             <label className="flex items-center gap-3 cursor-pointer group">
-                                <input
-                                    type="radio"
-                                    name="courtType"
-                                    value="icra"
-                                    checked={courtType === 'icra'}
-                                    onChange={(e) => handleCourtTypeChange(e.target.value)}
-                                    className="w-5 h-5 text-gold-500 bg-slate-950 border-slate-700 focus:ring-gold-500 focus:ring-2"
-                                />
+                                <div className="relative">
+                                    <input
+                                        type="radio"
+                                        name="courtType"
+                                        value="icra"
+                                        checked={courtType === 'icra'}
+                                        onChange={(e) => handleCourtTypeChange(e.target.value)}
+                                        className="sr-only peer"
+                                    />
+                                    <div className="w-5 h-5 rounded-full border-2 border-slate-600 peer-checked:border-gold-500 transition-colors"></div>
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-gold-500 scale-0 peer-checked:scale-100 transition-transform"></div>
+                                </div>
                                 <span className={`font-medium transition-colors ${courtType === 'icra' ? 'text-gold-500' : 'text-slate-400 group-hover:text-white'}`}>
                                     İcra Takipleri için
                                 </span>
