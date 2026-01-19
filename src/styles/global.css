@@ -46,13 +46,16 @@
     @apply border-l-4 border-gold-500 pl-4 italic text-slate-300 my-6;
   }
 
-  .prose ul,
+  .prose ul {
+    @apply mb-6 pl-5 list-disc marker:text-gold-500;
+  }
+
   .prose ol {
-    @apply mb-6 pl-5;
+    @apply mb-6 pl-5 list-decimal marker:text-gold-500;
   }
 
   .prose li {
-    @apply mb-2;
+    @apply mb-2 pl-2;
   }
 }
 
