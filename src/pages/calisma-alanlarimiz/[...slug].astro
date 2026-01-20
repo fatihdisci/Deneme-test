@@ -13,6 +13,21 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// Fetch related blog posts
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(post => {
+      // Fuzzy matching: Category equals title OR Title is inside Category OR Category is inside Title
+      const cat = (post.data.category || '').toLowerCase();
+      const title = entry.data.title.toLowerCase();
+      // Tag matching
+      const hasTag = post.data.tags?.some(tag => tag.toLowerCase() === title);
+      
+      return cat === title || cat.includes(title) || title.includes(cat) || hasTag;
+  })
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
@@ -53,6 +68,39 @@ const { Content } = await entry.render();
             )}
         </div>
     </div>
+
+    <!-- Related Articles Section -->
+    {relatedPosts.length > 0 && (
+        <div class="container mx-auto px-4 max-w-4xl mt-20 pt-10 border-t border-white/10">
+            <h3 class="text-2xl font-serif text-gold-500 mb-8 flex items-center gap-3">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                {entry.data.title} Hakkında Güncel Makaleler
+            </h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedPosts.map(post => (
+                    <a href={`/blog/${post.slug}`} class="group block bg-slate-900/50 border border-slate-800 rounded-xl p-5 hover:border-gold-500/30 transition-all hover:bg-slate-900 duration-300">
+                        <div class="mb-3">
+                             <time class="text-xs text-slate-500">{post.data.pubDate.toLocaleDateString('tr-TR')}</time>
+                        </div>
+                        <h4 class="text-md font-bold text-slate-200 group-hover:text-gold-400 mb-2 font-serif line-clamp-2">
+                            {post.data.title}
+                        </h4>
+                        <p class="text-xs text-slate-400 line-clamp-2">
+                            {post.data.description}
+                        </p>
+                    </a>
+                ))}
+            </div>
+            
+            <div class="mt-8 text-center">
+                 <a href="/blog" class="text-slate-500 text-sm hover:text-gold-500 transition-colors inline-flex items-center gap-1">
+                    Tüm makaleleri görüntüle
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                 </a>
+            </div>
+        </div>
+    )}
 
     <style>
         .service-content,

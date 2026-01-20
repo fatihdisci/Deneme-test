@@ -73,6 +73,51 @@ export default function BlogSearch({ posts }: BlogSearchProps) {
                 )}
             </div>
 
+            {/* Categories Bar */}
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
+                {Object.entries(
+                    posts.reduce((acc, post) => {
+                        const cat = post.data.category || 'Genel';
+                        acc[cat] = (acc[cat] || 0) + 1;
+                        return acc;
+                    }, {} as Record<string, number>)
+                ).map(([cat, count]) => {
+                    const getServiceSlug = (category: string) => {
+                        const map: Record<string, string> = {
+                            "Aile Hukuku": "aile-ve-bosanma",
+                            "Şirket Danışmanlığı": "sirket-danismanligi",
+                            "Ceza Hukuku": "ceza-hukuku",
+                            "İş Hukuku": "is-hukuku",
+                            "İdare Hukuku": "idare-hukuku",
+                            "Gayrimenkul Hukuku": "gayrimenkul-hukuku",
+                            "Miras Hukuku": "miras-hukuku",
+                            "Bilişim Hukuku": "bilisim-hukuku",
+                            "Health Law": "saglik-hukuku", // Example mapping
+                            "Sağlık Hukuku": "saglik-hukuku"
+                        };
+                        return map[category] || category.toLowerCase()
+                            .replace(/ğ/g, 'g')
+                            .replace(/ü/g, 'u')
+                            .replace(/ş/g, 's')
+                            .replace(/ı/g, 'i')
+                            .replace(/ö/g, 'o')
+                            .replace(/ç/g, 'c')
+                            .replace(/[^a-z0-9-]/g, '-')
+                            .replace(/-+/g, '-');
+                    };
+
+                    return (
+                        <a
+                            key={cat}
+                            href={`/calisma-alanlarimiz/${getServiceSlug(cat)}`}
+                            className="px-4 py-2 border border-slate-800 bg-slate-900/50 rounded-full text-slate-300 text-sm hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-white transition-all duration-300 flex items-center gap-2"
+                        >
+                            {cat} <span className="text-gold-500 font-bold text-xs bg-gold-500/10 px-2 py-0.5 rounded-full">{count}</span>
+                        </a>
+                    );
+                })}
+            </div>
+
             {/* Posts Grid or Empty State */}
             {filteredPosts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
