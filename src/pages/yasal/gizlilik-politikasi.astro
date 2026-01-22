@@ -3,69 +3,97 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Gizlilik Politikası | Dişçi Hukuk Bürosu" description="Dişçi Hukuk Bürosu gizlilik politikası ve kişisel verilerin korunması hakkında bilgilendirme.">
+  <!-- Header -->
   <section class="py-20 bg-slate-900 border-b border-white/5">
-    <div class="container mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-serif text-center" data-aos="fade-up">
+    <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+      <span class="text-gold-500 font-bold px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-sm mb-6 inline-block">
+        Yasal
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight font-serif">
         Gizlilik Politikası
       </h1>
-      <p class="text-gold-500/80 text-center font-medium max-w-2xl mx-auto uppercase tracking-widest text-sm" data-aos="fade-up" data-aos-delay="100">
-        Veri Güvenliği ve Gizlilik İlkelerimiz
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        Veri güvenliği ve gizlilik ilkelerimiz
       </p>
     </div>
   </section>
 
-  <section class="py-20 bg-slate-950">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <div class="prose prose-lg prose-invert prose-slate max-w-none text-slate-300 leading-relaxed text-justify">
+  <article class="py-24 bg-slate-950">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <div class="prose prose-invert prose-lg mx-auto max-w-4xl legal-content
+        text-justify hyphens-auto prose-p:text-justify
+        prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6
+        prose-headings:text-gold-500 prose-headings:font-serif prose-headings:mb-4 prose-headings:mt-10
+        prose-h2:text-2xl prose-h3:text-xl
+        prose-li:text-slate-300 prose-li:my-2
+        prose-ul:list-disc prose-ul:pl-6 prose-ul:my-4
+        prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-4
+        prose-strong:text-white prose-strong:font-semibold
+        prose-a:text-gold-500 prose-a:no-underline hover:prose-a:text-gold-400" data-aos="fade-up" data-aos-delay="200" lang="tr">
         
         <p>
           <strong>Dişçi Hukuk Bürosu</strong> olarak web sitemizi ziyaret eden kullanıcılarımızın kişisel verilerinin gizliliğine ve güvenliğine büyük önem vermekteyiz. Bu politika, web sitemiz aracılığıyla toplanan bilgilerin <strong>hangi amaçlarla ve nasıl kullanıldığını</strong> açıklamaktadır.
         </p>
 
-        <br />
-
-        <h2 class="text-gold-500 font-bold">1. Toplanan Veriler ve Amacı</h2>
+        <h2>1. Toplanan Veriler ve Amacı</h2>
         <p>
-          Web sitemizde yer alan iletişim formları aracılığıyla paylaştığınız <strong>ad-soyad, e-posta adresi ve telefon numarası</strong> gibi bilgiler, yalnızca tarafınızla iletişime geçilmesi ve talep ettiğiniz hukuki danışmanlık hizmetinin sağlanması amacıyla toplanmaktadır. <br /><br />
+          Web sitemizde yer alan iletişim formları aracılığıyla paylaştığınız <strong>ad-soyad, e-posta adresi ve telefon numarası</strong> gibi bilgiler, yalnızca tarafınızla iletişime geçilmesi ve talep ettiğiniz hukuki danışmanlık hizmetinin sağlanması amacıyla toplanmaktadır.
+        </p>
+        <p>
           Bunun yanı sıra, web sitesi deneyiminizi iyileştirmek için anonim olarak tarayıcı türü, ziyaret süresi ve IP adresi gibi <strong>teknik veriler</strong> çerezler vasıtasıyla kaydedilebilir.
         </p>
-        
-        <br />
 
-        <h2 class="text-gold-500 font-bold">2. Veri Güvenliği ve Saklama</h2>
+        <h2>2. Veri Güvenliği ve Saklama</h2>
         <p>
-          Kişisel verileriniz, yetkisiz erişim, kayıp veya ifşaya karşı korunması amacıyla <strong>güçlü teknik ve idari güvenlik yöntemleri</strong> ile saklanmaktadır. Web sitemiz üzerinden yapılan tüm veri akışları SSL sertifikası ile şifrelenerek korunmaktadır. <br /><br />
-          Verileriniz, kanuni saklama süreleri boyunca ve hizmetlerimizin ifası için gerekli olan süre kadar muhafaza edilir; bu sürenin sonunda güvenli bir şekilde <strong>silinir veya anonim hale getirilir.</strong>
+          Kişisel verileriniz, yetkisiz erişim, kayıp veya ifşaya karşı korunması amacıyla <strong>güçlü teknik ve idari güvenlik yöntemleri</strong> ile saklanmaktadır. Web sitemiz üzerinden yapılan tüm veri akışları SSL sertifikası ile şifrelenerek korunmaktadır.
         </p>
-        
-        <br />
+        <p>
+          Verileriniz, kanuni saklama süreleri boyunca ve hizmetlerimizin ifası için gerekli olan süre kadar muhafaza edilir; bu sürenin sonunda güvenli bir şekilde <strong>silinir veya anonim hale getirilir</strong>.
+        </p>
 
-        <h2 class="text-gold-500 font-bold">3. Bilgilerin Paylaşımı</h2>
+        <h2>3. Bilgilerin Paylaşımı</h2>
         <p>
           Toplanan kişisel bilgileriniz <strong>asla ticari amaçlarla üçüncü taraflara satılmaz</strong> veya pazarlama faaliyetleri için paylaşılmaz. Verileriniz, yalnızca davanızın yürütülmesi kapsamında zorunlu olan yargı mercileri veya yasal zorunlulukların gerektirdiği resmi kurumlarla paylaşılabilir.
         </p>
-        
-        <br />
 
-        <h2 class="text-gold-500 font-bold">4. Çerez Politikası</h2>
+        <h2>4. Çerez Politikası</h2>
         <p>
-          Ziyaretçilerimize daha iyi bir kullanıcı deneyimi sunabilmek adına sitemizde <strong>çerezler (cookies)</strong> kullanılmaktadır. Çerezler, web sitemizin işlevselliğini artırmak ve kullanıcı istatistiklerini takip etmek amacıyla kullanılan küçük metin dosyalarıdır. <br /><br />
+          Ziyaretçilerimize daha iyi bir kullanıcı deneyimi sunabilmek adına sitemizde <strong>çerezler (cookies)</strong> kullanılmaktadır. Çerezler, web sitemizin işlevselliğini artırmak ve kullanıcı istatistiklerini takip etmek amacıyla kullanılan küçük metin dosyalarıdır.
+        </p>
+        <p>
           İstediğiniz zaman tarayıcı ayarlarınızdan çerezleri <strong>devre dışı bırakabilir veya silebilirsiniz</strong>; ancak bu durum sitemizin bazı özelliklerinin eksik çalışmasına neden olabilir.
         </p>
-        
-        <br />
 
-        <h2 class="text-gold-500 font-bold">5. İletişim</h2>
+        <h2>5. İletişim</h2>
         <p>
-          Gizlilik ilkelerimize dair her türlü sorunuz veya veri silme talepleriniz için <strong>info@discilaw.com</strong> adresinden bize ulaşabilirsiniz. <br /><br />
-          Kişisel verilerinizin korunması kapsamındaki yasal haklarınız için lütfen <a href="/yasal/aydinlatma-metni" class="text-gold-500 hover:text-gold-400 underline underline-offset-4 decoration-gold-500/30 transition-colors"><strong>Aydınlatma Metni</strong></a> sayfamızı ziyaret ediniz.
+          Gizlilik ilkelerimize dair her türlü sorunuz veya veri silme talepleriniz için <strong>info@discilaw.com</strong> adresinden bize ulaşabilirsiniz.
+        </p>
+        <p>
+          Kişisel verilerinizin korunması kapsamındaki yasal haklarınız için lütfen <a href="/yasal/aydinlatma-metni"><strong>Aydınlatma Metni</strong></a> sayfamızı ziyaret ediniz.
         </p>
 
-        <div class="mt-16 pt-8 border-t border-slate-800 text-sm text-slate-500">
-           <p>Son Güncelleme: 19.01.2026</p>
-        </div>
-        
+      </div>
+
+      <!-- Footer Navigation -->
+      <div class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
+        <a href="/" class="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
+          <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          Anasayfa
+        </a>
+        <span class="text-sm text-slate-500">Son Güncelleme: 19 Ocak 2026</span>
       </div>
     </div>
-  </section>
+  </article>
+
+  <style>
+    .legal-content,
+    .legal-content p,
+    .legal-content li {
+      text-align: justify !important;
+      -webkit-hyphens: auto !important;
+      -moz-hyphens: auto !important;
+      -ms-hyphens: auto !important;
+      hyphens: auto !important;
+    }
+  </style>
 </Layout>

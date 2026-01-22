@@ -3,75 +3,104 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout title="Aydınlatma Metni | Dişçi Hukuk Bürosu" description="6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında Dişçi Hukuk Bürosu aydınlatma metni.">
+  <!-- Header -->
   <section class="py-20 bg-slate-900 border-b border-white/5">
-    <div class="container mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-serif text-center" data-aos="fade-up">
+    <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+      <span class="text-gold-500 font-bold px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-sm mb-6 inline-block">
+        KVKK
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight font-serif">
         Aydınlatma Metni
       </h1>
-      <p class="text-gold-500/80 text-center font-medium max-w-2xl mx-auto uppercase tracking-widest text-sm" data-aos="fade-up" data-aos-delay="100">
-        Kişisel Verilerin Korunması Kanunu (KVKK) Kapsamında Bilgilendirme
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında bilgilendirme
       </p>
     </div>
   </section>
 
-  <section class="py-20 bg-slate-950">
-    <div class="container mx-auto px-4 max-w-4xl">
-      <div class="prose prose-lg prose-invert prose-slate max-w-none text-slate-300 leading-relaxed text-justify">
+  <article class="py-24 bg-slate-950">
+    <div class="container mx-auto px-6 max-w-4xl">
+      <div class="prose prose-invert prose-lg mx-auto max-w-4xl legal-content
+        text-justify hyphens-auto prose-p:text-justify
+        prose-p:text-slate-300 prose-p:leading-relaxed prose-p:mb-6
+        prose-headings:text-gold-500 prose-headings:font-serif prose-headings:mb-4 prose-headings:mt-10
+        prose-h2:text-2xl prose-h3:text-xl
+        prose-li:text-slate-300 prose-li:my-2
+        prose-ul:list-disc prose-ul:pl-6 prose-ul:my-4
+        prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-4
+        prose-strong:text-white prose-strong:font-semibold
+        prose-a:text-gold-500 prose-a:no-underline hover:prose-a:text-gold-400" data-aos="fade-up" data-aos-delay="200" lang="tr">
         
         <p>
-          <strong>Dişçi Hukuk Bürosu</strong> olarak, kişisel verilerinizin güvenliği ve gizliliği hususuna azami önem vermekteyiz. Bu kapsamda, <strong>6698 sayılı Kişisel Verilerin Korunması Kanunu</strong> (“KVKK”) uyarınca veri sorumlusu sıfatıyla, kişisel verilerinizin işlenme amaçları, yöntemleri, hukuki sebepleri ve haklarınız konusunda sizleri bilgilendirmek isteriz.
+          <strong>Dişçi Hukuk Bürosu</strong> olarak, kişisel verilerinizin güvenliği ve gizliliği hususuna azami önem vermekteyiz. Bu kapsamda, <strong>6698 sayılı Kişisel Verilerin Korunması Kanunu</strong> ("KVKK") uyarınca veri sorumlusu sıfatıyla, kişisel verilerinizin işlenme amaçları, yöntemleri, hukuki sebepleri ve haklarınız konusunda sizleri bilgilendirmek isteriz.
         </p>
 
-        <br />
-
-        <h2 class="text-gold-500 font-bold">1. Kişisel Verilerin İşlenme Amacı</h2>
+        <h2>1. Kişisel Verilerin İşlenme Amacı</h2>
         <p>
-          Toplanan kişisel verileriniz, <strong>avukatlık ve hukuki danışmanlık</strong> hizmetlerimizin gereği gibi ifa edilmesi, müvekkil ilişkilerinin yönetimi, yasal yükümlülüklerin yerine getirilmesi, dava ve icra süreçlerinin takibi ve sizlerle iletişim kurulması amaçlarıyla işlenmektedir. <br /><br />
+          Toplanan kişisel verileriniz, <strong>avukatlık ve hukuki danışmanlık</strong> hizmetlerimizin gereği gibi ifa edilmesi, müvekkil ilişkilerinin yönetimi, yasal yükümlülüklerin yerine getirilmesi, dava ve icra süreçlerinin takibi ve sizlerle iletişim kurulması amaçlarıyla işlenmektedir.
+        </p>
+        <p>
           İşlenen verileriniz; kimlik bilgileriniz, iletişim bilgileriniz, finansal bilgileriniz ve hukuki işlem dosyalarınızla sınırlı olup, yalnızca belirtilen amaçlar doğrultusunda <strong>hukuka ve dürüstlük kurallarına uygun</strong> olarak muhafaza edilmektedir.
         </p>
-        
-        <br />
 
-        <h2 class="text-gold-500 font-bold">2. Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h2>
+        <h2>2. Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h2>
         <p>
-          Kişisel verileriniz; web sitemizdeki iletişim formları, e-posta gönderimleri, telefon görüşmeleri ve yüz yüze yapılan toplantılar aracılığıyla, <strong>sözlü, yazılı veya elektronik ortamlarda</strong> toplanmaktadır. <br /><br />
-          Bu veriler, KVKK’nın 5. maddesinde belirtilen; <strong>kanunlarda açıkça öngörülme</strong>, bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olma, veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi ve bir hakkın tesisi, kullanılması veya korunması için veri işlemenin zorunlu olması hukuki sebeplerine dayanılarak işlenmektedir.
+          Kişisel verileriniz; web sitemizdeki iletişim formları, e-posta gönderimleri, telefon görüşmeleri ve yüz yüze yapılan toplantılar aracılığıyla, <strong>sözlü, yazılı veya elektronik ortamlarda</strong> toplanmaktadır.
         </p>
-        
-        <br />
-
-        <h2 class="text-gold-500 font-bold">3. Kişisel Verilerin Aktarılması</h2>
         <p>
-          Kişisel verileriniz, sunduğumuz hukuki hizmetlerin yürütülmesi için zorunlu olan hallerde; <strong>adli makamlar</strong>, icra müdürlükleri, barolar, resmi kurum ve kuruluşlar ile yasal yükümlülüklerimizin gerektirdiği ölçüde yetkili kamu otoritelerine aktarılabilmektedir. <br /><br />
+          Bu veriler, KVKK'nın 5. maddesinde belirtilen; <strong>kanunlarda açıkça öngörülme</strong>, bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olma, veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi ve bir hakkın tesisi, kullanılması veya korunması için veri işlemenin zorunlu olması hukuki sebeplerine dayanılarak işlenmektedir.
+        </p>
+
+        <h2>3. Kişisel Verilerin Aktarılması</h2>
+        <p>
+          Kişisel verileriniz, sunduğumuz hukuki hizmetlerin yürütülmesi için zorunlu olan hallerde; <strong>adli makamlar</strong>, icra müdürlükleri, barolar, resmi kurum ve kuruluşlar ile yasal yükümlülüklerimizin gerektirdiği ölçüde yetkili kamu otoritelerine aktarılabilmektedir.
+        </p>
+        <p>
           Verileriniz, <strong>müvekkil sırrı</strong> kapsamında değerlendirilmekte olup, rızanız dışında veya yasal zorunluluk bulunmadıkça üçüncü şahıslarla paylaşılmamaktadır.
         </p>
-        
-        <br />
 
-        <h2 class="text-gold-500 font-bold">4. Veri Sahibinin Hakları</h2>
+        <h2>4. Veri Sahibinin Hakları</h2>
         <p>
-          KVKK’nın 11. maddesi uyarınca herkes veri sorumlusuna başvurarak kendisiyle ilgili; <br /><br />
-          • Kişisel verisinin işlenip işlenmediğini öğrenme, <br />
-          • Kişisel verileri işlenmişse buna ilişkin bilgi talep etme, <br />
-          • Verilerin işlenme amacını ve uygun kullanılıp kullanılmadığını öğrenme, <br />
-          • Eksik veya yanlış işlenmişse düzeltilmesini isteme, <br />
-          • KVKK çerçevesinde verilerin silinmesini veya yok edilmesini isteme <br /><br />
-          haklarına sahiptir.
+          KVKK'nın 11. maddesi uyarınca herkes veri sorumlusuna başvurarak kendisiyle ilgili aşağıdaki haklara sahiptir:
         </p>
-        
-        <br />
+        <ul>
+          <li>Kişisel verisinin işlenip işlenmediğini öğrenme</li>
+          <li>Kişisel verileri işlenmişse buna ilişkin bilgi talep etme</li>
+          <li>Verilerin işlenme amacını ve uygun kullanılıp kullanılmadığını öğrenme</li>
+          <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
+          <li>KVKK çerçevesinde verilerin silinmesini veya yok edilmesini isteme</li>
+        </ul>
 
-        <h2 class="text-gold-500 font-bold">5. İletişim ve Başvuru</h2>
+        <h2>5. İletişim ve Başvuru</h2>
         <p>
-          Yukarıda belirtilen haklarınız kapsamında her türlü soru ve talebinizi <strong>info@discilaw.com</strong> e-posta adresine yazılı olarak iletebilirsiniz. <br /><br />
-          Kişisel verilerinizin işlenmesi ve korunması hakkındaki detaylı bilgilere <a href="/yasal/gizlilik-politikasi" class="text-gold-500 hover:text-gold-400 underline underline-offset-4 decoration-gold-500/30 transition-colors"><strong>Gizlilik Politikası</strong></a> sayfamızdan ulaşabilirsiniz.
+          Yukarıda belirtilen haklarınız kapsamında her türlü soru ve talebinizi <strong>info@discilaw.com</strong> e-posta adresine yazılı olarak iletebilirsiniz.
+        </p>
+        <p>
+          Kişisel verilerinizin işlenmesi ve korunması hakkındaki detaylı bilgilere <a href="/yasal/gizlilik-politikasi"><strong>Gizlilik Politikası</strong></a> sayfamızdan ulaşabilirsiniz.
         </p>
 
-        <div class="mt-16 pt-8 border-t border-slate-800 text-sm text-slate-500">
-           <p>Son Güncelleme: 19.01.2026</p>
-        </div>
-        
+      </div>
+
+      <!-- Footer Navigation -->
+      <div class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
+        <a href="/" class="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors group">
+          <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          Anasayfa
+        </a>
+        <span class="text-sm text-slate-500">Son Güncelleme: 19 Ocak 2026</span>
       </div>
     </div>
-  </section>
+  </article>
+
+  <style>
+    .legal-content,
+    .legal-content p,
+    .legal-content li {
+      text-align: justify !important;
+      -webkit-hyphens: auto !important;
+      -moz-hyphens: auto !important;
+      -ms-hyphens: auto !important;
+      hyphens: auto !important;
+    }
+  </style>
 </Layout>
